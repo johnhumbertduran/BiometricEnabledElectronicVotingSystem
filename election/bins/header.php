@@ -16,9 +16,11 @@
 
     <link rel="icon" type="image/png" href="bins/sampleLogo.png">
 
-    <link rel="stylesheet" href="bins/styles/color.css">
-    <link rel="stylesheet" href="bins/styles/button.css">
-    <link rel="stylesheet" href="bins/styles/footer.css">
+    <link rel="stylesheet" href="../bins/styles/color.css">
+    <link rel="stylesheet" href="../bins/styles/button.css">
+    <link rel="stylesheet" href="../bins/styles/footer.css">
+    <link rel="stylesheet" href="../bins/styles/dropdown.css">
+    <link rel="stylesheet" href="../bins/styles/select.css">
     <link rel="stylesheet" href="../bins/bootstrap-5.3.3-dist/css/bootstrap.min.css"> <!-- Bootstrap 5 for offline -->
     <!-- Latest compiled and minified CSS -->
 
