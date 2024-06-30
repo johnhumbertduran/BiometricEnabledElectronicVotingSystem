@@ -1,0 +1,40 @@
+.bgmainblue {
+  background-color: #004ba6 !important;
+}
+
+.btnbgmainblue {
+  background-color: #004ba6 !important;
+}
+
+.btnbgmainblue:hover {
+  background-color: #2c77d3 !important;
+}
+
+.textmainblue {
+  color: #004ba6 !important;
+}
+
+.bgyellow {
+  background-color: #fcc306 !important;
+}
+
+.textmainblue {
+  color: #fcc306 !important;
+}
+
+.borderblue {
+  border: 2px solid #004ba6 !important;
+}
+
+.bgred {
+  background-color: #d64747 !important;
+}
+
+.textred {
+  color: #f44336 !important;
+}
+
+.textredbold {
+  color: #f44336 !important;
+  font-weight: bold;
+}
