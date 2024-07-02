@@ -1,0 +1,27 @@
+.border-blue {
+  border: 3px solid #004ba6 !important;
+}
+
+.border-yellow {
+  border-color: #fcc306 !important;
+}
+
+.border-red {
+  border-color: #d64747 !important;
+}
+
+.border-green {
+  border-color: #04aa6d !important;
+}
+
+.border-light-blue {
+  border-color: #008cba !important;
+}
+
+.border-gray {
+  border-color: #e7e7e7 !important;
+}
+
+.border-black {
+  border-color: #555555 !important;
+}

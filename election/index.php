@@ -47,7 +47,7 @@ include('bins/navigation.php');
                 <h2 class="text-center">Candidates</h2>
                 <div class="container">
                     <div class="row">
-                        hello
+
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@ include('bins/navigation.php');
     <br>
     <div class="container d-flex justify-content-between">
         <button class="button-green" type="button">Back</button>
-        <button class="button-green" type="button">Back</button>
+        <button class="button-green" type="button">Submit</button>
     </div>
 
 
