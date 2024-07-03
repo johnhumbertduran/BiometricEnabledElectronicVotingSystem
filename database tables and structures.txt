@@ -63,6 +63,9 @@ middleName
 lastName
 department
 schoolyear
+username
+password
+confirmpassword
 account_type (1=superadmin, 2=admin)
 
 positionstbl: (if possible)

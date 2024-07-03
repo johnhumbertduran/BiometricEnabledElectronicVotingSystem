@@ -52,11 +52,11 @@ $time_now = date("h:i a");
                     <div class="row">
                         <div class="col-md-6">
                             <h2>Mission</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt accusantium fugit quam expedita recusandae sint fuga cum ipsum minus harum atque rerum earum, est beatae nesciunt error assumenda dicta fugiat?</p>
+                            <p>"WVSU COMMITS TO DEVELOP LIFE-LONG LEARNERS EMPOWERED TO GENERATE KNOWLEDGE AND TECHNOLOGY, AND TRANSFORM COMMUNITIES AS AGENTS OF CHANGE"</p>
                         </div>
                         <div class="col-md-6">
                             <h2>Vision</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt accusantium fugit quam expedita recusandae sint fuga cum ipsum minus harum atque rerum earum, est beatae nesciunt error assumenda dicta fugiat?</p>
+                            <p>"A RESEARCH UNIVERSITY ADVANCING QUALITY EDUCATION TOWARDS SOCIETAL TRANSFORMATION AND GLOBAL RECOGNITION"</p>
 
                         </div>
                     </div>

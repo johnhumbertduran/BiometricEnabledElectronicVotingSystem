@@ -2,7 +2,7 @@
 include("../bins/connections.php");
 
 $response = ['status' => '', 'message' => ''];
-$firstname = $middlename = $lastname = $department = $schoolyear = "";
+$firstname = $middlename = $lastname = $department = $schoolyear = $username = $password = $cpassword = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST["firstname"])) {
@@ -20,47 +20,85 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST["schoolyear"])) {
         $schoolyear = $_POST["schoolyear"];
     }
+    if (!empty($_POST["username"])) {
+        $username = $_POST["username"];
+    }
+    if (!empty($_POST["password"])) {
+        $password = $_POST["password"];
+    }
+    if (!empty($_POST["cpassword"])) {
+        $cpassword = $_POST["cpassword"];
+    }
 
-    if ($firstname && $middlename && $lastname && $department && $schoolyear) {
+    if ($firstname && $middlename && $lastname && $department && $schoolyear && $username && $password && $cpassword) {
         if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstname)) {
-            $response['status'] = 'error';
+            $response['status'] = 'Error';
             $response['message'] = 'First Name should not have numbers or symbols.';
             echo json_encode($response);
             exit;
         } else {
             if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $middlename)) {
-                $response['status'] = 'error';
+                $response['status'] = 'Error';
                 $response['message'] = 'Middle Name should not have numbers or symbols.';
                 echo json_encode($response);
                 exit;
             } else {
                 if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $lastname)) {
-                    $response['status'] = 'error';
+                    $response['status'] = 'Error';
                     $response['message'] = 'Last Name should not have numbers or symbols.';
                     echo json_encode($response);
                     exit;
                 } else {
                     if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $department)) {
-                        $response['status'] = 'error';
+                        $response['status'] = 'Error';
                         $response['message'] = 'Department should not have numbers or symbols.';
                         echo json_encode($response);
                         exit;
                     } else {
-                        // Perform database insert operation here
-                        $query = "INSERT INTO admintbl (firstname, middlename, lastname, department, schoolyear, account_type) VALUES ('$firstname', '$middlename', '$lastname', '$department', '$schoolyear', '2')";
-                        if (mysqli_query($connections, $query)) {
-                            $response['status'] = 'success';
-                            $response['message'] = 'Admin added successfully.';
+
+                        if (strlen($username) <= 7) {
+                            $response['status'] = 'Error';
+                            $response['message'] = 'Username should have atleast 8 characters';
+                            echo json_encode($response);
+                            exit;
                         } else {
-                            $response['status'] = 'error';
-                            $response['message'] = 'Database error. Please try again.';
+                            if (strlen($password) <= 7) {
+                                $response['status'] = 'Error';
+                                $response['message'] = 'Password should have atleast 8 characters';
+                                echo json_encode($response);
+                                exit;
+                            } else {
+                                if (strlen($cpassword) <= 7) {
+                                    $response['status'] = 'Error';
+                                    $response['message'] = 'Confirm Password should have atleast 8 characters';
+                                    echo json_encode($response);
+                                    exit;
+                                } else {
+                                    if ($cpassword != $password) {
+                                        $response['status'] = 'Error';
+                                        $response['message'] = 'Confirm Password should match the Password given';
+                                        echo json_encode($response);
+                                        exit;
+                                    } else {
+                                        // Perform database insert operation here
+                                        $query = "INSERT INTO admintbl (firstname, middlename, lastname, department, schoolyear, username, password, account_type) VALUES ('$firstname', '$middlename', '$lastname', '$department', '$schoolyear', '$username', '$cpassword', '2')";
+                                        if (mysqli_query($connections, $query)) {
+                                            $response['status'] = 'Success';
+                                            $response['message'] = 'Admin added successfully.';
+                                        } else {
+                                            $response['status'] = 'Error';
+                                            $response['message'] = 'Database error. Please try again.';
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
         }
     } else {
-        $response['status'] = 'error';
+        $response['status'] = 'Error';
         $response['message'] = 'All fields are required.';
     }
     echo json_encode($response);
@@ -114,6 +152,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </tr>
             </div>
 
+            <div class="form-group">
+                <tr>
+                    <td class="label"><b><label for="username">Username:<span style="color:red;"> *</span></label></b></td>
+                    <td colspan="3"><input class="form-control" type="text" value="<?php echo $username; ?>" name="username" id="username" placeholder="Username" autocomplete="off" required></td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td class="label"><b><label for="password">Password:<span style="color:red;"> *</span></label></b></td>
+                    <td colspan="3"><input class="form-control" type="password" value="<?php echo $password; ?>" name="password" id="password" placeholder="Password" autocomplete="off" required></td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td class="label"><b><label for="cpassword">Confirm Password:<span style="color:red;"> *</span></label></b></td>
+                    <td colspan="3"><input class="form-control" type="password" value="<?php echo $cpassword; ?>" name="cpassword" id="cpassword" placeholder="Confirm Password" autocomplete="off" required></td>
+                </tr>
+            </div>
+
             <tr>
                 <td colspan="4">
                     <hr>
@@ -140,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 data: formData,
                 success: function(response) {
                     var res = JSON.parse(response);
-                    if (res.status === 'success') {
+                    if (res.status === 'Success') {
                         alert(res.message);
                         // Use history.pushState to remain on the same view
                         history.pushState(null, '', 'registeradmin.php');

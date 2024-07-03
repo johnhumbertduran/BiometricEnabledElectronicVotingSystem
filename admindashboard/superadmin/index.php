@@ -1,6 +1,25 @@
 <?php
+session_start();
 include('bins/header.php');
 include('bins/navigation.php');
+include("../bins/connections.php");
+
+if (isset($_SESSION["username"])) {
+
+    $session_user = $_SESSION["username"];
+
+    $query_info = mysqli_query($connections, "SELECT * FROM admintbl WHERE username='$session_user'");
+    $my_info = mysqli_fetch_assoc($query_info);
+    $account_type = $my_info["account_type"];
+
+    if ($account_type != 1) {
+
+        header('Location: ../../forbidden.php');
+    }
+} else {
+
+    header('Location: ../');
+}
 ?>
 <br>
 <div class="container-fluid px-5">
@@ -46,7 +65,7 @@ include('bins/navigation.php');
                 </div>
 
                 <div class="mt-auto text-center">
-                    <button class="button-blue border border-light">Logout</button>
+                    <a href="logout.php" class="button-blue border border-light">Logout</a>
                 </div>
                 <br>
             </div>
