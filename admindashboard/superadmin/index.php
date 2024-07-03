@@ -25,6 +25,9 @@ include('bins/navigation.php');
                             <a class="nav-link text-white active" href="#" data-target="home.php">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="adminlists.php">Admin List</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white" href="#" data-target="candidatelist.php">Candidate's List</a>
                         </li>
                         <li class="nav-item">

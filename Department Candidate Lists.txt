@@ -1,0 +1,110 @@
+CSI(IT Department)
+
+President
+Vice President
+Secretary
+Asst. Secretary
+Treasurer
+Asst. Treasurer
+Auditor
+Asst. Auditor
+P.I.O(2)
+Business Manager
+Layout Artist(2)
+Technical Support(2)
+
+##########################################
+
+YEL - Young Educators' League ( BEEd )
+
+President
+Vice President 
+Secretary 
+Treasurer 
+Asst. Treasurer 
+Auditor 
+P.I.O(2)
+Business Manager
+Asst. Business Manager
+BEEd 1 Representative(2)  
+BEEd 2 Representative(2)  
+BEEd 3 Representative(2) 
+BEEd 4 Representative(2)
+
+###########################################
+
+KamFil ( Filipino )
+Pangulo
+Pangalawang Pangulo
+Kalihim
+Ikalawang Kalihim
+Taga-ingat Yaman
+Ikalawang Taga-ingat Yaman
+Tagasuri
+Ikalawang Tagasuri
+Taga Pamalita
+Ikalawang Taga Pamalita
+Tagapangalakal
+Ikalawang Tagapangalakal
+Unang Kinatawan
+Ikalawang Kinatawan
+Ikatlong Kinatawan
+Ikaapat na Kinatawan
+
+##########################################
+
+TALASIPNAYAN(Math)
+PRESIDENT
+VICE PRESIDENT
+SECRETARY
+ASST. SECRETARY
+TREASURER
+ASST. TREASURER
+AUDITOR
+P.I.O.
+BUSINESS MANAGERS
+1ST YEAR REPRESENTATIVE
+2ND YEAR REPRESENTATIVE
+3RD YEAR REPRESENTATIVE
+4TH YEAR REPRESENTATIVE
+
+##########################################
+
+HELLO(English)
+President
+Vice President
+Secretary
+Asst. Secretary 
+Treasurer
+Asst. Treasurer 
+Auditor
+Business Manager 
+Business Manager
+P.I.O
+First Year Representative 
+Second Year Rep.
+Third Year Rep.
+Fourth Year Rep.
+
+##########################################
+
+3S' Society ( SocStud )
+President
+Vice Pres.
+Secretary 
+Treasurer 
+Auditor
+Public Info. Officer
+Public Info. Officer
+Business Manager
+Business Manager
+Peace Officer
+Peac Officer
+Escort
+Muse
+First Year Representative 
+Second Year Rep.
+Third Year Rep.
+Fourth Year Rep
+
+##########################################

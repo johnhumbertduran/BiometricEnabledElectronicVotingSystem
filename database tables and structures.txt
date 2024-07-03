@@ -1,0 +1,77 @@
+Tables:
+voterstbl
+votestbl
+historytbl
+candidatestbl
+electionyeartbl
+admintbl
+positionstbl
+
+
+
+
+Stuctures:
+
+voterstbl structure:
+id
+idNumber
+firstName
+middleName
+lastName
+year
+department
+biometric
+status
+
+
+votestbl structure: //per department dapat daya
+// automatic na pag register, ma select nana department if anong table imaw belong
+id
+idNumber
+firstName
+middleName
+lastName
+year
+department
+status
+
+
+historytbl structure:
+
+
+candidatestbl structure:
+id
+idNumber
+firstName
+middleName
+lastName
+year
+image
+position
+party
+
+
+electionyeartbl structure:
+id
+schoolyear
+status
+
+admintbl structure:
+id
+firstName
+middleName
+lastName
+department
+schoolyear
+account_type (1=superadmin, 2=admin)
+
+positionstbl: (if possible)
+id
+year
+department
+position1
+position2
+position3
+position4
+position5
+status
