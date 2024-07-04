@@ -11,6 +11,8 @@ if (isset($_SESSION["username"])) {
     $query_info = mysqli_query($connections, "SELECT * FROM admintbl WHERE username='$session_user'");
     $my_info = mysqli_fetch_assoc($query_info);
     $account_type = $my_info["account_type"];
+    $name = ucfirst($my_info["firstName"]);
+
 
     if ($account_type != 1) {
 
@@ -21,6 +23,26 @@ if (isset($_SESSION["username"])) {
     header('Location: ../');
 }
 ?>
+
+<style>
+    /* Add this CSS to your stylesheet or inside a <style> tag */
+
+    .nav-link {
+        padding: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        /* Adjust hover background color */
+    }
+
+    .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.3);
+        /* Adjust active background color */
+        /* font-weight: bold; */
+    }
+</style>
 <br>
 <div class="container-fluid px-5">
     <div class="row" style="height: 70vh;">
@@ -37,7 +59,7 @@ if (isset($_SESSION["username"])) {
             <div class="d-flex flex-column h-100">
 
                 <br>
-                <h3 class="text-white">Welcome - Admin</h3>
+                <h3 class="text-white">Welcome - <?php echo $name; ?></h3>
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
@@ -46,7 +68,7 @@ if (isset($_SESSION["username"])) {
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#" data-target="adminlists.php">Admin List</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link text-white" href="#" data-target="candidatelist.php">Candidate's List</a>
                         </li>
                         <li class="nav-item">
@@ -54,7 +76,7 @@ if (isset($_SESSION["username"])) {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#" data-target="canvassreport.php">Canvassing Report</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#" data-target="historylog.php">History Log</a>
                         </li>
@@ -75,7 +97,7 @@ if (isset($_SESSION["username"])) {
         <div class="col-md-1"></div>
 
         <!-- Main Content Area -->
-        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue" style="padding: 0 !important;">
+        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue" style="padding: 0 !important; height: 100%;">
 
         </main>
     </div>
@@ -98,12 +120,19 @@ if (isset($_SESSION["username"])) {
                 success: function(data) {
                     console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
+                    setActiveLink('home.php'); // Set active link
                 },
                 error: function() {
                     console.log("Error loading content."); // Log error
                     $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
                 }
             });
+        }
+
+        // Function to set active link
+        function setActiveLink(target) {
+            $('.nav-link').removeClass('active'); // Remove active class from all links
+            $('.nav-link[data-target="' + target + '"]').addClass('active'); // Add active class to the current link
         }
 
         // Load home.php initially on document ready
@@ -122,6 +151,7 @@ if (isset($_SESSION["username"])) {
                 success: function(data) {
                     console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
+                    setActiveLink(target); // Set active link
                 },
                 error: function() {
                     console.log("Error loading content."); // Log error

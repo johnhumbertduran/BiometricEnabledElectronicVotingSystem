@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../SPP"
+		},
+		{
+			"path": "../TheBang"
 		}
 	],
 	"settings": {}

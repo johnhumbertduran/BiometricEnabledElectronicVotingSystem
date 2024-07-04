@@ -43,7 +43,7 @@ echo '<!DOCTYPE html>
             align-items: center;
             justify-content: center;
             font-family: Arial, sans-serif;
-            background-image: url("bins/404.png");
+            background-image: url("bins/403.png");
             background-size: contain;
             background-repeat: no-repeat;
             background-attachment: fixed;

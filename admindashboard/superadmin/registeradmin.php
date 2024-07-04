@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (res.status === 'Success') {
                         alert(res.message);
                         // Use history.pushState to remain on the same view
-                        history.pushState(null, '', 'registeradmin.php');
+                        // history.pushState(null, '', 'registeradmin.php');
                         // Reload the form to clear fields
                         $('main[role="main"]').load('registeradmin.php');
                     } else {

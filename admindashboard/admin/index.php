@@ -22,7 +22,25 @@ if (isset($_SESSION["username"])) {
 }
 
 ?>
+<style>
+    /* Add this CSS to your stylesheet or inside a <style> tag */
 
+    .nav-link {
+        padding: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        /* Adjust hover background color */
+    }
+
+    .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.3);
+        /* Adjust active background color */
+        /* font-weight: bold; */
+    }
+</style>
 <br>
 <div class="container-fluid px-5">
     <div class="row" style="height: 70vh;">
@@ -74,7 +92,7 @@ if (isset($_SESSION["username"])) {
         <div class="col-md-1"></div>
 
         <!-- Main Content Area -->
-        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue" style="padding: 0 !important;">
+        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-auto" style="padding: 0 !important; height: 100%;">
 
         </main>
     </div>
@@ -97,12 +115,19 @@ if (isset($_SESSION["username"])) {
                 success: function(data) {
                     console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
+                    setActiveLink('home.php'); // Set active link
                 },
                 error: function() {
                     console.log("Error loading content."); // Log error
                     $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
                 }
             });
+        }
+
+        // Function to set active link
+        function setActiveLink(target) {
+            $('.nav-link').removeClass('active'); // Remove active class from all links
+            $('.nav-link[data-target="' + target + '"]').addClass('active'); // Add active class to the current link
         }
 
         // Load home.php initially on document ready
@@ -121,6 +146,7 @@ if (isset($_SESSION["username"])) {
                 success: function(data) {
                     console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
+                    setActiveLink(target); // Set active link
                 },
                 error: function() {
                     console.log("Error loading content."); // Log error

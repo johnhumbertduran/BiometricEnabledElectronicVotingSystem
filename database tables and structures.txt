@@ -45,10 +45,11 @@ idNumber
 firstName
 middleName
 lastName
+course
 year
-image
 position
 party
+image
 
 
 electionyeartbl structure:
