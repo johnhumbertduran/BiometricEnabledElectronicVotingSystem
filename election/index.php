@@ -1,6 +1,21 @@
 <?php
 include('bins/header.php');
 include('bins/navigation.php');
+
+
+// Get the selected value from the query string or set a default value
+$selectedParty = isset($_GET['redir']) ? $_GET['redir'] : 'select_party';
+
+// Map for displaying text based on value
+$partyOptions = [
+    'select_party' => 'Select Party',
+    'party1' => 'Party 1',
+    'party2' => 'Party 2',
+    'party3' => 'Party 3',
+    'party4' => 'Party 4'
+];
+$selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selectedParty] : 'Select Party';
+
 ?>
 
 
@@ -11,12 +26,12 @@ include('bins/navigation.php');
                 <img src="bins/sampleLogo.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
             </a>
             <div class="mx-3">
-                <span>Campus Student Council Election</span>
+                <h2>Campus Student Council Election</h2>
             </div>
         </div>
 
         <div class="d-flex justify-content-end align-items-center">
-            <div class="dropdown mx-3">
+            <!-- <div class="dropdown mx-3">
                 <form>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Select Party List</label>
@@ -29,25 +44,58 @@ include('bins/navigation.php');
                         </select>
                     </div>
                 </form>
-            </div>
+            </div> -->
             <div class="mx-3">
-                <a href="#" class="text-decoration-none">Help</a>
+                <a href="#" class="text-decoration-none px-2 py-1 link-button-blue-border">Help</a>
             </div>
         </div>
     </div>
 </div>
 
 
+
 <!-- Next container -->
 
 <div class="container">
+
+    <!-- Select Party Dropdown -->
+    <div class="custom-select-container sticky-top pb-1" id="select_party">
+        <div class="select-selected">Select Party</div>
+        <div class="select-items">
+            <a href="?party=party1" class='select-item'>Party 1</a>
+            <a href="?party=party2" class='select-item'>Party 2</a>
+            <a href="?party=party3" class='select-item'>Party 3</a>
+            <a href="?party=party4" class='select-item'>Party 4</a>
+        </div>
+    </div>
+
+
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-6">
-            <div class="pt-2 borderblue">
-                <h2 class="text-center">Candidates</h2>
+            <div class=" borderblue overflow-auto" style="height: 55vh;">
+                <h3 class="text-center bgmainblue text-white sticky-top py-2" style="z-index: 1;">Candidates</h3>
+                <!-- check Department then ibutang iya ru Department -->
                 <div class="container">
                     <div class="row">
 
+                        <?php
+                        include('beed.php');
+                        ?>
+                        <?php
+                        //  include('english.php'); 
+                        ?>
+                        <?php
+                        //  include('filipino.php'); 
+                        ?>
+                        <?php
+                        //  include('it.php'); 
+                        ?>
+                        <?php
+                        //  include('math.php'); 
+                        ?>
+                        <?php
+                        //  include('socialstudy.php'); 
+                        ?>
                     </div>
                 </div>
             </div>
@@ -60,15 +108,15 @@ include('bins/navigation.php');
         <div class="col-md-6 borderblue" style="max-height: 350px; overflow-y: auto;">
 
             <br>
-            <h2 class="text-center">Vote Here</h2>
+            <h3 class="text-center">Vote Here</h3>
 
             <br>
         </div>
-    </div>
-    <br>
-    <div class="container d-flex justify-content-between">
-        <button class="button-green" type="button">Back</button>
-        <button class="button-green" type="button">Submit</button>
+
+        <div class="container d-flex justify-content-between pt-2">
+            <button class="button-green" type="button">Back</button>
+            <button class="button-green" type="button">Submit</button>
+        </div>
     </div>
 
 
@@ -76,7 +124,45 @@ include('bins/navigation.php');
 
 </div>
 
+<script>
+    // JavaScript for making the dropdown clickable
+    document.addEventListener("DOMContentLoaded", function() {
+        var selected = document.querySelector(".select-selected");
+        var items = document.querySelectorAll(".select-item");
 
+        // Function to handle click on each item
+        function handleItemClick(item) {
+            item.addEventListener("click", function(e) {
+                e.preventDefault();
+                var selectedText = item.textContent;
+                var partyParam = item.getAttribute("href").split('=')[1];
+
+                // Update selected text
+                selected.textContent = selectedText;
+
+                // Redirect to the new URL with party parameter
+                window.location.href = window.location.pathname + "?" + partyParam;
+            });
+        }
+
+        // Toggle the dropdown visibility
+        selected.addEventListener("click", function() {
+            document.querySelector(".select-items").classList.toggle("active");
+        });
+
+        // Attach click event listener to each item
+        items.forEach(function(item) {
+            handleItemClick(item);
+        });
+
+        // Close the dropdown if the user clicks outside of it
+        document.addEventListener("click", function(e) {
+            if (!selected.contains(e.target)) {
+                document.querySelector(".select-items").classList.remove("active");
+            }
+        });
+    });
+</script>
 
 <?php
 include('bins/footer.php');
