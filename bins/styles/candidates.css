@@ -1,0 +1,23 @@
+.default-img {
+  width: 100px;
+  height: 100px;
+  /* Make the image cover the entire height of the container */
+  object-fit: cover;
+  /* Maintain aspect ratio while covering the container */
+  /* display: block; */
+}
+
+.candidate-row {
+  display: inline-block;
+  /* width: 100%; */
+  /* background-color: blueviolet; */
+  /* background-color: #c94141; */
+  /* justify-content: center;
+  flex-direction: row; */
+}
+
+.candidate-img {
+  /* margin: 30px 0; */
+  /* width: 100%; */
+  overflow: hidden;
+}

@@ -24,11 +24,23 @@
 
 <script>
     $(document).ready(function() {
+
+        // Function to update main class based on the target URL
+        function updateMainClass(target) {
+
+            var mainElement = $('main[role="main"]');
+            if (target === 'registervoters.php') {
+                mainElement.addClass('d-flex align-items-center justify-content-center');
+            } else {
+                mainElement.removeClass('d-flex align-items-center justify-content-center');
+            }
+        }
+
         // Event handler for register candidates button
         $('#registerVoterButton').click(function(e) {
             e.preventDefault(); // Prevent default button behavior
             var target = $(this).data('target'); // Get target from data attribute
-            console.log("Loading content from: " + target); // Log target for debugging
+            console.log("Loading content from(registerVoterButton.phpCode): " + target); // Log target for debugging
 
             // AJAX request to load content
             $.ajax({
@@ -37,6 +49,7 @@
                 success: function(data) {
                     console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
+                    updateMainClass(target); // Update main class
                 },
                 error: function() {
                     console.log("Error loading content."); // Log error

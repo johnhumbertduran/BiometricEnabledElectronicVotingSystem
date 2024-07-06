@@ -11,16 +11,14 @@ if (isset($_SESSION["username"])) {
     $query_info = mysqli_query($connections, "SELECT * FROM admintbl WHERE username='$session_user'");
     $my_info = mysqli_fetch_assoc($query_info);
     $account_type = $my_info["account_type"];
+    $admin_name = $my_info["firstName"];
 
     if ($account_type != 2) {
-
         header('Location: ../../forbidden.php');
     }
 } else {
-
     header('Location: ../');
 }
-
 ?>
 <style>
     /* Add this CSS to your stylesheet or inside a <style> tag */
@@ -55,9 +53,8 @@ if (isset($_SESSION["username"])) {
         <!-- Vertical Navigation Bar -->
         <nav id="sidebarMenu" class="col-md-3 d-md-block bgmainblue sidebar" style="height: 100%;">
             <div class="d-flex flex-column h-100">
-
                 <br>
-                <h3 class="text-white">Welcome - Admin</h3>
+                <h3 class="text-white">Welcome - <?php echo $admin_name; ?></h3>
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
@@ -93,16 +90,26 @@ if (isset($_SESSION["username"])) {
 
         <!-- Main Content Area -->
         <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-auto" style="padding: 0 !important; height: 100%;">
-
+            <!-- Your PHP content goes here -->
         </main>
+
     </div>
 </div>
 
-
-
 <script>
     $(document).ready(function() {
-        console.log("Document is ready."); // Check if document is ready
+        //console.log("Document is ready."); // Check if document is ready
+
+        // Function to update main class based on the target URL
+        function updateMainClass(target) {
+
+            var mainElement = $('main[role="main"]');
+            if (target === 'registervoters.php') {
+                mainElement.addClass('d-flex align-items-center justify-content-center');
+            } else {
+                mainElement.removeClass('d-flex align-items-center justify-content-center');
+            }
+        }
 
         // Function to load home.php initially
         function loadHomePage() {
@@ -116,6 +123,8 @@ if (isset($_SESSION["username"])) {
                     console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
                     setActiveLink('home.php'); // Set active link
+
+                    //updateMainClass('home.php'); // Update main class
                 },
                 error: function() {
                     console.log("Error loading content."); // Log error
@@ -130,6 +139,7 @@ if (isset($_SESSION["username"])) {
             $('.nav-link[data-target="' + target + '"]').addClass('active'); // Add active class to the current link
         }
 
+
         // Load home.php initially on document ready
         loadHomePage();
 
@@ -137,7 +147,7 @@ if (isset($_SESSION["username"])) {
         $('.nav-link').click(function(e) {
             e.preventDefault(); // Prevent default link behavior
             var target = $(this).data('target'); // Get target from data attribute
-            console.log("Loading content from: " + target); // Log target for debugging
+            console.log("Loading content from(NavLinkCode): " + target); // Log target for debugging
 
             // AJAX request to load content
             $.ajax({
@@ -147,6 +157,8 @@ if (isset($_SESSION["username"])) {
                     console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
                     setActiveLink(target); // Set active link
+                    console.log("check target here:" + target);
+                    updateMainClass(target); // Update main class
                 },
                 error: function() {
                     console.log("Error loading content."); // Log error
