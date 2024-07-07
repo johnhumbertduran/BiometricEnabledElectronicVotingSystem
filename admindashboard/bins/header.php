@@ -14,7 +14,7 @@
     <meta name="keywords" content="Biometric,Enabled,Electronic,Voting,System">
     <!-- <meta property="og:image" content="me.JPG"> -->
 
-    <link rel="icon" type="image/png" href="bins/sampleLogo.png">
+    <link rel="icon" type="image/png" href="../bins/img/logo.png">
 
     <link rel="stylesheet" href="../bins/styles/color.css">
     <link rel="stylesheet" href="../bins/styles/button.css">

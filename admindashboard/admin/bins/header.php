@@ -12,7 +12,7 @@
     <meta name="HandheldFriendly" content="true" />
     <meta name="description" content="BiometricEnabledElectronicVotingSystem">
     <meta name="keywords" content="Biometric,Enabled,Electronic,Voting,System">
-    <link rel="icon" type="image/png" href="bins/sampleLogo.png">
+    <link rel="icon" type="image/png" href="../../bins/img/logo.png">
     <link rel="stylesheet" href="../../bins/styles/color.css">
     <link rel="stylesheet" href="../../bins/styles/button.css">
     <link rel="stylesheet" href="../../bins/styles/footer.css">

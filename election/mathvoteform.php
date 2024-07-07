@@ -58,14 +58,6 @@
                 </select>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="assistantauditor" class="form-label">Assistant Auditor:</label>
-                <select class="form-select form-select-sm" id="assistantauditor">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div class="col-md-6 mb-3">
                 <label for="pio" class="form-label">P.I.O:</label>
                 <select class="form-select form-select-sm" id="pio">
                     <option value="1">One</option>
@@ -82,16 +74,32 @@
                 </select>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="layoutartist" class="form-label">Layout Artist:</label>
-                <select class="form-select form-select-sm" id="layoutartist">
+                <label for="firstyearrepresentative" class="form-label">First Year Representative:</label>
+                <select class="form-select form-select-sm" id="firstyearrepresentative">
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="technicalsupport" class="form-label">Technical Support:</label>
-                <select class="form-select form-select-sm" id="technicalsupport">
+                <label for="secondyearrepresentative" class="form-label">Second Year Representative:</label>
+                <select class="form-select form-select-sm" id="secondyearrepresentative">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="thirdyearrepresentative" class="form-label">Third Year Representative:</label>
+                <select class="form-select form-select-sm" id="thirdyearrepresentative">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="fourthyearrepresentative" class="form-label">Fourth Year Representative:</label>
+                <select class="form-select form-select-sm" id="fourthyearrepresentative">
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>

@@ -94,100 +94,72 @@ if (isset($_POST["login"])) {
         } else {
 
             $session_user = "";
-            echo "<script>alert('Sorry, the User Name you entered is not registered.');</script>";
+            echo "<script>alert('Sorry, the Username you entered is not registered.');</script>";
         }
     }
 }
 
 ?>
+<style>
+    .full-height {
+        height: 70vh;
+    }
 
-<br>
-<div class="container">
-    <div class="row d-flex align-items-center justify-content-center">
-        <div class="col-md-6">
-            <div class="pt-2 borderblue">
-                <h2 class="text-center">Logo of All Organization</h2>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="bins/sampleLogo.png" class="img-fluid" alt="Logo 1">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="bins/sampleLogo.png" class="img-fluid" alt="Logo 2">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="bins/sampleLogo.png" class="img-fluid" alt="Logo 3">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="bins/sampleLogo.png" class="img-fluid" alt="Logo 4">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="bins/sampleLogo.png" class="img-fluid" alt="Logo 5">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="bins/sampleLogo.png" class="img-fluid" alt="Logo 6">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="bins/sampleLogo.png" class="img-fluid" alt="Logo 7">
-                        </div>
-                        <div class="col-md-3">
-                            <img src="bins/sampleLogo.png" class="img-fluid" alt="Logo 8">
-                        </div>
-                    </div>
+    .borderblue {
+        border: 1px solid blue;
+        /* Example border style */
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+</style>
+
+<div class="container d-flex align-items-center justify-content-center full-height">
+    <div class="row d-flex align-items-stretch equal-height justify-content-center w-100">
+        <div class="col-md-5 borderblue flex-column">
+            <div class="row flex-grow-1">
+                <div class="col-md-6 px-3 py-3">
+                    <h2>Mission</h2>
+                    <p>"WVSU COMMITS TO DEVELOP LIFE-LONG LEARNERS EMPOWERED TO GENERATE KNOWLEDGE AND TECHNOLOGY, AND TRANSFORM COMMUNITIES AS AGENTS OF CHANGE"</p>
                 </div>
-            </div>
-            <div>
-                <div class="container pt-2 mt-2 borderblue">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h2>Mission</h2>
-                            <p>"WVSU COMMITS TO DEVELOP LIFE-LONG LEARNERS EMPOWERED TO GENERATE KNOWLEDGE AND TECHNOLOGY, AND TRANSFORM COMMUNITIES AS AGENTS OF CHANGE"</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h2>Vision</h2>
-                            <p>"A RESEARCH UNIVERSITY ADVANCING QUALITY EDUCATION TOWARDS SOCIETAL TRANSFORMATION AND GLOBAL RECOGNITION"</p>
-
-                        </div>
-                    </div>
+                <div class="col-md-6 px-3 py-3">
+                    <h2>Vision</h2>
+                    <p>"A RESEARCH UNIVERSITY ADVANCING QUALITY EDUCATION TOWARDS SOCIETAL TRANSFORMATION AND GLOBAL RECOGNITION"</p>
                 </div>
             </div>
         </div>
 
+        <!-- Spacer -->
+        <div class="col-md-1"></div>
 
-
-
-        <div class="col-md-6 borderblue" style="max-height: 350px; overflow-y: auto;">
-
-            <br>
-            <h2 class="text-center">Login</h2>
-            <form method="POST">
+        <div class="col-md-5 borderblue flex-column">
+            <div>
+                <h2 class="text-center">Login</h2>
                 <br>
-                <div class="container col-8">
-                    <div class="row">
-                        <div class="input-group mb-3 col-2">
-                            <span class="input-group-text">Username</span>
-                            <input type="text" class="form-control" value="<?php echo $session_user; ?>" name="username" autocomplete="off" placeholder="Username" required>
+                <form method="POST">
+                    <div class="container col-8">
+                        <div class="row">
+                            <div class="input-group mb-3 col-12">
+                                <span class="input-group-text">Username</span>
+                                <input type="text" class="form-control" name="username" autocomplete="off" placeholder="Username" required>
+                            </div>
+                            <div class="input-group mb-3 col-12">
+                                <span class="input-group-text">Password</span>
+                                <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Password" required>
+                            </div>
                         </div>
-                        <div class="input-group mb-3 col-2">
-                            <span class="input-group-text">Password</span>
-                            <input type="password" class="form-control" value="<?php echo $session_pass; ?>" name="password" autocomplete="off" placeholder="Password" required>
-                        </div>
+                        <input type="submit" class="button-blue" name="login" value="Login">
                     </div>
-                    <br>
-                    <input type="submit" class="button-blue text-white" name="login" value="Login">
-            </form>
-            <br>
-            <br>
+                </form>
+            </div>
         </div>
     </div>
-
-
-
-
 </div>
-</div>
+
+
 <br>
 <br>
 <br>

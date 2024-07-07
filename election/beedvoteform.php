@@ -26,14 +26,6 @@
                 </select>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="assistantsecretary" class="form-label">Assistant Secretary:</label>
-                <select class="form-select form-select-sm" id="assistantsecretary">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div class="col-md-6 mb-3">
                 <label for="treasurer" class="form-label">Treasurer:</label>
                 <select class="form-select form-select-sm" id="treasurer">
                     <option value="1">One</option>
@@ -58,14 +50,6 @@
                 </select>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="assistantauditor" class="form-label">Assistant Auditor:</label>
-                <select class="form-select form-select-sm" id="assistantauditor">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div class="col-md-6 mb-3">
                 <label for="pio" class="form-label">P.I.O:</label>
                 <select class="form-select form-select-sm" id="pio">
                     <option value="1">One</option>
@@ -82,16 +66,40 @@
                 </select>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="layoutartist" class="form-label">Layout Artist:</label>
-                <select class="form-select form-select-sm" id="layoutartist">
+                <label for="assistantbusinessmanager" class="form-label">Assistant Business Manager:</label>
+                <select class="form-select form-select-sm" id="assistantbusinessmanager">
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="technicalsupport" class="form-label">Technical Support:</label>
-                <select class="form-select form-select-sm" id="technicalsupport">
+                <label for="beed1representative" class="form-label">BEEd 1 Representative:</label>
+                <select class="form-select form-select-sm" id="beed1representative">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="beed2representative" class="form-label">BEEd 2 Representative:</label>
+                <select class="form-select form-select-sm" id="beed2representative">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="beed3representative" class="form-label">BEEd 3 Representative:</label>
+                <select class="form-select form-select-sm" id="beed3representative">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="beed4representative" class="form-label">BEEd 4 Representative:</label>
+                <select class="form-select form-select-sm" id="beed4representative">
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>

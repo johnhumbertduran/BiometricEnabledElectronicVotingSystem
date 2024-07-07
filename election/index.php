@@ -23,7 +23,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-inline-flex align-items-center">
             <a class="">
-                <img src="bins/sampleLogo.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+                <img src="../bins/img/logo.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
             </a>
             <div class="mx-3">
                 <h2>Campus Student Council Election</h2>
@@ -104,14 +104,40 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
 
 
 
+        <div class="col-md-6">
+            <div class=" borderblue overflow-auto" style="height: 55vh;">
+                <h3 class="text-center bgmainblue text-white sticky-top py-2" style="z-index: 1;">Vote Here</h3>
 
-        <div class="col-md-6 borderblue" style="max-height: 350px; overflow-y: auto;">
+                <!-- check Department then ibutang iya ru Department -->
+                <div class="container">
+                    <div class="row">
 
-            <br>
-            <h3 class="text-center">Vote Here</h3>
+                        <?php
+                        // include('beedvoteform.php');
+                        ?>
+                        <?php
+                        // include('englishvoteform.php');
+                        ?>
+                        <?php
+                        // include('filipinovoteform.php');
+                        ?>
+                        <?php
+                        // include('itvoteform.php');
+                        ?>
+                        <?php
+                        include('mathvoteform.php');
+                        ?>
+                        <?php
+                        // include('socialstudyvoteform.php');
+                        ?>
 
-            <br>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+
 
         <div class="container d-flex justify-content-between pt-2">
             <button class="button-green" type="button">Back</button>
