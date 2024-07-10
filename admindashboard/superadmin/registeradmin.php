@@ -2,7 +2,7 @@
 include("../bins/connections.php");
 
 $response = ['status' => '', 'message' => ''];
-$firstname = $middlename = $lastname = $department = $schoolyear = $username = $password = $cpassword = "";
+$firstname = $middlename = $lastname = $course = $schoolyear = $username = $password = $cpassword = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST["firstname"])) {
@@ -14,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST["lastname"])) {
         $lastname = $_POST["lastname"];
     }
-    if (!empty($_POST["department"])) {
-        $department = $_POST["department"];
+    if (!empty($_POST["course"])) {
+        $course = $_POST["course"];
     }
     if (!empty($_POST["schoolyear"])) {
         $schoolyear = $_POST["schoolyear"];
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cpassword = $_POST["cpassword"];
     }
 
-    if ($firstname && $middlename && $lastname && $department && $schoolyear && $username && $password && $cpassword) {
+    if ($firstname && $middlename && $lastname && $course && $schoolyear && $username && $password && $cpassword) {
         if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstname)) {
             $response['status'] = 'Error';
             $response['message'] = 'First Name should not have numbers or symbols.';
@@ -49,9 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo json_encode($response);
                     exit;
                 } else {
-                    if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $department)) {
+                    if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $course)) {
                         $response['status'] = 'Error';
-                        $response['message'] = 'Department should not have numbers or symbols.';
+                        $response['message'] = 'Course should not have numbers or symbols.';
                         echo json_encode($response);
                         exit;
                     } else {
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         exit;
                                     } else {
                                         // Perform database insert operation here
-                                        $query = "INSERT INTO admintbl (firstname, middlename, lastname, department, schoolyear, username, password, account_type) VALUES ('$firstname', '$middlename', '$lastname', '$department', '$schoolyear', '$username', '$cpassword', '2')";
+                                        $query = "INSERT INTO admintbl (firstname, middlename, lastname, course, schoolyear, username, password, account_type) VALUES ('$firstname', '$middlename', '$lastname', '$course', '$schoolyear', '$username', '$cpassword', '2')";
                                         if (mysqli_query($connections, $query)) {
                                             $response['status'] = 'Success';
                                             $response['message'] = 'Admin added successfully.';
@@ -140,8 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-group">
                 <tr>
-                    <td class="label"><b><label for="department">Department:<span style="color:red;"> *</span></label></b></td>
-                    <td colspan="3"><input class="form-control" type="text" value="<?php echo $department; ?>" name="department" id="department" placeholder="Department" autocomplete="off" required></td>
+                    <td class="label"><b><label for="course">Course:<span style="color:red;"> *</span></label></b></td>
+                    <td colspan="3"><input class="form-control" type="text" value="<?php echo $course; ?>" name="course" id="course" placeholder="Course" autocomplete="off" required></td>
                 </tr>
             </div>
 

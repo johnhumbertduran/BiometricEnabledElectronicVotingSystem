@@ -12,6 +12,7 @@ if (isset($_SESSION["username"])) {
     $my_info = mysqli_fetch_assoc($query_info);
     $account_type = $my_info["account_type"];
     $admin_name = $my_info["firstName"];
+    $admin_course = $my_info["course"];
 
     if ($account_type != 2) {
         header('Location: ../../forbidden.php');
@@ -89,7 +90,7 @@ if (isset($_SESSION["username"])) {
         <div class="col-md-1"></div>
 
         <!-- Main Content Area -->
-        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-auto" style="padding: 0 !important; height: 100%;">
+        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-auto d-flex align-items-center" style="padding: 0 !important; height: 100%;">
             <!-- Your PHP content goes here -->
         </main>
 

@@ -1,12 +1,27 @@
+<?php
+session_start();
+include("../bins/connections.php");
+if (isset($_SESSION["username"])) {
+
+    $session_user = $_SESSION["username"];
+
+    $query_info = mysqli_query($connections, "SELECT * FROM admintbl WHERE username='$session_user'");
+    $my_info = mysqli_fetch_assoc($query_info);
+    $account_type = $my_info["account_type"];
+    $admin_name = $my_info["firstName"];
+    $admin_course = $my_info["course"];
+}
+?>
 <div class="container">
-    <div class="row align-items-center">
-        <center>
-            <div class="col-md-3 d-flex justify-content-center align-items-center">
-                <img src="../../bins/img/logo.png" width="250px" alt="Logo">
-            </div>
-            <div class="col-md-9 d-flex justify-content-center align-items-center">
-                <h2 class="text-center">Campus Student Council Election</h2>
-            </div>
-        </center>
+    <div class="d-flex">
+
+        <div class="flex-fill d-flex align-items-center justify-content-center">
+            <img src="../../bins/img/logo.png" class="rounded-circle" width="200px" alt="Logo">
+        </div>
+
+        <div class="flex-fill d-flex align-items-center">
+            <h2 class="text-center"><?php echo $admin_course; ?> Election</h2>
+        </div>
+
     </div>
 </div>
