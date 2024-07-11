@@ -1,6 +1,7 @@
 <?php
 include('bins/header.php');
 include('bins/navigation.php');
+include("../admindashboard/bins/connections.php");
 
 
 // Get the selected value from the query string or set a default value
@@ -56,7 +57,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
 
 <!-- Next container -->
 
-<div class="container">
+<div class="container-fluid">
 
     <!-- Select Party Dropdown -->
     <div class="custom-select-container sticky-top pb-1" id="select_party">
@@ -79,7 +80,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
                     <div class="row">
 
                         <?php
-                        include('beed.php');
+                        // include('beed.php');
                         ?>
                         <?php
                         //  include('english.php'); 
@@ -88,7 +89,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
                         //  include('filipino.php'); 
                         ?>
                         <?php
-                        //  include('it.php'); 
+                        include('it.php');
                         ?>
                         <?php
                         //  include('math.php'); 

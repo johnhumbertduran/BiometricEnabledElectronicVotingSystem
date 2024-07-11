@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 if (move_uploaded_file($_FILES["post_image"]["tmp_name"], $targetFile)) {
 
                                     // Perform database insert operation here if image is uploaded
-                                    $query = "INSERT INTO candidatestbl (idNumber, firstName, middleName, lastName, course, year, position, party, img) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$course', '$year', '$position', '$party','$targetFile')";
+                                    $query = "INSERT INTO candidatestbl (idNumber, firstName, middleName, lastName, course, year, position, party, status, img) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$course', '$year', '$position', '$party', 'Active', '$targetFile')";
                                     if (mysqli_query($connections, $query)) {
                                         $response['status'] = 'success';
                                         $response['message'] = 'Candidate added successfully.';
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             }
                         } else {
                             // Perform database insert operation here if image is NOT uploaded
-                            $query = "INSERT INTO candidatestbl (idNumber, firstName, middleName, lastName, course, year, position, party) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$course', '$year', '$position', '$party')";
+                            $query = "INSERT INTO candidatestbl (idNumber, firstName, middleName, lastName, course, year, position, party, status) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$course', '$year', '$position', '$party', 'Active')";
                             if (mysqli_query($connections, $query)) {
                                 $response['status'] = 'success';
                                 $response['message'] = 'Candidate added successfully. \n PLEASE NOTE THAT IMAGE WAS NOT UPLOADED.';

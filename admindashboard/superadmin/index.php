@@ -97,7 +97,7 @@ if (isset($_SESSION["username"])) {
         <div class="col-md-1"></div>
 
         <!-- Main Content Area -->
-        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue" style="padding: 0 !important; height: 100%;">
+        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-auto d-flex align-items-center" style="padding: 0 !important; height: 100%;">
 
         </main>
     </div>
@@ -108,6 +108,17 @@ if (isset($_SESSION["username"])) {
 <script>
     $(document).ready(function() {
         console.log("Document is ready."); // Check if document is ready
+
+        // Function to update main class based on the target URL
+        function updateMainClass(target) {
+
+            var mainElement = $('main[role="main"]');
+            if (target === 'home.php') {
+                mainElement.addClass('d-flex align-items-center justify-content-center');
+            } else {
+                mainElement.removeClass('d-flex align-items-center justify-content-center');
+            }
+        }
 
         // Function to load home.php initially
         function loadHomePage() {
@@ -152,6 +163,7 @@ if (isset($_SESSION["username"])) {
                     console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
                     setActiveLink(target); // Set active link
+                    updateMainClass(target); // Update main class
                 },
                 error: function() {
                     console.log("Error loading content."); // Log error

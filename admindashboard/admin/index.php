@@ -105,7 +105,7 @@ if (isset($_SESSION["username"])) {
         function updateMainClass(target) {
 
             var mainElement = $('main[role="main"]');
-            if (target === 'registervoters.php') {
+            if (target === 'registervoters.php' || target === 'home.php') {
                 mainElement.addClass('d-flex align-items-center justify-content-center');
             } else {
                 mainElement.removeClass('d-flex align-items-center justify-content-center');
