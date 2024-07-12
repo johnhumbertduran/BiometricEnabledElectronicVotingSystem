@@ -39,8 +39,9 @@ include("../admindashboard/bins/connections.php");
 
 
         <hr>
+
         <?php
-        $president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='President' AND status='Active' ");
+        $president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='President' AND course='BSIT' AND status='Active' ");
         $count_president_qry = mysqli_num_rows($president_qry);
 
         if ($count_president_qry > 0) {
@@ -84,7 +85,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $vice_president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Vice President' AND status='Active' ");
+        $vice_president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Vice President' AND course='BSIT' AND status='Active' ");
         $count_vice_president_qry = mysqli_num_rows($vice_president_qry);
 
         if ($count_vice_president_qry > 0) {
@@ -128,7 +129,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Secretary' AND status='Active' ");
+        $secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Secretary' AND course='BSIT' AND status='Active' ");
         $count_secretary_qry = mysqli_num_rows($secretary_qry);
 
         if ($count_secretary_qry > 0) {
@@ -172,7 +173,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $assistant_secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Secretary' AND status='Active' ");
+        $assistant_secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Secretary' AND course='BSIT' AND status='Active' ");
         $count_assistant_secretary_qry = mysqli_num_rows($assistant_secretary_qry);
 
         if ($count_assistant_secretary_qry > 0) {
@@ -216,7 +217,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Treasurer' AND status='Active' ");
+        $treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Treasurer' AND course='BSIT' AND status='Active' ");
         $count_treasurer_qry = mysqli_num_rows($treasurer_qry);
 
         if ($count_treasurer_qry > 0) {
@@ -260,7 +261,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $assistant_treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Treasurer' AND status='Active' ");
+        $assistant_treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Treasurer' AND course='BSIT' AND status='Active' ");
         $count_assistant_treasurer_qry = mysqli_num_rows($assistant_treasurer_qry);
 
         if ($count_assistant_treasurer_qry > 0) {
@@ -304,7 +305,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Auditor' AND status='Active' ");
+        $auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Auditor' AND course='BSIT' AND status='Active' ");
         $count_auditor_qry = mysqli_num_rows($auditor_qry);
 
         if ($count_auditor_qry > 0) {
@@ -348,7 +349,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $assistant_auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Auditor' AND status='Active' ");
+        $assistant_auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Auditor' AND course='BSIT' AND status='Active' ");
         $count_assistant_auditor_qry = mysqli_num_rows($assistant_auditor_qry);
 
         if ($count_assistant_auditor_qry > 0) {
@@ -392,7 +393,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND status='Active' ");
+        $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND course='BSIT' AND status='Active' ");
         $count_pio_qry = mysqli_num_rows($pio_qry);
 
         if ($count_pio_qry > 0) {
@@ -436,7 +437,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $business_manager_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Business Manager' AND status='Active' ");
+        $business_manager_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Business Manager' AND course='BSIT' AND status='Active' ");
         $count_business_manager_qry = mysqli_num_rows($business_manager_qry);
 
         if ($count_business_manager_qry > 0) {
@@ -480,7 +481,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND status='Active' ");
+        $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND course='BSIT' AND status='Active' ");
         $count_layout_artist_qry = mysqli_num_rows($layout_artist_qry);
 
         if ($count_layout_artist_qry > 0) {
@@ -524,7 +525,7 @@ include("../admindashboard/bins/connections.php");
         <hr>
 
         <?php
-        $technical_support_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Technical Support' AND status='Active' ");
+        $technical_support_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Technical Support' AND course='BSIT' AND status='Active' ");
         $count_technical_support_qry = mysqli_num_rows($technical_support_qry);
 
         if ($count_technical_support_qry > 0) {

@@ -80,7 +80,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
                     <div class="row">
 
                         <?php
-                        // include('beed.php');
+                        include('beed.php');
                         ?>
                         <?php
                         //  include('english.php'); 
@@ -89,7 +89,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
                         //  include('filipino.php'); 
                         ?>
                         <?php
-                        include('it.php');
+                        // include('it.php');
                         ?>
                         <?php
                         //  include('math.php'); 

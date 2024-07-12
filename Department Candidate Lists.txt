@@ -3,11 +3,11 @@ CSI(IT Department)
 President
 Vice President
 Secretary
-Asst. Secretary
+Assistant Secretary
 Treasurer
-Asst. Treasurer
+Assistant Treasurer
 Auditor
-Asst. Auditor
+Assistant Auditor
 P.I.O(2)
 Business Manager
 Layout Artist(2)
@@ -21,15 +21,15 @@ President
 Vice President 
 Secretary 
 Treasurer 
-Asst. Treasurer 
+Assistant Treasurer 
 Auditor 
-P.I.O(2)
+P.I.O.(2)
 Business Manager
-Asst. Business Manager
-BEEd 1 Representative(2)  
-BEEd 2 Representative(2)  
-BEEd 3 Representative(2) 
-BEEd 4 Representative(2)
+Assistant Business Manager
+First Year Representative(2)  
+Second Year Representative(2)  
+Third Year Representative(2) 
+Fourth Year Representative(2)
 
 ###########################################
 
@@ -57,9 +57,9 @@ TALASIPNAYAN(Math)
 PRESIDENT
 VICE PRESIDENT
 SECRETARY
-ASST. SECRETARY
+Assistant SECRETARY
 TREASURER
-ASST. TREASURER
+Assistant TREASURER
 AUDITOR
 P.I.O.
 BUSINESS MANAGERS
@@ -74,23 +74,23 @@ HELLO(English)
 President
 Vice President
 Secretary
-Asst. Secretary 
+Assistant Secretary 
 Treasurer
-Asst. Treasurer 
+Assistant Treasurer 
 Auditor
 Business Manager 
 Business Manager
 P.I.O
 First Year Representative 
-Second Year Rep.
-Third Year Rep.
-Fourth Year Rep.
+Second Year Representative
+Third Year Representative
+Fourth Year Representative
 
 ##########################################
 
 3S' Society ( SocStud )
 President
-Vice Pres.
+Vice President
 Secretary 
 Treasurer 
 Auditor
@@ -103,8 +103,8 @@ Peac Officer
 Escort
 Muse
 First Year Representative 
-Second Year Rep.
-Third Year Rep.
-Fourth Year Rep
+Second Year Representative
+Third Year Representative
+Fourth Year RRepresentative
 
 ##########################################
