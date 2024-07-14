@@ -54,19 +54,19 @@ Ikaapat na Kinatawan
 ##########################################
 
 TALASIPNAYAN(Math)
-PRESIDENT
-VICE PRESIDENT
-SECRETARY
-Assistant SECRETARY
-TREASURER
-Assistant TREASURER
-AUDITOR
+President
+Vice President
+Secretary
+Assistant Secretary
+Treasurer
+Assistant Treasurer
+Auditor
 P.I.O.
-BUSINESS MANAGERS
-1ST YEAR REPRESENTATIVE
-2ND YEAR REPRESENTATIVE
-3RD YEAR REPRESENTATIVE
-4TH YEAR REPRESENTATIVE
+Business Managers
+First Year Representative
+Second Year Representative
+Third Year Representative
+Fourth Year Representative
 
 ##########################################
 
@@ -80,7 +80,7 @@ Assistant Treasurer
 Auditor
 Business Manager 
 Business Manager
-P.I.O
+P.I.O.
 First Year Representative 
 Second Year Representative
 Third Year Representative

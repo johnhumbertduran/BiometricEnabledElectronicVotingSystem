@@ -300,7 +300,7 @@ include("../admindashboard/bins/connections.php");
                 $img_dir = substr($img, 3);
 
         ?>
-                <div class="col-md-6 text-center d-flex align-items-center justify-content-center">
+                <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
                     <div class="candidate-img">
                         <h6><?php echo $party; ?></h6>
                         <img src="<?php echo $img_dir; ?>" class="default-img rounded-circle" alt="<?php echo $img_dir; ?>">
@@ -432,7 +432,7 @@ include("../admindashboard/bins/connections.php");
                 $img_dir = substr($img, 3);
 
         ?>
-                <div class="col-md-6 text-center d-flex align-items-center justify-content-center">
+                <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
                     <div class="candidate-img">
                         <h6><?php echo $party; ?></h6>
                         <img src="<?php echo $img_dir; ?>" class="default-img rounded-circle" alt="<?php echo $img_dir; ?>">
@@ -476,7 +476,7 @@ include("../admindashboard/bins/connections.php");
                 $img_dir = substr($img, 3);
 
         ?>
-                <div class="col-md-6 text-center d-flex align-items-center justify-content-center">
+                <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
                     <div class="candidate-img">
                         <h6><?php echo $party; ?></h6>
                         <img src="<?php echo $img_dir; ?>" class="default-img rounded-circle" alt="<?php echo $img_dir; ?>">
@@ -520,7 +520,7 @@ include("../admindashboard/bins/connections.php");
                 $img_dir = substr($img, 3);
 
         ?>
-                <div class="col-md-6 text-center d-flex align-items-center justify-content-center">
+                <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
                     <div class="candidate-img">
                         <h6><?php echo $party; ?></h6>
                         <img src="<?php echo $img_dir; ?>" class="default-img rounded-circle" alt="<?php echo $img_dir; ?>">
@@ -564,7 +564,7 @@ include("../admindashboard/bins/connections.php");
                 $img_dir = substr($img, 3);
 
         ?>
-                <div class="col-md-6 text-center d-flex align-items-center justify-content-center">
+                <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
                     <div class="candidate-img">
                         <h6><?php echo $party; ?></h6>
                         <img src="<?php echo $img_dir; ?>" class="default-img rounded-circle" alt="<?php echo $img_dir; ?>">

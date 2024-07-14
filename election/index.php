@@ -60,7 +60,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
 <div class="container-fluid">
 
     <!-- Select Party Dropdown -->
-    <div class="custom-select-container sticky-top pb-1" id="select_party">
+    <!-- <div class="custom-select-container sticky-top pb-1" id="select_party">
         <div class="select-selected">Select Party</div>
         <div class="select-items">
             <a href="?party=party1" class='select-item'>Party 1</a>
@@ -68,7 +68,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
             <a href="?party=party3" class='select-item'>Party 3</a>
             <a href="?party=party4" class='select-item'>Party 4</a>
         </div>
-    </div>
+    </div> -->
 
 
     <div class="row d-flex align-items-center justify-content-center">
@@ -80,19 +80,19 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
                     <div class="row">
 
                         <?php
-                        include('beed.php');
+                        // include('beed.php');
                         ?>
                         <?php
-                        //  include('english.php'); 
+                        // include('english.php');
                         ?>
                         <?php
-                        //  include('filipino.php'); 
+                        // include('filipino.php');
                         ?>
                         <?php
                         // include('it.php');
                         ?>
                         <?php
-                        //  include('math.php'); 
+                        include('math.php');
                         ?>
                         <?php
                         //  include('socialstudy.php'); 
