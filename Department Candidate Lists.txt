@@ -91,7 +91,7 @@ Fourth Year Representative
 3S' Society ( SocStud )
 President
 Vice President
-Secretary 
+Secretary
 Treasurer 
 Auditor
 Public Info. Officer
@@ -99,7 +99,7 @@ Public Info. Officer
 Business Manager
 Business Manager
 Peace Officer
-Peac Officer
+Peace Officer
 Escort
 Muse
 First Year Representative 

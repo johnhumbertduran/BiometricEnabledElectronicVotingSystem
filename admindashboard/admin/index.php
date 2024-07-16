@@ -62,6 +62,9 @@ if (isset($_SESSION["username"])) {
                             <a class="nav-link text-white active" href="#" data-target="home.php">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="electionlist.php">Election List</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white" href="#" data-target="candidatelist.php">Candidate's List</a>
                         </li>
                         <li class="nav-item">
@@ -105,7 +108,7 @@ if (isset($_SESSION["username"])) {
         function updateMainClass(target) {
 
             var mainElement = $('main[role="main"]');
-            if (target === 'registervoters.php' || target === 'home.php') {
+            if ((target === 'registervoters.php') || (target === 'home.php') || (target === 'newelection.php')) {
                 mainElement.addClass('d-flex align-items-center justify-content-center');
             } else {
                 mainElement.removeClass('d-flex align-items-center justify-content-center');

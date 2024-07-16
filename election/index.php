@@ -89,13 +89,13 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
                         // include('filipino.php');
                         ?>
                         <?php
-                        // include('it.php');
+                        include('it.php');
                         ?>
                         <?php
-                        include('math.php');
+                        // include('math.php');
                         ?>
                         <?php
-                        //  include('socialstudy.php'); 
+                        // include('socialstudy.php');
                         ?>
                     </div>
                 </div>
@@ -123,10 +123,10 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
                         // include('filipinovoteform.php');
                         ?>
                         <?php
-                        // include('itvoteform.php');
+                        include('itvoteform.php');
                         ?>
                         <?php
-                        include('mathvoteform.php');
+                        // include('mathvoteform.php');
                         ?>
                         <?php
                         // include('socialstudyvoteform.php');
