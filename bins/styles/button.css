@@ -10,8 +10,8 @@
 }
 
 .button-blue:hover {
-  background-color: #2c77d3;
-  background-color: #d8e6f8;
+  /* background-color: #2c77d3;
+  background-color: #d8e6f8; */
   background-color: #82b0eb;
 }
 
@@ -69,11 +69,15 @@
   background-color: #f44336;
   border: none;
   color: white;
-  padding: 5px 32px;
+  padding: 5px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.button-red:hover {
+  background-color: #dd5a51;
 }
 
 .button-gray {
