@@ -151,21 +151,21 @@ if (isset($_SESSION["username"])) {
         $('.nav-link').click(function(e) {
             e.preventDefault(); // Prevent default link behavior
             var target = $(this).data('target'); // Get target from data attribute
-            console.log("Loading content from(NavLinkCode): " + target); // Log target for debugging
+            //console.log("Loading content from(NavLinkCode): " + target); // Log target for debugging
 
             // AJAX request to load content
             $.ajax({
                 url: target,
                 method: 'GET',
                 success: function(data) {
-                    console.log("Content loaded successfully."); // Log success
+                    //console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
                     setActiveLink(target); // Set active link
-                    console.log("check target here:" + target);
+                    //console.log("check target here:" + target);
                     updateMainClass(target); // Update main class
                 },
                 error: function() {
-                    console.log("Error loading content."); // Log error
+                    //console.log("Error loading content."); // Log error
                     $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
                 }
             });

@@ -45,7 +45,7 @@ if (isset($_SESSION["username"])) {
 </style>
 <br>
 <div class="container-fluid px-5">
-    <div class="row" style="height: 70vh;">
+    <div class="row d-flex" style="height: 70vh;">
 
         <!-- Button to toggle sidebar -->
         <nav class="navbar navbar-dark bgmainblue col-md-2 d-md-none">
@@ -55,7 +55,7 @@ if (isset($_SESSION["username"])) {
         </nav>
 
         <!-- Vertical Navigation Bar -->
-        <nav id="sidebarMenu" class="col-md-3 d-md-block bgmainblue sidebar" style="height: 100%;">
+        <nav id="sidebarMenu" class="col-md-2 d-md-block bgmainblue sidebar" style="height: 100%;">
             <div class="d-flex flex-column h-100">
 
                 <br>
@@ -64,6 +64,9 @@ if (isset($_SESSION["username"])) {
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
                             <a class="nav-link text-white active" href="#" data-target="home.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="electionlist.php">Election List</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#" data-target="adminlists.php">Admin List</a>
@@ -94,10 +97,10 @@ if (isset($_SESSION["username"])) {
         </nav>
 
         <!-- Spacer -->
-        <div class="col-md-1"></div>
+        <!-- <div class="col-md-1"></div> -->
 
         <!-- Main Content Area -->
-        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-auto d-flex align-items-center" style="padding: 0 !important; height: 100%;">
+        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-auto d-flex align-items-center flex-fill" style="padding: 0 !important; height: 100%;">
 
         </main>
     </div>
@@ -107,13 +110,13 @@ if (isset($_SESSION["username"])) {
 
 <script>
     $(document).ready(function() {
-        console.log("Document is ready."); // Check if document is ready
+        //console.log("Document is ready."); // Check if document is ready
 
         // Function to update main class based on the target URL
         function updateMainClass(target) {
 
             var mainElement = $('main[role="main"]');
-            if (target === 'home.php') {
+            if ((target === 'home.php') || (target === 'newelection.php')) {
                 mainElement.addClass('d-flex align-items-center justify-content-center');
             } else {
                 mainElement.removeClass('d-flex align-items-center justify-content-center');
@@ -153,14 +156,14 @@ if (isset($_SESSION["username"])) {
         $('.nav-link').click(function(e) {
             e.preventDefault(); // Prevent default link behavior
             var target = $(this).data('target'); // Get target from data attribute
-            console.log("Loading content from: " + target); // Log target for debugging
+            //console.log("Loading content from: " + target); // Log target for debugging
 
             // AJAX request to load content
             $.ajax({
                 url: target,
                 method: 'GET',
                 success: function(data) {
-                    console.log("Content loaded successfully."); // Log success
+                    //console.log("Content loaded successfully."); // Log success
                     $('main[role="main"]').html(data); // Load content into main area
                     setActiveLink(target); // Set active link
                     updateMainClass(target); // Update main class

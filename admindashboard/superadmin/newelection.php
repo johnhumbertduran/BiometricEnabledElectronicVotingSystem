@@ -17,7 +17,7 @@ if (isset($_SESSION["username"])) {
 
     $admin_name = $admin_first_name . " " . $admin_last_name;
 
-    if ($account_type != 2) {
+    if ($account_type != 1) {
         header('Location: ../../forbidden.php');
     }
 }

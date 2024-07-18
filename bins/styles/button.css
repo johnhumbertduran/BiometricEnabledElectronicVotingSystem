@@ -32,11 +32,15 @@
   background-color: #fcc306;
   border: none;
   color: white;
-  padding: 5px 32px;
+  padding: 5px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.button-yellow:hover {
+  background-color: #cfae41;
 }
 
 .button-green {
