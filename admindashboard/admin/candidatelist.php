@@ -18,34 +18,76 @@ if (isset($_SESSION["username"])) {
     }
 }
 
+$check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
+// $check_position = "";
+// if (isset($_GET['position'])) {
+//     $check_position = $_GET['position'];
+// } else {
+//     $check_position = "all";
+// }
+
+
 ?>
+<style>
+    /* Add this CSS to your stylesheet or inside a <style> tag */
+
+    .nav-candidate {
+        padding: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .nav-candidate:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        /* Adjust hover background color */
+    }
+
+    .nav-candidate.active {
+        background-color: rgba(255, 255, 255, 0.3);
+        /* Adjust active background color */
+        /* font-weight: bold; */
+    }
+</style>
 <nav class="navbar navbar-expand-sm navbar-dark bgmainblue">
     <div class="container-fluid">
-        <ul class="navbar-nav" style="font-size: 12px;">
+        <ul class="navbar-nav" style="font-size: 11.6px;">
             <li class="nav-item">
-                <!-- <a class="nav-link active" href="#">All</a> -->
-                <button class="nav-link active" id="allCandidate" data-target="candidatelist.php">All</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'all') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="all">All</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Chairperson</a>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'President') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="President">President</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Vice-Chairperson</a>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Vice President') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Vice President">Vice President</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Councilor</a>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Secretary') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Secretary">Secretary</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">SPE-Representative</a>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Secretary') ? 'active' : ''; ?>" data-target=" candidatelist.php" data-position="Assistant Secretary">Assistant Secretary</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">SICT-Representative</a>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Treasurer') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Treasurer">Treasurer</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">SBM-Representative</a>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Treasurer') ? 'active' : ''; ?>" data-target=" candidatelist.php" data-position="Assistant Treasurer">Assistant Treasurer</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">SOE-Representative</a>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Auditor') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Auditor">Auditor</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Auditor') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Assistant Auditor">Assistant Auditor</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'P.I.O.') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="P.I.O.">P.I.O.</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Business Manager') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Business Manager">Business Manager</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Layout Artist') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Layout Artist">Layout Artist</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Technical Support') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Technical Support">Technical Support</button>
             </li>
         </ul>
     </div>
@@ -53,112 +95,137 @@ if (isset($_SESSION["username"])) {
 <br>
 &nbsp;&nbsp; <button class="button-blue" id="registerCandidatesButton" data-target="registercandidates.php">+ Add Candidates</button>
 
-<table class="table table-bordered mt-3">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Course</th>
-            <th>Year</th>
-            <th>Position</th>
-            <th>Party</th>
-            <th>Election Year</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
 
-        $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course='$admin_course' ");
-
-        $countCandidate = mysqli_num_rows($candidatelists);
-
-        if ($countCandidate > 0) {
+<?php
 
 
-            while ($row_candidate_lists = mysqli_fetch_assoc($candidatelists)) {
+
+$position = isset($_GET['position']) ? $_GET['position'] : 'all';
+
+if ($position === 'all') {
+    $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND status = 'Active' ");
+} else {
+    $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND position = '$position' AND status = 'Active' ");
+}
 
 
-                $id = $row_candidate_lists["id"];
-                $firstname = $row_candidate_lists["firstName"];
-                $middlename = $row_candidate_lists["middleName"];
-                $lastname = $row_candidate_lists["lastName"];
-                $course = $row_candidate_lists["course"];
-                $year = $row_candidate_lists["year"];
-                $position = $row_candidate_lists["position"];
-                $party = $row_candidate_lists["party"];
-                $electionyear = $row_candidate_lists["electionYear"];
+$countCandidate = mysqli_num_rows($candidatelists);
 
-                $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname)
-        ?>
+if ($countCandidate > 0) {
+
+?>
+    <div class="table-responsive-md">
+        <table class="table table-hover table-striped table-bordered border-primary mt-3">
+            <thead>
                 <tr>
-                    <td><?php echo $name; ?></td>
-                    <td><?php echo $course; ?></td>
-                    <td><?php echo $year; ?></td>
-                    <td><?php echo $position; ?></td>
-                    <td><?php echo $party; ?></td>
-                    <td><?php echo $electionyear; ?></td>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>Position</th>
+                    <th>Party</th>
+                    <th>Election Year</th>
                 </tr>
+            </thead>
+            <tbody>
+
+                <?php
+
+
+
+                while ($row_candidate_lists = mysqli_fetch_assoc($candidatelists)) {
+
+
+                    $id = $row_candidate_lists["id"];
+                    $firstname = $row_candidate_lists["firstName"];
+                    $middlename = $row_candidate_lists["middleName"];
+                    $lastname = $row_candidate_lists["lastName"];
+                    $course = $row_candidate_lists["course"];
+                    $year = $row_candidate_lists["year"];
+                    $position = $row_candidate_lists["position"];
+                    $party = $row_candidate_lists["party"];
+                    $electionyear = $row_candidate_lists["electionYear"];
+
+                    $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname)
+                ?>
+                    <tr>
+                        <td><?php echo $name; ?></td>
+                        <td><?php echo $course; ?></td>
+                        <td><?php echo $year; ?></td>
+                        <td><?php echo $position; ?></td>
+                        <td><?php echo $party; ?></td>
+                        <td><?php echo $electionyear; ?></td>
+                    </tr>
+                <?php
+                }
+            } else {
+                ?>
+                <center>
+                    <h4>No Records Found!</h4>
+                </center>
             <?php
             }
-        } else {
             ?>
-            <center>
-                <h4>No Records Found!</h4>
-            </center>
-        <?php
-        }
-        ?>
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
 
-<div>
+    <div>
 
-</div>
+    </div>
 
 
-<script>
-    $(document).ready(function() {
-        // Event handler for register candidates button
-        $('#registerCandidatesButton').click(function(e) {
-            e.preventDefault(); // Prevent default button behavior
-            var target = $(this).data('target'); // Get target from data attribute
-            console.log("Loading content from: " + target); // Log target for debugging
+    <script>
+        $(document).ready(function() {
 
-            // AJAX request to load content
-            $.ajax({
-                url: target,
-                method: 'GET',
-                success: function(data) {
-                    console.log("Content loaded successfully."); // Log success
-                    $('main[role="main"]').html(data); // Load content into main area
-                },
-                error: function() {
-                    console.log("Error loading content."); // Log error
-                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
-                }
+
+            // Event handler for register candidates button
+            $('#registerCandidatesButton').click(function(e) {
+                e.preventDefault(); // Prevent default button behavior
+                var target = $(this).data('target'); // Get target from data attribute
+                //console.log("Loading content from: " + target); // Log target for debugging
+
+                // AJAX request to load content
+                $.ajax({
+                    url: target,
+                    method: 'GET',
+                    success: function(data) {
+                        //console.log("Content loaded successfully."); // Log success
+                        $('main[role="main"]').html(data); // Load content into main area
+                    },
+                    error: function() {
+                        //console.log("Error loading content."); // Log error
+                        $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
+                    }
+                });
             });
-        });
 
 
 
-        // Event handler for register candidates button
-        $('#registerCandidatesButton').click(function(e) {
-            e.preventDefault(); // Prevent default button behavior
-            var target = $(this).data('target'); // Get target from data attribute
-            console.log("Loading content from: " + target); // Log target for debugging
+            // Event handler for navigation buttons
+            $('.nav-button').click(function(e) {
+                e.preventDefault(); // Prevent default button behavior
+                var target = $(this).data('target'); // Get target from data attribute
+                var position = $(this).data('position'); // Get position from data attribute
+                var url = target + '?position=' + position; // Construct URL with query parameter
+                //console.log("Loading content from: " + url); // Log URL for debugging
 
-            // AJAX request to load content
-            $.ajax({
-                url: target,
-                method: 'GET',
-                success: function(data) {
-                    console.log("Content loaded successfully."); // Log success
-                    $('main[role="main"]').html(data); // Load content into main area
-                },
-                error: function() {
-                    console.log("Error loading content."); // Log error
-                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
-                }
+                // AJAX request to load content
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function(data) {
+                        //console.log("Content loaded successfully."); // Log success
+                        $('main[role="main"]').html(data); // Load content into main area
+                    },
+                    error: function() {
+                        //console.log("Error loading content."); // Log error
+                        $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
+                    }
+                });
             });
+
+
+
+
         });
-    });
-</script>
+    </script>

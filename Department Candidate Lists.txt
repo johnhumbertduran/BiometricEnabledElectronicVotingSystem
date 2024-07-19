@@ -8,7 +8,7 @@ Treasurer
 Assistant Treasurer
 Auditor
 Assistant Auditor
-P.I.O(2)
+P.I.O.(2)
 Business Manager
 Layout Artist(2)
 Technical Support(2)
@@ -108,3 +108,18 @@ Third Year Representative
 Fourth Year RRepresentative
 
 ##########################################
+
+
+##########################################
+CSC
+##########################################
+Chairperson
+Vice-Chairperson
+Councilor
+SPE-Representative
+SICT-Representative
+SBM-Representative
+SOE-Representative
+
+##########################################
+

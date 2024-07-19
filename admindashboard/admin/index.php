@@ -24,17 +24,17 @@ if (isset($_SESSION["username"])) {
 <style>
     /* Add this CSS to your stylesheet or inside a <style> tag */
 
-    .nav-link {
+    .nav-index {
         padding: 10px;
         transition: background-color 0.3s;
     }
 
-    .nav-link:hover {
+    .nav-index:hover {
         background-color: rgba(255, 255, 255, 0.2);
         /* Adjust hover background color */
     }
 
-    .nav-link.active {
+    .nav-index.active {
         background-color: rgba(255, 255, 255, 0.3);
         /* Adjust active background color */
         /* font-weight: bold; */
@@ -52,32 +52,32 @@ if (isset($_SESSION["username"])) {
         </nav>
 
         <!-- Vertical Navigation Bar -->
-        <nav id="sidebarMenu" class="col-md-3 d-md-block bgmainblue sidebar" style="height: 100%;">
+        <nav id="sidebarMenu" class="col-md-2 d-md-block bgmainblue sidebar" style="height: 100%;">
             <div class="d-flex flex-column h-100">
                 <br>
                 <h3 class="text-white">Welcome - <?php echo $admin_name; ?></h3>
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-white active" href="#" data-target="home.php">Home</a>
+                            <a class="nav-link nav-index text-white active" href="#" data-target="home.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#" data-target="electionlist.php">Election List</a>
+                            <a class="nav-link nav-index text-white" href="#" data-target="electionlist.php">Election List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#" data-target="candidatelist.php">Candidate's List</a>
+                            <a class="nav-link nav-index text-white" href="#" data-target="candidatelist.php">Candidate's List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#" data-target="voterslist.php">Voter's List</a>
+                            <a class="nav-link nav-index text-white" href="#" data-target="voterslist.php">Voter's List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#" data-target="canvassreport.php">Canvassing Report</a>
+                            <a class="nav-link nav-index text-white" href="#" data-target="canvassreport.php">Canvassing Report</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#" data-target="historylog.php">History Log</a>
+                            <a class="nav-link nav-index text-white" href="#" data-target="historylog.php">History Log</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#" data-target="about.php">About</a>
+                            <a class="nav-link nav-index text-white" href="#" data-target="about.php">About</a>
                         </li>
                     </ul>
                 </div>
@@ -90,10 +90,10 @@ if (isset($_SESSION["username"])) {
         </nav>
 
         <!-- Spacer -->
-        <div class="col-md-1"></div>
+        <!-- <div class="col-md-1"></div> -->
 
         <!-- Main Content Area -->
-        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-auto d-flex align-items-center" style="padding: 0 !important; height: 100%;">
+        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-y-scroll d-flex align-items-center flex-fill" style="padding: 0 !important; height: 100%;">
             <!-- Your PHP content goes here -->
         </main>
 
@@ -139,8 +139,8 @@ if (isset($_SESSION["username"])) {
 
         // Function to set active link
         function setActiveLink(target) {
-            $('.nav-link').removeClass('active'); // Remove active class from all links
-            $('.nav-link[data-target="' + target + '"]').addClass('active'); // Add active class to the current link
+            $('.nav-index').removeClass('active'); // Remove active class from all links
+            $('.nav-index[data-target="' + target + '"]').addClass('active'); // Add active class to the current link
         }
 
 
