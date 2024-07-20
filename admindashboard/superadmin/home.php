@@ -19,7 +19,7 @@
         </div>
 
         <div class="flex-fill d-flex align-items-center">
-            <h2 class="text-center">Campus Student Council Election Election</h2>
+            <h2 class="text-center">Campus Student Council Election</h2>
         </div>
 
     </div>

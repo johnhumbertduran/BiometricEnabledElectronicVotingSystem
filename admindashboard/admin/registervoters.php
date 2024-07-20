@@ -1,9 +1,26 @@
 <?php
+session_start();
 include("../bins/connections.php");
+
+if (isset($_SESSION["username"])) {
+
+    $session_user = $_SESSION["username"];
+
+    $query_info = mysqli_query($connections, "SELECT * FROM admintbl WHERE username='$session_user'");
+    $my_info = mysqli_fetch_assoc($query_info);
+    $account_type = $my_info["account_type"];
+    $admin_id = $my_info["id"];
+    $admin_name = $my_info["firstName"];
+    $admin_course = $my_info["course"];
+
+    if ($account_type != 2) {
+        header('Location: ../../forbidden.php');
+    }
+}
 
 $response = ['status' => '', 'message' => ''];
 
-$student_no = $firstname = $middlename = $lastname = $year = $course = "";
+$student_no = $firstname = $middlename = $lastname = $year = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $student_no = $_POST["student_no"] ?? '';
@@ -11,9 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $middlename = $_POST["middlename"] ?? '';
     $lastname = $_POST["lastname"] ?? '';
     $year = $_POST["year"] ?? '';
-    $course = $_POST["course"] ?? '';
 
-    if ($student_no && $firstname && $middlename && $lastname && $year && $course) {
+    if ($student_no && $firstname && $middlename && $lastname && $year) {
         if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstname)) {
             $response['status'] = 'error';
             $response['message'] = 'First Name should not have numbers or symbols.';
@@ -32,21 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo json_encode($response);
                     exit;
                 } else {
-                    if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $course)) {
-                        $response['status'] = 'Error';
-                        $response['message'] = 'Course should not have numbers or symbols.';
-                        echo json_encode($response);
-                        exit;
+                    // Perform database insert operation here
+                    $query = "INSERT INTO voterstbl (idNumber, firstName, middleName, lastName, year, course, status) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$year', '$admin_course', 'NotVoted')";
+                    if (mysqli_query($connections, $query)) {
+                        $response['status'] = 'success';
+                        $response['message'] = 'Student added successfully.';
                     } else {
-                        // Perform database insert operation here
-                        $query = "INSERT INTO voterstbl (idNumber, firstName, middleName, lastName, year, course, status) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$year', '$course', 'NotVoted')";
-                        if (mysqli_query($connections, $query)) {
-                            $response['status'] = 'success';
-                            $response['message'] = 'Student added successfully.';
-                        } else {
-                            $response['status'] = 'error';
-                            $response['message'] = 'Database error. Please try again.';
-                        }
+                        $response['status'] = 'error';
+                        $response['message'] = 'Database error. Please try again.';
                     }
                 }
             }
@@ -89,12 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input class="form-control txt_input" type="text" value="<?php echo $year; ?>" name="year" id="year" placeholder="Year" autocomplete="off" required>
             </div>
 
-            <div class="col-md-6 form-group">
-                <label for="course"><b>Course:<span style="color:red;"> *</span></b></label>
-                <input class="form-control txt_input" type="text" value="<?php echo $course; ?>" name="course" id="course" placeholder="Course" autocomplete="off" required>
-            </div>
 
-            <div class="col-md-6 form-group pt-4">
+            <div class="col-md-12 form-group pt-4">
                 <input style="float:right;" class="button-green" type="submit" name="submit" value="Save">
             </div>
         </div>

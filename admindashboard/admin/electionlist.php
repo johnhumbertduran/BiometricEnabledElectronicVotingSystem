@@ -6,7 +6,7 @@ if (isset($_SESSION["username"])) {
 
     $session_user = $_SESSION["username"];
 
-    $query_info = mysqli_query($connections, "SELECT * FROM admintbl WHERE username='$session_user'");
+    $query_info = mysqli_query($connections, "SELECT * FROM admintbl WHERE username='$session_user' ");
     $my_info = mysqli_fetch_assoc($query_info);
     $account_type = $my_info["account_type"];
     $admin_id = $my_info["id"];
@@ -64,7 +64,7 @@ if (isset($_SESSION["username"])) {
 
 
     <?php
-    $electionlists = mysqli_query($connections, "SELECT * FROM electionyeartbl WHERE creatorid='$admin_id' ");
+    $electionlists = mysqli_query($connections, "SELECT * FROM electionyeartbl WHERE creatorid='$admin_id' ORDER BY id DESC ");
 
     $countCreator = mysqli_num_rows($electionlists);
 

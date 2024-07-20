@@ -114,64 +114,62 @@ $countCandidate = mysqli_num_rows($candidatelists);
 if ($countCandidate > 0) {
 
 ?>
-    <div class="table-responsive-md">
-        <table class="table table-hover table-striped table-bordered border-primary mt-3">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Course</th>
-                    <th>Year</th>
-                    <th>Position</th>
-                    <th>Party</th>
-                    <th>Election Year</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php
-
-
-
-                while ($row_candidate_lists = mysqli_fetch_assoc($candidatelists)) {
-
-
-                    $id = $row_candidate_lists["id"];
-                    $firstname = $row_candidate_lists["firstName"];
-                    $middlename = $row_candidate_lists["middleName"];
-                    $lastname = $row_candidate_lists["lastName"];
-                    $course = $row_candidate_lists["course"];
-                    $year = $row_candidate_lists["year"];
-                    $position = $row_candidate_lists["position"];
-                    $party = $row_candidate_lists["party"];
-                    $electionyear = $row_candidate_lists["electionYear"];
-
-                    $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname)
-                ?>
+    <center>
+        <div class="table-responsive-md col-md-11">
+            <table class="table table-hover table-striped table-bordered border-primary mt-3">
+                <thead>
                     <tr>
-                        <td><?php echo $name; ?></td>
-                        <td><?php echo $course; ?></td>
-                        <td><?php echo $year; ?></td>
-                        <td><?php echo $position; ?></td>
-                        <td><?php echo $party; ?></td>
-                        <td><?php echo $electionyear; ?></td>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Year</th>
+                        <th>Position</th>
+                        <th>Party</th>
+                        <th>Election Year</th>
                     </tr>
+                </thead>
+                <tbody>
+
+                    <?php
+
+
+
+                    while ($row_candidate_lists = mysqli_fetch_assoc($candidatelists)) {
+
+
+                        $id = $row_candidate_lists["id"];
+                        $firstname = $row_candidate_lists["firstName"];
+                        $middlename = $row_candidate_lists["middleName"];
+                        $lastname = $row_candidate_lists["lastName"];
+                        $course = $row_candidate_lists["course"];
+                        $year = $row_candidate_lists["year"];
+                        $position = $row_candidate_lists["position"];
+                        $party = $row_candidate_lists["party"];
+                        $electionyear = $row_candidate_lists["electionYear"];
+
+                        $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname)
+                    ?>
+                        <tr>
+                            <td><?php echo $name; ?></td>
+                            <td><?php echo $course; ?></td>
+                            <td><?php echo $year; ?></td>
+                            <td><?php echo $position; ?></td>
+                            <td><?php echo $party; ?></td>
+                            <td><?php echo $electionyear; ?></td>
+                        </tr>
+                    <?php
+                    }
+                } else {
+                    ?>
+                    <center>
+                        <h4>No Records Found!</h4>
+                    </center>
                 <?php
                 }
-            } else {
                 ?>
-                <center>
-                    <h4>No Records Found!</h4>
-                </center>
-            <?php
-            }
-            ?>
-            </tbody>
-        </table>
-    </div>
-
-    <div>
-
-    </div>
+                </tbody>
+            </table>
+        </div>
+    </center>
 
 
     <script>

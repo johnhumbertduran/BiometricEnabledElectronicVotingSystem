@@ -46,7 +46,7 @@ include("../bins/connections.php");
 
 
     <?php
-    $electionlists = mysqli_query($connections, "SELECT * FROM electionyeartbl ");
+    $electionlists = mysqli_query($connections, "SELECT * FROM electionyeartbl ORDER BY id DESC ");
 
 
     while ($row_election_lists = mysqli_fetch_assoc($electionlists)) {
