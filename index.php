@@ -1,12 +1,61 @@
 <?php
+session_start();
 include('bins/header.php');
 include('bins/navigation.php');
+include("admindashboard/bins/connections.php");
 
 // Set the time zone
 date_default_timezone_set('Asia/Manila');
 
 $date_now = date("m/d/Y");
 $time_now = date("h:i a");
+
+$session_id_number = "";
+
+if (isset($_SESSION["idNumber"])) {
+
+    $session_id_number = $_SESSION["idNumber"];
+    $check_voter_id_number = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idNumber='$session_id_number'");
+    $get_voter_id_number = mysqli_fetch_assoc($check_voter_id_number);
+    $voter_firstName = $get_voter_id_number["firstName"];
+    $voter_middleName = $get_voter_id_number["middleName"];
+    $voter_lastName = $get_voter_id_number["lastName"];
+    $voter_year = $get_voter_id_number["year"];
+    $voter_course = $get_voter_id_number["course"];
+    $voter_biometric = $get_voter_id_number["biometric"];
+    $voter_status = $get_voter_id_number["status"];
+}
+
+if (isset($_POST['login'])) {
+    // echo 'clicked';
+
+    if (!empty($_POST["idnumber"])) {
+        $session_id_number = $_POST["idnumber"];
+    }
+
+    if ($session_id_number) {
+        $voterCheck = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idNumber='$session_id_number' ");
+
+        $voterRow = mysqli_num_rows($voterCheck);
+
+        if ($voterRow > 0) {
+            $fetch_voter = mysqli_fetch_assoc($voterCheck);
+            $fetch_voter_status = $fetch_voter["status"];
+
+            if ($fetch_voter_status == "0") {
+                $_SESSION["idNumber"] = $session_id_number;
+                header('Location: election/');
+            } else {
+                $session_id_number = "";
+                echo "<script>alert('You can only vote once');</script>";
+            }
+        } else {
+            $session_id_number = "";
+            echo "<script>alert('Please check ID Number');</script>";
+        }
+    }
+    // echo $idnumber;
+}
 
 ?>
 
@@ -59,10 +108,10 @@ $time_now = date("h:i a");
                         <div class="row">
                             <div class="input-group mb-3 col-2">
                                 <span class="input-group-text">ID Number</span>
-                                <input type="text" class="form-control" placeholder="Please input your ID Number">
+                                <input type="text" name="idnumber" class="form-control" value="<?php echo $session_id_number; ?>" placeholder="Please input your ID Number" required>
                             </div>
                         </div>
-                        <input type="submit" class="button-blue" name="login" value="Login">
+                        <input type="submit" name="login" value="Login" class="button-blue">
                         <div class="container textred">
                             <p><span class="textredbold">Note: </span><br> - Please check ID Number <br> - You can only vote once</p>
                         </div>

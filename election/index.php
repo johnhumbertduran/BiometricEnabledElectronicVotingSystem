@@ -1,8 +1,32 @@
 <?php
+session_start();
 include('bins/header.php');
 include('bins/navigation.php');
 include("../admindashboard/bins/connections.php");
 
+// $voter_course = "";
+if (isset($_SESSION["idNumber"])) {
+
+    $session_id_number = $_SESSION["idNumber"];
+    $check_voter_id_number = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idNumber='$session_id_number'");
+    $get_voter_id_number = mysqli_fetch_assoc($check_voter_id_number);
+    $voter_firstName = $get_voter_id_number["firstName"];
+    $voter_middleName = $get_voter_id_number["middleName"];
+    $voter_lastName = $get_voter_id_number["lastName"];
+    $voter_year = $get_voter_id_number["year"];
+    $voter_course = $get_voter_id_number["course"];
+    $voter_biometric = $get_voter_id_number["biometric"];
+    $voter_status = $get_voter_id_number["status"];
+
+    if ($voter_status == 0) {
+        // header('Location: election/');
+    } elseif ($voter_status == 1) {
+
+        header('Location: ../forbidden');
+    }
+}
+
+// echo $voter_course;
 
 // Get the selected value from the query string or set a default value
 $selectedParty = isset($_GET['redir']) ? $_GET['redir'] : 'select_party';
@@ -48,6 +72,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
             </div> -->
             <div class="mx-3">
                 <a href="#" class="text-decoration-none px-2 py-1 link-button-blue-border">Help</a>
+                <a href="logout.php" class="text-decoration-none px-2 py-1 link-button-blue-border">Logout</a>
             </div>
         </div>
     </div>
@@ -80,22 +105,34 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
                     <div class="row">
 
                         <?php
-                        // include('beed.php');
+                        if ($voter_course == "BEED") {
+                            include('beed.php');
+                        }
                         ?>
                         <?php
-                        // include('english.php');
+                        if ($voter_course == "English") {
+                            include('english.php');
+                        }
                         ?>
                         <?php
-                        // include('filipino.php');
+                        if ($voter_course == "Filipino") {
+                            include('filipino.php');
+                        }
                         ?>
                         <?php
-                        include('it.php');
+                        if ($voter_course == "BSIT") {
+                            include('it.php');
+                        }
                         ?>
                         <?php
-                        // include('math.php');
+                        if ($voter_course == "Math") {
+                            include('math.php');
+                        }
                         ?>
                         <?php
-                        // include('socialstudy.php');
+                        if ($voter_course == "Social Study") {
+                            include('socialstudy.php');
+                        }
                         ?>
                     </div>
                 </div>
@@ -114,22 +151,34 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
                     <div class="row">
 
                         <?php
-                        // include('beedvoteform.php');
+                        if ($voter_course == "BEED") {
+                            include('beedvoteform.php');
+                        }
                         ?>
                         <?php
-                        // include('englishvoteform.php');
+                        if ($voter_course == "English") {
+                            include('englishvoteform.php');
+                        }
                         ?>
                         <?php
-                        // include('filipinovoteform.php');
+                        if ($voter_course == "Filipino") {
+                            include('filipinovoteform.php');
+                        }
                         ?>
                         <?php
-                        include('itvoteform.php');
+                        if ($voter_course == "BSIT") {
+                            include('itvoteform.php');
+                        }
                         ?>
                         <?php
-                        // include('mathvoteform.php');
+                        if ($voter_course == "Math") {
+                            include('mathvoteform.php');
+                        }
                         ?>
                         <?php
-                        // include('socialstudyvoteform.php');
+                        if ($voter_course == "Social Study") {
+                            include('socialstudyvoteform.php');
+                        }
                         ?>
 
                     </div>
