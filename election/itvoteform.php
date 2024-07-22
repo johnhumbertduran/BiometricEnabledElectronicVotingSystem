@@ -3,7 +3,7 @@ include("../admindashboard/bins/connections.php");
 ?>
 <div class="container mt-5 px-5">
 
-    <form>
+    <form method="POST">
 
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -81,6 +81,8 @@ include("../admindashboard/bins/connections.php");
             </div>
 
 
+            <hr>
+            <br>
             <div class="col-md-6 mb-3">
                 <label for="secretary" class="form-label">Secretary:</label>
                 <select class="form-select form-select-sm" id="secretary">
@@ -153,6 +155,12 @@ include("../admindashboard/bins/connections.php");
                     ?>
                 </select>
             </div>
+
+
+
+            <hr>
+            <br>
+
 
 
             <div class="col-md-6 mb-3">
@@ -229,6 +237,10 @@ include("../admindashboard/bins/connections.php");
             </div>
 
 
+            <hr>
+            <br>
+
+
             <div class="col-md-6 mb-3">
                 <label for="auditor" class="form-label">Auditor:</label>
                 <select class="form-select form-select-sm" id="auditor">
@@ -303,9 +315,13 @@ include("../admindashboard/bins/connections.php");
             </div>
 
 
+            <hr>
+            <br>
+
+
             <div class="col-md-6 mb-3">
-                <label for="pio" class="form-label">P.I.O.:</label>
-                <select class="form-select form-select-sm" id="pio">
+                <label for="pio1" class="form-label">P.I.O.:</label>
+                <select class="form-select form-select-sm" id="pio1">
                     <option value="1">Select P.I.O.</option>
                     <?php
                     $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND course='BSIT' AND status='Active' ");
@@ -338,6 +354,45 @@ include("../admindashboard/bins/connections.php");
                     ?>
                 </select>
             </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="pio2" class="form-label">P.I.O.:</label>
+                <select class="form-select form-select-sm" id="pio2" disabled>
+                    <option value="1">Select P.I.O.</option>
+                    <?php
+                    $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND course='BSIT' AND status='Active' ");
+
+                    $count_pio_qry = mysqli_num_rows($pio_qry);
+
+                    if ($count_pio_qry > 0) {
+
+                        while ($pio_data = mysqli_fetch_assoc($pio_qry)) {
+
+                            $id = $pio_data["id"];
+                            $firstname = $pio_data["firstName"];
+                            $middlename = $pio_data["middleName"];
+                            $lastname = $pio_data["lastName"];
+                            $party = $pio_data["party"];
+                            $img = $pio_data["img"];
+
+                            $pio = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
+
+                    ?>
+                            <option value="<?php echo $id; ?>"><?php echo $pio; ?></option>
+
+                    <?php
+                        }
+                    } else {
+                        echo "No record found";
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <hr>
+            <br>
 
 
             <div class="col-md-6 mb-3">
@@ -377,9 +432,13 @@ include("../admindashboard/bins/connections.php");
             </div>
 
 
+            <hr>
+            <br>
+
+
             <div class="col-md-6 mb-3">
-                <label for="layoutartist" class="form-label">Layout Artist:</label>
-                <select class="form-select form-select-sm" id="layoutartist">
+                <label for="layoutartist1" class="form-label">Layout Artist:</label>
+                <select class="form-select form-select-sm" id="layoutartist1">
                     <option value="1">Select Layout Artist</option>
                     <?php
                     $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND course='BSIT' AND status='Active' ");
@@ -415,8 +474,50 @@ include("../admindashboard/bins/connections.php");
 
 
             <div class="col-md-6 mb-3">
-                <label for="technicalsupport" class="form-label">Technical Support:</label>
-                <select class="form-select form-select-sm" id="technicalsupport">
+                <label for="layoutartist2" class="form-label">Layout Artist:</label>
+                <select class="form-select form-select-sm" id="layoutartist2" disabled>
+                    <option value="1">Select Layout Artist</option>
+                    <?php
+                    $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND course='BSIT' AND status='Active' ");
+
+                    $count_layout_artist_qry = mysqli_num_rows($layout_artist_qry);
+
+                    if ($count_layout_artist_qry > 0) {
+
+                        while ($layout_artist_data = mysqli_fetch_assoc($layout_artist_qry)) {
+
+                            $id = $layout_artist_data["id"];
+                            $firstname = $layout_artist_data["firstName"];
+                            $middlename = $layout_artist_data["middleName"];
+                            $lastname = $layout_artist_data["lastName"];
+                            $party = $layout_artist_data["party"];
+                            $img = $layout_artist_data["img"];
+
+                            $layout_artist = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
+
+                    ?>
+                            <option value="<?php echo $id; ?>"><?php echo $layout_artist; ?></option>
+
+                    <?php
+                        }
+                    } else {
+                        echo "No record found";
+                    }
+                    ?>
+                </select>
+            </div>
+
+
+            <hr>
+            <br>
+
+
+
+            <div class="col-md-6 mb-3">
+                <label for="technicalsupport1" class="form-label">Technical Support:</label>
+                <select class="form-select form-select-sm" id="technicalsupport1">
                     <option value="1">Select Technical Support</option>
                     <?php
                     $technical_support_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Technical Support' AND course='BSIT' AND status='Active' ");
@@ -450,6 +551,132 @@ include("../admindashboard/bins/connections.php");
                 </select>
             </div>
 
+
+            <div class="col-md-6 mb-3">
+                <label for="technicalsupport2" class="form-label">Technical Support:</label>
+                <select class="form-select form-select-sm" id="technicalsupport2" disabled>
+                    <option value="1">Select Technical Support</option>
+                    <?php
+                    $technical_support_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Technical Support' AND course='BSIT' AND status='Active' ");
+
+                    $count_technical_support_qry = mysqli_num_rows($technical_support_qry);
+
+                    if ($count_technical_support_qry > 0) {
+
+                        while ($technical_support_data = mysqli_fetch_assoc($technical_support_qry)) {
+
+                            $id = $technical_support_data["id"];
+                            $firstname = $technical_support_data["firstName"];
+                            $middlename = $technical_support_data["middleName"];
+                            $lastname = $technical_support_data["lastName"];
+                            $party = $technical_support_data["party"];
+                            $img = $technical_support_data["img"];
+
+                            $technical_support = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
+
+                    ?>
+                            <option value="<?php echo $id; ?>"><?php echo $technical_support; ?></option>
+
+                    <?php
+                        }
+                    } else {
+                        echo "No record found";
+                    }
+                    ?>
+                </select>
+            </div>
+
+
+
         </div>
+        <input type="submit" name="submit" class="button-green mb-3 float-end" value="Submit">
     </form>
 </div>
+
+<script>
+    $(document).ready(function() {
+
+
+        $('#pio1').change(function() {
+            var selectedPio1 = $(this).val();
+            $('#pio2').prop('disabled', false);
+            $('#pio2 option').each(function() {
+                if ($(this).val() == selectedPio1) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+
+        $('#pio2').change(function() {
+            var selectedPio2 = $(this).val();
+            $('#pio1').prop('disabled', false);
+            $('#pio1 option').each(function() {
+                if ($(this).val() == selectedPio2) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+
+
+
+        $('#layoutartist1').change(function() {
+            var selectedLayoutArtist1 = $(this).val();
+            $('#layoutartist2').prop('disabled', false);
+            $('#layoutartist2 option').each(function() {
+                if ($(this).val() == selectedLayoutArtist1) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+
+        $('#layoutartist2').change(function() {
+            var selectedLayoutArtist2 = $(this).val();
+            $('#layoutartist1').prop('disabled', false);
+            $('#layoutartist1 option').each(function() {
+                if ($(this).val() == selectedLayoutArtist2) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+
+
+
+        $('#technicalsupport1').change(function() {
+            var selectedTechnicalSupport1 = $(this).val();
+            $('#technicalsupport2').prop('disabled', false);
+            $('#technicalsupport2 option').each(function() {
+                if ($(this).val() == selectedTechnicalSupport1) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+
+        $('#technicalsupport2').change(function() {
+            var selectedTechnicalSupport2 = $(this).val();
+            $('#technicalsupport1').prop('disabled', false);
+            $('#technicalsupport1 option').each(function() {
+                if ($(this).val() == selectedTechnicalSupport2) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+
+
+
+
+    });
+</script>
