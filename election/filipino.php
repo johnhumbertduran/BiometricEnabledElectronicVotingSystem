@@ -18,9 +18,9 @@ include('bins/header.php');
             while ($pangulo_data = mysqli_fetch_assoc($pangulo_qry)) {
 
                 $id = $pangulo_data["id"];
-                $firstname = $pangulo_data["firstName"];
-                $middlename = $pangulo_data["middleName"];
-                $lastname = $pangulo_data["lastName"];
+                $firstname = $pangulo_data["firstname"];
+                $middlename = $pangulo_data["middlename"];
+                $lastname = $pangulo_data["lastname"];
                 $party = $pangulo_data["party"];
                 $img = $pangulo_data["img"];
 
@@ -62,9 +62,9 @@ include('bins/header.php');
             while ($pangalawang_pangulo_data = mysqli_fetch_assoc($pangalawang_pangulo_qry)) {
 
                 $id = $pangalawang_pangulo_data["id"];
-                $firstname = $pangalawang_pangulo_data["firstName"];
-                $middlename = $pangalawang_pangulo_data["middleName"];
-                $lastname = $pangalawang_pangulo_data["lastName"];
+                $firstname = $pangalawang_pangulo_data["firstname"];
+                $middlename = $pangalawang_pangulo_data["middlename"];
+                $lastname = $pangalawang_pangulo_data["lastname"];
                 $party = $pangalawang_pangulo_data["party"];
                 $img = $pangalawang_pangulo_data["img"];
 
@@ -106,9 +106,9 @@ include('bins/header.php');
             while ($kalihim_data = mysqli_fetch_assoc($kalihim_qry)) {
 
                 $id = $kalihim_data["id"];
-                $firstname = $kalihim_data["firstName"];
-                $middlename = $kalihim_data["middleName"];
-                $lastname = $kalihim_data["lastName"];
+                $firstname = $kalihim_data["firstname"];
+                $middlename = $kalihim_data["middlename"];
+                $lastname = $kalihim_data["lastname"];
                 $party = $kalihim_data["party"];
                 $img = $kalihim_data["img"];
 
@@ -150,9 +150,9 @@ include('bins/header.php');
             while ($ikalawang_kalihim_data = mysqli_fetch_assoc($ikalawang_kalihim_qry)) {
 
                 $id = $ikalawang_kalihim_data["id"];
-                $firstname = $ikalawang_kalihim_data["firstName"];
-                $middlename = $ikalawang_kalihim_data["middleName"];
-                $lastname = $ikalawang_kalihim_data["lastName"];
+                $firstname = $ikalawang_kalihim_data["firstname"];
+                $middlename = $ikalawang_kalihim_data["middlename"];
+                $lastname = $ikalawang_kalihim_data["lastname"];
                 $party = $ikalawang_kalihim_data["party"];
                 $img = $ikalawang_kalihim_data["img"];
 
@@ -194,9 +194,9 @@ include('bins/header.php');
             while ($taga_ingat_yaman_data = mysqli_fetch_assoc($taga_ingat_yaman_qry)) {
 
                 $id = $taga_ingat_yaman_data["id"];
-                $firstname = $taga_ingat_yaman_data["firstName"];
-                $middlename = $taga_ingat_yaman_data["middleName"];
-                $lastname = $taga_ingat_yaman_data["lastName"];
+                $firstname = $taga_ingat_yaman_data["firstname"];
+                $middlename = $taga_ingat_yaman_data["middlename"];
+                $lastname = $taga_ingat_yaman_data["lastname"];
                 $party = $taga_ingat_yaman_data["party"];
                 $img = $taga_ingat_yaman_data["img"];
 
@@ -238,9 +238,9 @@ include('bins/header.php');
             while ($ikalawang_taga_ingat_yaman_data = mysqli_fetch_assoc($ikalawang_taga_ingat_yaman_qry)) {
 
                 $id = $ikalawang_taga_ingat_yaman_data["id"];
-                $firstname = $ikalawang_taga_ingat_yaman_data["firstName"];
-                $middlename = $ikalawang_taga_ingat_yaman_data["middleName"];
-                $lastname = $ikalawang_taga_ingat_yaman_data["lastName"];
+                $firstname = $ikalawang_taga_ingat_yaman_data["firstname"];
+                $middlename = $ikalawang_taga_ingat_yaman_data["middlename"];
+                $lastname = $ikalawang_taga_ingat_yaman_data["lastname"];
                 $party = $ikalawang_taga_ingat_yaman_data["party"];
                 $img = $ikalawang_taga_ingat_yaman_data["img"];
 
@@ -282,9 +282,9 @@ include('bins/header.php');
             while ($tagasuri_data = mysqli_fetch_assoc($tagasuri_qry)) {
 
                 $id = $tagasuri_data["id"];
-                $firstname = $tagasuri_data["firstName"];
-                $middlename = $tagasuri_data["middleName"];
-                $lastname = $tagasuri_data["lastName"];
+                $firstname = $tagasuri_data["firstname"];
+                $middlename = $tagasuri_data["middlename"];
+                $lastname = $tagasuri_data["lastname"];
                 $party = $tagasuri_data["party"];
                 $img = $tagasuri_data["img"];
 
@@ -326,9 +326,9 @@ include('bins/header.php');
             while ($ikalawang_tagasuri_data = mysqli_fetch_assoc($ikalawang_tagasuri_qry)) {
 
                 $id = $ikalawang_tagasuri_data["id"];
-                $firstname = $ikalawang_tagasuri_data["firstName"];
-                $middlename = $ikalawang_tagasuri_data["middleName"];
-                $lastname = $ikalawang_tagasuri_data["lastName"];
+                $firstname = $ikalawang_tagasuri_data["firstname"];
+                $middlename = $ikalawang_tagasuri_data["middlename"];
+                $lastname = $ikalawang_tagasuri_data["lastname"];
                 $party = $ikalawang_tagasuri_data["party"];
                 $img = $ikalawang_tagasuri_data["img"];
 
@@ -370,9 +370,9 @@ include('bins/header.php');
             while ($taga_pamalita_data = mysqli_fetch_assoc($taga_pamalita_qry)) {
 
                 $id = $taga_pamalita_data["id"];
-                $firstname = $taga_pamalita_data["firstName"];
-                $middlename = $taga_pamalita_data["middleName"];
-                $lastname = $taga_pamalita_data["lastName"];
+                $firstname = $taga_pamalita_data["firstname"];
+                $middlename = $taga_pamalita_data["middlename"];
+                $lastname = $taga_pamalita_data["lastname"];
                 $party = $taga_pamalita_data["party"];
                 $img = $taga_pamalita_data["img"];
 
@@ -414,9 +414,9 @@ include('bins/header.php');
             while ($ikalawang_taga_pamalita_data = mysqli_fetch_assoc($ikalawang_taga_pamalita_qry)) {
 
                 $id = $ikalawang_taga_pamalita_data["id"];
-                $firstname = $ikalawang_taga_pamalita_data["firstName"];
-                $middlename = $ikalawang_taga_pamalita_data["middleName"];
-                $lastname = $ikalawang_taga_pamalita_data["lastName"];
+                $firstname = $ikalawang_taga_pamalita_data["firstname"];
+                $middlename = $ikalawang_taga_pamalita_data["middlename"];
+                $lastname = $ikalawang_taga_pamalita_data["lastname"];
                 $party = $ikalawang_taga_pamalita_data["party"];
                 $img = $ikalawang_taga_pamalita_data["img"];
 
@@ -458,9 +458,9 @@ include('bins/header.php');
             while ($tagapangalakal_data = mysqli_fetch_assoc($tagapangalakal_qry)) {
 
                 $id = $tagapangalakal_data["id"];
-                $firstname = $tagapangalakal_data["firstName"];
-                $middlename = $tagapangalakal_data["middleName"];
-                $lastname = $tagapangalakal_data["lastName"];
+                $firstname = $tagapangalakal_data["firstname"];
+                $middlename = $tagapangalakal_data["middlename"];
+                $lastname = $tagapangalakal_data["lastname"];
                 $party = $tagapangalakal_data["party"];
                 $img = $tagapangalakal_data["img"];
 
@@ -502,9 +502,9 @@ include('bins/header.php');
             while ($ikalawang_tagapangalakal_data = mysqli_fetch_assoc($ikalawang_tagapangalakal_qry)) {
 
                 $id = $ikalawang_tagapangalakal_data["id"];
-                $firstname = $ikalawang_tagapangalakal_data["firstName"];
-                $middlename = $ikalawang_tagapangalakal_data["middleName"];
-                $lastname = $ikalawang_tagapangalakal_data["lastName"];
+                $firstname = $ikalawang_tagapangalakal_data["firstname"];
+                $middlename = $ikalawang_tagapangalakal_data["middlename"];
+                $lastname = $ikalawang_tagapangalakal_data["lastname"];
                 $party = $ikalawang_tagapangalakal_data["party"];
                 $img = $ikalawang_tagapangalakal_data["img"];
 
@@ -546,9 +546,9 @@ include('bins/header.php');
             while ($unang_kinatawan_data = mysqli_fetch_assoc($unang_kinatawan_qry)) {
 
                 $id = $unang_kinatawan_data["id"];
-                $firstname = $unang_kinatawan_data["firstName"];
-                $middlename = $unang_kinatawan_data["middleName"];
-                $lastname = $unang_kinatawan_data["lastName"];
+                $firstname = $unang_kinatawan_data["firstname"];
+                $middlename = $unang_kinatawan_data["middlename"];
+                $lastname = $unang_kinatawan_data["lastname"];
                 $party = $unang_kinatawan_data["party"];
                 $img = $unang_kinatawan_data["img"];
 
@@ -590,9 +590,9 @@ include('bins/header.php');
             while ($ikalawang_kinatawan_data = mysqli_fetch_assoc($ikalawang_kinatawan_qry)) {
 
                 $id = $ikalawang_kinatawan_data["id"];
-                $firstname = $ikalawang_kinatawan_data["firstName"];
-                $middlename = $ikalawang_kinatawan_data["middleName"];
-                $lastname = $ikalawang_kinatawan_data["lastName"];
+                $firstname = $ikalawang_kinatawan_data["firstname"];
+                $middlename = $ikalawang_kinatawan_data["middlename"];
+                $lastname = $ikalawang_kinatawan_data["lastname"];
                 $party = $ikalawang_kinatawan_data["party"];
                 $img = $ikalawang_kinatawan_data["img"];
 
@@ -634,9 +634,9 @@ include('bins/header.php');
             while ($ikatlong_kinatawan_data = mysqli_fetch_assoc($ikatlong_kinatawan_qry)) {
 
                 $id = $ikatlong_kinatawan_data["id"];
-                $firstname = $ikatlong_kinatawan_data["firstName"];
-                $middlename = $ikatlong_kinatawan_data["middleName"];
-                $lastname = $ikatlong_kinatawan_data["lastName"];
+                $firstname = $ikatlong_kinatawan_data["firstname"];
+                $middlename = $ikatlong_kinatawan_data["middlename"];
+                $lastname = $ikatlong_kinatawan_data["lastname"];
                 $party = $ikatlong_kinatawan_data["party"];
                 $img = $ikatlong_kinatawan_data["img"];
 
@@ -678,9 +678,9 @@ include('bins/header.php');
             while ($ikaapat_na_kinatawan_data = mysqli_fetch_assoc($ikaapat_na_kinatawan_qry)) {
 
                 $id = $ikaapat_na_kinatawan_data["id"];
-                $firstname = $ikaapat_na_kinatawan_data["firstName"];
-                $middlename = $ikaapat_na_kinatawan_data["middleName"];
-                $lastname = $ikaapat_na_kinatawan_data["lastName"];
+                $firstname = $ikaapat_na_kinatawan_data["firstname"];
+                $middlename = $ikaapat_na_kinatawan_data["middlename"];
+                $lastname = $ikaapat_na_kinatawan_data["lastname"];
                 $party = $ikaapat_na_kinatawan_data["party"];
                 $img = $ikaapat_na_kinatawan_data["img"];
 

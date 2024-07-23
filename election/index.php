@@ -5,18 +5,20 @@ include('bins/navigation.php');
 include("../admindashboard/bins/connections.php");
 
 // $voter_course = "";
-if (isset($_SESSION["idNumber"])) {
+if (isset($_SESSION["idnumber"])) {
 
-    $session_id_number = $_SESSION["idNumber"];
-    $check_voter_id_number = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idNumber='$session_id_number'");
+    $session_id_number = $_SESSION["idnumber"];
+    $check_voter_id_number = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idnumber='$session_id_number'");
     $get_voter_id_number = mysqli_fetch_assoc($check_voter_id_number);
-    $voter_firstName = $get_voter_id_number["firstName"];
-    $voter_middleName = $get_voter_id_number["middleName"];
-    $voter_lastName = $get_voter_id_number["lastName"];
+    $voter_firstName = $get_voter_id_number["firstname"];
+    $voter_middleName = $get_voter_id_number["middlename"];
+    $voter_lastName = $get_voter_id_number["lastname"];
     $voter_year = $get_voter_id_number["year"];
     $voter_course = $get_voter_id_number["course"];
     $voter_biometric = $get_voter_id_number["biometric"];
     $voter_status = $get_voter_id_number["status"];
+
+    $name = ucfirst($voter_firstName) . " " . ucfirst($voter_middleName[0]) . ". " . ucfirst($voter_lastName);
 
     if ($voter_status == 0) {
         // header('Location: election/');
@@ -46,6 +48,8 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
 
 <div class="container my-3">
     <div class="d-flex justify-content-between align-items-center">
+
+
         <div class="d-inline-flex align-items-center">
             <a class="">
                 <img src="../bins/img/logo.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
@@ -95,7 +99,7 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
         </div>
     </div> -->
 
-
+    <h5> Welcome, <?php echo $name; ?></h5>
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-6">
             <div class=" borderblue overflow-auto" style="height: 55vh;">

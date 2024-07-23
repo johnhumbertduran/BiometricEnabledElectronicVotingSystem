@@ -10,7 +10,7 @@ if (isset($_SESSION["username"])) {
     $my_info = mysqli_fetch_assoc($query_info);
     $account_type = $my_info["account_type"];
     $admin_id = $my_info["id"];
-    $admin_name = $my_info["firstName"];
+    $admin_name = $my_info["firstname"];
     $admin_course = $my_info["course"];
 
     if ($account_type != 2) {
@@ -137,14 +137,14 @@ if ($countCandidate > 0) {
 
 
                         $id = $row_candidate_lists["id"];
-                        $firstname = $row_candidate_lists["firstName"];
-                        $middlename = $row_candidate_lists["middleName"];
-                        $lastname = $row_candidate_lists["lastName"];
+                        $firstname = $row_candidate_lists["firstname"];
+                        $middlename = $row_candidate_lists["middlename"];
+                        $lastname = $row_candidate_lists["lastname"];
                         $course = $row_candidate_lists["course"];
                         $year = $row_candidate_lists["year"];
                         $position = $row_candidate_lists["position"];
                         $party = $row_candidate_lists["party"];
-                        $electionyear = $row_candidate_lists["electionYear"];
+                        $electionyear = $row_candidate_lists["electionyear"];
 
                         $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname)
                     ?>

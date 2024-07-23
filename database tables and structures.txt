@@ -24,16 +24,13 @@ biometric
 status
 
 
-votestbl structure: //per department dapat daya
-// automatic na pag register, ma select nana department if anong table imaw belong
+votestbl structure:
+
 id
-idNumber
-firstName
-middleName
-lastName
-year
-department
-status
+voteridnumber
+electionid
+position
+candidatevoted
 
 
 historytbl structure:

@@ -25,9 +25,9 @@ include("../admindashboard/bins/connections.php");
             while ($president_data = mysqli_fetch_assoc($president_qry)) {
 
                 $id = $president_data["id"];
-                $firstname = $president_data["firstName"];
-                $middlename = $president_data["middleName"];
-                $lastname = $president_data["lastName"];
+                $firstname = $president_data["firstname"];
+                $middlename = $president_data["middlename"];
+                $lastname = $president_data["lastname"];
                 $party = $president_data["party"];
                 $img = $president_data["img"];
 
@@ -69,9 +69,9 @@ include("../admindashboard/bins/connections.php");
             while ($vice_president_data = mysqli_fetch_assoc($vice_president_qry)) {
 
                 $id = $vice_president_data["id"];
-                $firstname = $vice_president_data["firstName"];
-                $middlename = $vice_president_data["middleName"];
-                $lastname = $vice_president_data["lastName"];
+                $firstname = $vice_president_data["firstname"];
+                $middlename = $vice_president_data["middlename"];
+                $lastname = $vice_president_data["lastname"];
                 $party = $vice_president_data["party"];
                 $img = $vice_president_data["img"];
 
@@ -113,9 +113,9 @@ include("../admindashboard/bins/connections.php");
             while ($secretary_data = mysqli_fetch_assoc($secretary_qry)) {
 
                 $id = $secretary_data["id"];
-                $firstname = $secretary_data["firstName"];
-                $middlename = $secretary_data["middleName"];
-                $lastname = $secretary_data["lastName"];
+                $firstname = $secretary_data["firstname"];
+                $middlename = $secretary_data["middlename"];
+                $lastname = $secretary_data["lastname"];
                 $party = $secretary_data["party"];
                 $img = $secretary_data["img"];
 
@@ -157,9 +157,9 @@ include("../admindashboard/bins/connections.php");
             while ($treasurer_data = mysqli_fetch_assoc($treasurer_qry)) {
 
                 $id = $treasurer_data["id"];
-                $firstname = $treasurer_data["firstName"];
-                $middlename = $treasurer_data["middleName"];
-                $lastname = $treasurer_data["lastName"];
+                $firstname = $treasurer_data["firstname"];
+                $middlename = $treasurer_data["middlename"];
+                $lastname = $treasurer_data["lastname"];
                 $party = $treasurer_data["party"];
                 $img = $treasurer_data["img"];
 
@@ -201,9 +201,9 @@ include("../admindashboard/bins/connections.php");
             while ($assistant_treasurer_data = mysqli_fetch_assoc($assistant_treasurer_qry)) {
 
                 $id = $assistant_treasurer_data["id"];
-                $firstname = $assistant_treasurer_data["firstName"];
-                $middlename = $assistant_treasurer_data["middleName"];
-                $lastname = $assistant_treasurer_data["lastName"];
+                $firstname = $assistant_treasurer_data["firstname"];
+                $middlename = $assistant_treasurer_data["middlename"];
+                $lastname = $assistant_treasurer_data["lastname"];
                 $party = $assistant_treasurer_data["party"];
                 $img = $assistant_treasurer_data["img"];
 
@@ -245,9 +245,9 @@ include("../admindashboard/bins/connections.php");
             while ($auditor_data = mysqli_fetch_assoc($auditor_qry)) {
 
                 $id = $auditor_data["id"];
-                $firstname = $auditor_data["firstName"];
-                $middlename = $auditor_data["middleName"];
-                $lastname = $auditor_data["lastName"];
+                $firstname = $auditor_data["firstname"];
+                $middlename = $auditor_data["middlename"];
+                $lastname = $auditor_data["lastname"];
                 $party = $auditor_data["party"];
                 $img = $auditor_data["img"];
 
@@ -289,9 +289,9 @@ include("../admindashboard/bins/connections.php");
             while ($pio_data = mysqli_fetch_assoc($pio_qry)) {
 
                 $id = $pio_data["id"];
-                $firstname = $pio_data["firstName"];
-                $middlename = $pio_data["middleName"];
-                $lastname = $pio_data["lastName"];
+                $firstname = $pio_data["firstname"];
+                $middlename = $pio_data["middlename"];
+                $lastname = $pio_data["lastname"];
                 $party = $pio_data["party"];
                 $img = $pio_data["img"];
 
@@ -333,9 +333,9 @@ include("../admindashboard/bins/connections.php");
             while ($business_manager_data = mysqli_fetch_assoc($business_manager_qry)) {
 
                 $id = $business_manager_data["id"];
-                $firstname = $business_manager_data["firstName"];
-                $middlename = $business_manager_data["middleName"];
-                $lastname = $business_manager_data["lastName"];
+                $firstname = $business_manager_data["firstname"];
+                $middlename = $business_manager_data["middlename"];
+                $lastname = $business_manager_data["lastname"];
                 $party = $business_manager_data["party"];
                 $img = $business_manager_data["img"];
 
@@ -377,9 +377,9 @@ include("../admindashboard/bins/connections.php");
             while ($assistant_business_manager_data = mysqli_fetch_assoc($assistant_business_manager_qry)) {
 
                 $id = $assistant_business_manager_data["id"];
-                $firstname = $assistant_business_manager_data["firstName"];
-                $middlename = $assistant_business_manager_data["middleName"];
-                $lastname = $assistant_business_manager_data["lastName"];
+                $firstname = $assistant_business_manager_data["firstname"];
+                $middlename = $assistant_business_manager_data["middlename"];
+                $lastname = $assistant_business_manager_data["lastname"];
                 $party = $assistant_business_manager_data["party"];
                 $img = $assistant_business_manager_data["img"];
 
@@ -421,9 +421,9 @@ include("../admindashboard/bins/connections.php");
             while ($first_year_representative_data = mysqli_fetch_assoc($first_year_representative_qry)) {
 
                 $id = $first_year_representative_data["id"];
-                $firstname = $first_year_representative_data["firstName"];
-                $middlename = $first_year_representative_data["middleName"];
-                $lastname = $first_year_representative_data["lastName"];
+                $firstname = $first_year_representative_data["firstname"];
+                $middlename = $first_year_representative_data["middlename"];
+                $lastname = $first_year_representative_data["lastname"];
                 $party = $first_year_representative_data["party"];
                 $img = $first_year_representative_data["img"];
 
@@ -465,9 +465,9 @@ include("../admindashboard/bins/connections.php");
             while ($second_year_representative_data = mysqli_fetch_assoc($second_year_representative_qry)) {
 
                 $id = $second_year_representative_data["id"];
-                $firstname = $second_year_representative_data["firstName"];
-                $middlename = $second_year_representative_data["middleName"];
-                $lastname = $second_year_representative_data["lastName"];
+                $firstname = $second_year_representative_data["firstname"];
+                $middlename = $second_year_representative_data["middlename"];
+                $lastname = $second_year_representative_data["lastname"];
                 $party = $second_year_representative_data["party"];
                 $img = $second_year_representative_data["img"];
 
@@ -509,9 +509,9 @@ include("../admindashboard/bins/connections.php");
             while ($third_year_representative_data = mysqli_fetch_assoc($third_year_representative_qry)) {
 
                 $id = $third_year_representative_data["id"];
-                $firstname = $third_year_representative_data["firstName"];
-                $middlename = $third_year_representative_data["middleName"];
-                $lastname = $third_year_representative_data["lastName"];
+                $firstname = $third_year_representative_data["firstname"];
+                $middlename = $third_year_representative_data["middlename"];
+                $lastname = $third_year_representative_data["lastname"];
                 $party = $third_year_representative_data["party"];
                 $img = $third_year_representative_data["img"];
 
@@ -553,9 +553,9 @@ include("../admindashboard/bins/connections.php");
             while ($fourth_year_representative_data = mysqli_fetch_assoc($fourth_year_representative_qry)) {
 
                 $id = $fourth_year_representative_data["id"];
-                $firstname = $fourth_year_representative_data["firstName"];
-                $middlename = $fourth_year_representative_data["middleName"];
-                $lastname = $fourth_year_representative_data["lastName"];
+                $firstname = $fourth_year_representative_data["firstname"];
+                $middlename = $fourth_year_representative_data["middlename"];
+                $lastname = $fourth_year_representative_data["lastname"];
                 $party = $fourth_year_representative_data["party"];
                 $img = $fourth_year_representative_data["img"];
 

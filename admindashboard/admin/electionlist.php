@@ -10,7 +10,7 @@ if (isset($_SESSION["username"])) {
     $my_info = mysqli_fetch_assoc($query_info);
     $account_type = $my_info["account_type"];
     $admin_id = $my_info["id"];
-    $admin_name = $my_info["firstName"];
+    $admin_name = $my_info["firstname"];
     $admin_course = $my_info["course"];
 
     if ($account_type != 2) {

@@ -11,7 +11,7 @@ if (isset($_SESSION["username"])) {
     $query_info = mysqli_query($connections, "SELECT * FROM admintbl WHERE username='$session_user'");
     $my_info = mysqli_fetch_assoc($query_info);
     $account_type = $my_info["account_type"];
-    $name = ucfirst($my_info["firstName"]);
+    $name = ucfirst($my_info["firstname"]);
 
 
     if ($account_type != 1) {

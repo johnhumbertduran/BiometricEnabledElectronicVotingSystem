@@ -10,8 +10,8 @@ if (isset($_SESSION["username"])) {
     $my_info = mysqli_fetch_assoc($query_info);
     $admin_id = $my_info["id"];
     $account_type = $my_info["account_type"];
-    $admin_first_name = $my_info["firstName"];
-    $admin_last_name = $my_info["lastName"];
+    $admin_first_name = $my_info["firstname"];
+    $admin_last_name = $my_info["lastname"];
     $admin_course = $my_info["course"];
 
 

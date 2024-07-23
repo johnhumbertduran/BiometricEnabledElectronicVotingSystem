@@ -10,12 +10,15 @@ if (isset($_SESSION["username"])) {
     $my_info = mysqli_fetch_assoc($query_info);
     $account_type = $my_info["account_type"];
     $admin_id = $my_info["id"];
-    $admin_name = $my_info["firstName"];
+    $admin_name = $my_info["firstname"];
     $admin_course = $my_info["course"];
 
     if ($account_type != 1) {
         header('Location: ../../forbidden.php');
     }
+} else {
+
+    header('Location: ../');
 }
 
 $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
@@ -83,9 +86,9 @@ if ($count_admin > 0) {
                     while ($row_admin_list = mysqli_fetch_assoc($adminlist)) {
 
                         $id = $row_admin_list["id"];
-                        $firstname = $row_admin_list["firstName"];
-                        $middlename = $row_admin_list["middleName"];
-                        $lastname = $row_admin_list["lastName"];
+                        $firstname = $row_admin_list["firstname"];
+                        $middlename = $row_admin_list["middlename"];
+                        $lastname = $row_admin_list["lastname"];
                         $course = $row_admin_list["course"];
                         $year = $row_admin_list["schoolyear"];
 

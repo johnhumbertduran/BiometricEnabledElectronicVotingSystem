@@ -12,14 +12,14 @@ $time_now = date("h:i a");
 
 $session_id_number = "";
 
-if (isset($_SESSION["idNumber"])) {
+if (isset($_SESSION["idnumber"])) {
 
-    $session_id_number = $_SESSION["idNumber"];
-    $check_voter_id_number = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idNumber='$session_id_number'");
+    $session_id_number = $_SESSION["idnumber"];
+    $check_voter_id_number = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idnumber='$session_id_number'");
     $get_voter_id_number = mysqli_fetch_assoc($check_voter_id_number);
-    $voter_firstName = $get_voter_id_number["firstName"];
-    $voter_middleName = $get_voter_id_number["middleName"];
-    $voter_lastName = $get_voter_id_number["lastName"];
+    $voter_firstName = $get_voter_id_number["firstname"];
+    $voter_middleName = $get_voter_id_number["middlename"];
+    $voter_lastName = $get_voter_id_number["lastname"];
     $voter_year = $get_voter_id_number["year"];
     $voter_course = $get_voter_id_number["course"];
     $voter_biometric = $get_voter_id_number["biometric"];
@@ -34,7 +34,7 @@ if (isset($_POST['login'])) {
     }
 
     if ($session_id_number) {
-        $voterCheck = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idNumber='$session_id_number' ");
+        $voterCheck = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idnumber='$session_id_number' ");
 
         $voterRow = mysqli_num_rows($voterCheck);
 
@@ -43,7 +43,7 @@ if (isset($_POST['login'])) {
             $fetch_voter_status = $fetch_voter["status"];
 
             if ($fetch_voter_status == "0") {
-                $_SESSION["idNumber"] = $session_id_number;
+                $_SESSION["idnumber"] = $session_id_number;
                 header('Location: election/');
             } else {
                 $session_id_number = "";
@@ -108,7 +108,7 @@ if (isset($_POST['login'])) {
                         <div class="row">
                             <div class="input-group mb-3 col-2">
                                 <span class="input-group-text">ID Number</span>
-                                <input type="text" name="idnumber" class="form-control" value="<?php echo $session_id_number; ?>" placeholder="Please input your ID Number" required>
+                                <input type="text" name="idnumber" class="form-control" value="<?php echo $session_id_number; ?>" placeholder="Please input your ID Number" required autocomplete="off">
                             </div>
                         </div>
                         <input type="submit" name="login" value="Login" class="button-blue">

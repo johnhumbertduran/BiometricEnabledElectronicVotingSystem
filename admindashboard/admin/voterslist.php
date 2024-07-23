@@ -10,7 +10,7 @@ if (isset($_SESSION["username"])) {
     $my_info = mysqli_fetch_assoc($query_info);
     $account_type = $my_info["account_type"];
     $admin_id = $my_info["id"];
-    $admin_name = $my_info["firstName"];
+    $admin_name = $my_info["firstname"];
     $admin_course = $my_info["course"];
 
     if ($account_type != 2) {
@@ -47,10 +47,10 @@ $check_vote = isset($_GET['status']) ? $_GET['status'] : 'all';
                 <button class="nav-link nav-voter nav-button <?php echo ($check_vote == 'all') ? 'active' : ''; ?>" data-target="voterslist.php" data-status="all">All</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-voter nav-button <?php echo ($check_vote == 'Voted') ? 'active' : ''; ?>" data-target="voterslist.php" data-status="Voted">Voted Voters</button>
+                <button class="nav-link nav-voter nav-button <?php echo ($check_vote == '1') ? 'active' : ''; ?>" data-target="voterslist.php" data-status="1">Voted Voters</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-voter nav-button <?php echo ($check_vote == 'NotVoted') ? 'active' : ''; ?>" data-target="voterslist.php" data-status="NotVoted">Unvoted Voters</button>
+                <button class="nav-link nav-voter nav-button <?php echo ($check_vote == '0') ? 'active' : ''; ?>" data-target="voterslist.php" data-status="0">Unvoted Voters</button>
             </li>
         </ul>
     </div>
@@ -84,7 +84,7 @@ if ($countVoters > 0) {
                         <th>Course</th>
                         <th>Year</th>
                         <th>Position</th>
-                        <th>Party</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,10 +95,10 @@ if ($countVoters > 0) {
 
                     while ($row_voters_list = mysqli_fetch_assoc($voterslist)) {
 
-                        $idnumber = $row_voters_list["idNumber"];
-                        $firstname = $row_voters_list["firstName"];
-                        $middlename = $row_voters_list["middleName"];
-                        $lastname = $row_voters_list["lastName"];
+                        $idnumber = $row_voters_list["idnumber"];
+                        $firstname = $row_voters_list["firstname"];
+                        $middlename = $row_voters_list["middlename"];
+                        $lastname = $row_voters_list["lastname"];
                         $year = $row_voters_list["year"];
                         $course = $row_voters_list["course"];
                         $status = $row_voters_list["status"];
@@ -110,7 +110,7 @@ if ($countVoters > 0) {
                             <td><?php echo $name; ?></td>
                             <td><?php echo $year; ?></td>
                             <td><?php echo $course; ?></td>
-                            <td><?php echo $status; ?></td>
+                            <td><?php echo ($status == "0") ? "Not Voted" : "Voted"; ?></td>
                         </tr>
                     <?php
                     }
