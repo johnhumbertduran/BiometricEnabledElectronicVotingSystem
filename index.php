@@ -112,9 +112,9 @@ if (isset($_POST['login'])) {
                             </div>
                         </div>
                         <input type="submit" name="login" value="Login" class="button-blue">
-                        <div class="container textred">
+                        <!-- <div class="container textred">
                             <p><span class="textredbold">Note: </span><br> - Please check ID Number <br> - You can only vote once</p>
-                        </div>
+                        </div> -->
                     </div>
                 </form>
             </div>

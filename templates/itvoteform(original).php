@@ -1,8 +1,6 @@
 <?php
 include("../admindashboard/bins/connections.php");
-
 ?>
-<h3 class="text-center bgmainblue text-white sticky-top py-2" style="z-index: 1;">Vote Here</h3>
 <div class="container px-5">
 
     <form method="POST">
@@ -10,7 +8,7 @@ include("../admindashboard/bins/connections.php");
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="president" class="form-label">President:</label>
-                <select class="form-select form-select-sm" id="president" required>
+                <select class="form-select form-select-sm" id="president">
                     <option value="1">Select President</option>
                     <?php
                     $president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='President' AND course='BSIT' AND status='Active' ");
@@ -21,16 +19,20 @@ include("../admindashboard/bins/connections.php");
 
                         while ($president_data = mysqli_fetch_assoc($president_qry)) {
 
-                            $presidentid = $president_data["idnumber"];
-                            $presidentfirstname = $president_data["firstname"];
-                            $presidentmiddlename = $president_data["middlename"];
-                            $presidentlastname = $president_data["lastname"];
+                            $id = $president_data["idnumber"];
+                            $firstname = $president_data["firstname"];
+                            $middlename = $president_data["middlename"];
+                            $lastname = $president_data["lastname"];
+                            $party = $president_data["party"];
+                            $img = $president_data["img"];
 
-                            $president = ucfirst($presidentfirstname) . " " . ucfirst($presidentmiddlename[0]) . ". " . ucfirst($presidentlastname);
+                            $president = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
 
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $presidentid; ?>" name="president"><?php echo $president; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $president; ?></option>
+
                     <?php
                         }
                     } else {
@@ -44,7 +46,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="vicepresident" class="form-label">Vice President:</label>
-                <select class="form-select form-select-sm" id="vicepresident" required>
+                <select class="form-select form-select-sm" id="vicepresident">
                     <option value="1">Select Vice President</option>
                     <?php
                     $vice_president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Vice President' AND course='BSIT' AND status='Active' ");
@@ -55,16 +57,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($vice_president_data = mysqli_fetch_assoc($vice_president_qry)) {
 
-                            $vicepresidentid = $vice_president_data["idnumber"];
-                            $vicepresidentfirstname = $vice_president_data["firstname"];
-                            $vicepresidentmiddlename = $vice_president_data["middlename"];
-                            $vicepresidentlastname = $vice_president_data["lastname"];
+                            $id = $vice_president_data["idnumber"];
+                            $firstname = $vice_president_data["firstname"];
+                            $middlename = $vice_president_data["middlename"];
+                            $lastname = $vice_president_data["lastname"];
+                            $party = $vice_president_data["party"];
+                            $img = $vice_president_data["img"];
 
-                            $vice_president = ucfirst($vicepresidentfirstname) . " " . ucfirst($vicepresidentmiddlename[0]) . ". " . ucfirst($vicepresidentlastname);
+                            $vice_president = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
 
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $vicepresidentid; ?>" name="vicepresident"><?php echo $vice_president; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $vice_president; ?></option>
 
                     <?php
                         }
@@ -80,7 +85,7 @@ include("../admindashboard/bins/connections.php");
             <br>
             <div class="col-md-6 mb-3">
                 <label for="secretary" class="form-label">Secretary:</label>
-                <select class="form-select form-select-sm" id="secretary" required>
+                <select class="form-select form-select-sm" id="secretary">
                     <option value="1">Select Secretary</option>
                     <?php
                     $secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Secretary' AND course='BSIT' AND status='Active' ");
@@ -91,16 +96,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($secretary_data = mysqli_fetch_assoc($secretary_qry)) {
 
-                            $secretaryid = $secretary_data["idnumber"];
-                            $secretaryfirstname = $secretary_data["firstname"];
-                            $secretarymiddlename = $secretary_data["middlename"];
-                            $secretarylastname = $secretary_data["lastname"];
+                            $id = $secretary_data["idnumber"];
+                            $firstname = $secretary_data["firstname"];
+                            $middlename = $secretary_data["middlename"];
+                            $lastname = $secretary_data["lastname"];
+                            $party = $secretary_data["party"];
+                            $img = $secretary_data["img"];
 
-                            $secretary = ucfirst($secretaryfirstname) . " " . ucfirst($secretarymiddlename[0]) . ". " . ucfirst($secretarylastname);
+                            $secretary = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
 
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $secretaryid; ?>" name="secretary"><?php echo $secretary; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $secretary; ?></option>
 
                     <?php
                         }
@@ -114,7 +122,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="assistantsecretary" class="form-label">Assistant Secretary:</label>
-                <select class="form-select form-select-sm" id="assistantsecretary" required>
+                <select class="form-select form-select-sm" id="assistantsecretary">
                     <option value="1">Select Assistant Secretary</option>
                     <?php
                     $assistant_secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Secretary' AND course='BSIT' AND status='Active' ");
@@ -125,16 +133,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($assistant_secretary_data = mysqli_fetch_assoc($assistant_secretary_qry)) {
 
-                            $assistantsecretaryid = $assistant_secretary_data["idnumber"];
-                            $assistantsecretaryfirstname = $assistant_secretary_data["firstname"];
-                            $assistantsecretarymiddlename = $assistant_secretary_data["middlename"];
-                            $assistantsecretarylastname = $assistant_secretary_data["lastname"];
+                            $id = $assistant_secretary_data["idnumber"];
+                            $firstname = $assistant_secretary_data["firstname"];
+                            $middlename = $assistant_secretary_data["middlename"];
+                            $lastname = $assistant_secretary_data["lastname"];
+                            $party = $assistant_secretary_data["party"];
+                            $img = $assistant_secretary_data["img"];
 
-                            $assistant_secretary = ucfirst($assistantsecretaryfirstname) . " " . ucfirst($assistantsecretarymiddlename[0]) . ". " . ucfirst($assistantsecretarylastname);
+                            $assistant_secretary = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
 
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $assistantsecretaryid; ?>" name="assistantsecretary"><?php echo $assistant_secretary; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $assistant_secretary; ?></option>
 
                     <?php
                         }
@@ -154,7 +165,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="treasurer" class="form-label">Treasurer:</label>
-                <select class="form-select form-select-sm" id="treasurer" required>
+                <select class="form-select form-select-sm" id="treasurer">
                     <option value="1">Select Treasurer</option>
                     <?php
                     $treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Treasurer' AND course='BSIT' AND status='Active' ");
@@ -165,15 +176,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($treasurer_data = mysqli_fetch_assoc($treasurer_qry)) {
 
-                            $treasurerid = $treasurer_data["idnumber"];
-                            $treasurerfirstname = $treasurer_data["firstname"];
-                            $treasurermiddlename = $treasurer_data["middlename"];
-                            $treasurerlastname = $treasurer_data["lastname"];
+                            $id = $treasurer_data["idnumber"];
+                            $firstname = $treasurer_data["firstname"];
+                            $middlename = $treasurer_data["middlename"];
+                            $lastname = $treasurer_data["lastname"];
+                            $party = $treasurer_data["party"];
+                            $img = $treasurer_data["img"];
 
-                            $treasurer = ucfirst($treasurerfirstname) . " " . ucfirst($treasurermiddlename[0]) . ". " . ucfirst($treasurerlastname);
+                            $treasurer = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $treasurerid; ?>" name="treasurer"><?php echo $treasurer; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $treasurer; ?></option>
 
                     <?php
                         }
@@ -187,7 +202,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="assistanttreasurer" class="form-label">Assistant Treasurer:</label>
-                <select class="form-select form-select-sm" id="assistanttreasurer" required>
+                <select class="form-select form-select-sm" id="assistanttreasurer">
                     <option value="1">Select Assistant Treasurer</option>
                     <?php
                     $assistant_treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Treasurer' AND course='BSIT' AND status='Active' ");
@@ -198,15 +213,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($assistant_treasurer_data = mysqli_fetch_assoc($assistant_treasurer_qry)) {
 
-                            $assistanttreasurerid = $assistant_treasurer_data["idnumber"];
-                            $assistanttreasurerfirstname = $assistant_treasurer_data["firstname"];
-                            $assistanttreasurermiddlename = $assistant_treasurer_data["middlename"];
-                            $assistanttreasurerlastname = $assistant_treasurer_data["lastname"];
+                            $id = $assistant_treasurer_data["idnumber"];
+                            $firstname = $assistant_treasurer_data["firstname"];
+                            $middlename = $assistant_treasurer_data["middlename"];
+                            $lastname = $assistant_treasurer_data["lastname"];
+                            $party = $assistant_treasurer_data["party"];
+                            $img = $assistant_treasurer_data["img"];
 
-                            $assistant_treasurer = ucfirst($assistanttreasurerfirstname) . " " . ucfirst($assistanttreasurermiddlename[0]) . ". " . ucfirst($assistanttreasurerlastname);
+                            $assistant_treasurer = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $assistanttreasurerid; ?>" name="assistanttreasurer"><?php echo $assistant_treasurer; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $assistant_treasurer; ?></option>
 
                     <?php
                         }
@@ -224,7 +243,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="auditor" class="form-label">Auditor:</label>
-                <select class="form-select form-select-sm" id="auditor" required>
+                <select class="form-select form-select-sm" id="auditor">
                     <option value="1">Select Auditor</option>
                     <?php
                     $auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Auditor' AND course='BSIT' AND status='Active' ");
@@ -235,15 +254,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($auditor_data = mysqli_fetch_assoc($auditor_qry)) {
 
-                            $auditorid = $auditor_data["idnumber"];
-                            $auditorfirstname = $auditor_data["firstname"];
-                            $auditormiddlename = $auditor_data["middlename"];
-                            $auditorlastname = $auditor_data["lastname"];
+                            $id = $auditor_data["idnumber"];
+                            $firstname = $auditor_data["firstname"];
+                            $middlename = $auditor_data["middlename"];
+                            $lastname = $auditor_data["lastname"];
+                            $party = $auditor_data["party"];
+                            $img = $auditor_data["img"];
 
-                            $auditor = ucfirst($auditorfirstname) . " " . ucfirst($auditormiddlename[0]) . ". " . ucfirst($auditorlastname);
+                            $auditor = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $auditorid; ?>" name="auditor"><?php echo $auditor; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $auditor; ?></option>
 
                     <?php
                         }
@@ -257,7 +280,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="assistantauditor" class="form-label">Assistant Auditor:</label>
-                <select class="form-select form-select-sm" id="assistantauditor" required>
+                <select class="form-select form-select-sm" id="assistantauditor">
                     <option value="1">Select Assistant Auditor</option>
                     <?php
                     $assistant_auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Auditor' AND course='BSIT' AND status='Active' ");
@@ -268,15 +291,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($assistant_auditor_data = mysqli_fetch_assoc($assistant_auditor_qry)) {
 
-                            $assistantauditorid = $assistant_auditor_data["idnumber"];
-                            $assistantauditorfirstname = $assistant_auditor_data["firstname"];
-                            $assistantauditormiddlename = $assistant_auditor_data["middlename"];
-                            $assistantauditorlastname = $assistant_auditor_data["lastname"];
+                            $id = $assistant_auditor_data["idnumber"];
+                            $firstname = $assistant_auditor_data["firstname"];
+                            $middlename = $assistant_auditor_data["middlename"];
+                            $lastname = $assistant_auditor_data["lastname"];
+                            $party = $assistant_auditor_data["party"];
+                            $img = $assistant_auditor_data["img"];
 
-                            $assistant_auditor = ucfirst($assistantauditorfirstname) . " " . ucfirst($assistantauditormiddlename[0]) . ". " . ucfirst($assistantauditorlastname);
+                            $assistant_auditor = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $assistantauditorid; ?>" name="assistantauditor"><?php echo $assistant_auditor; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $assistant_auditor; ?></option>
 
                     <?php
                         }
@@ -294,7 +321,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="pio1" class="form-label">P.I.O.:</label>
-                <select class="form-select form-select-sm" id="pio1" required>
+                <select class="form-select form-select-sm" id="pio1">
                     <option value="1">Select P.I.O.</option>
                     <?php
                     $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND course='BSIT' AND status='Active' ");
@@ -305,15 +332,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($pio_data = mysqli_fetch_assoc($pio_qry)) {
 
-                            $pio1id = $pio_data["idnumber"];
-                            $pio1firstname = $pio_data["firstname"];
-                            $pio1middlename = $pio_data["middlename"];
-                            $pio1lastname = $pio_data["lastname"];
+                            $id = $pio_data["idnumber"];
+                            $firstname = $pio_data["firstname"];
+                            $middlename = $pio_data["middlename"];
+                            $lastname = $pio_data["lastname"];
+                            $party = $pio_data["party"];
+                            $img = $pio_data["img"];
 
-                            $pio = ucfirst($pio1firstname) . " " . ucfirst($pio1middlename[0]) . ". " . ucfirst($pio1lastname);
+                            $pio = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $pio1id; ?>" name="pio1"><?php echo $pio; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $pio; ?></option>
 
                     <?php
                         }
@@ -326,7 +357,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="pio2" class="form-label">P.I.O.:</label>
-                <select class="form-select form-select-sm" id="pio2" required disabled>
+                <select class="form-select form-select-sm" id="pio2" disabled>
                     <option value="1">Select P.I.O.</option>
                     <?php
                     $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND course='BSIT' AND status='Active' ");
@@ -337,15 +368,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($pio_data = mysqli_fetch_assoc($pio_qry)) {
 
-                            $pio2id = $pio_data["idnumber"];
-                            $pio2firstname = $pio_data["firstname"];
-                            $pio2middlename = $pio_data["middlename"];
-                            $pio2lastname = $pio_data["lastname"];
+                            $id = $pio_data["idnumber"];
+                            $firstname = $pio_data["firstname"];
+                            $middlename = $pio_data["middlename"];
+                            $lastname = $pio_data["lastname"];
+                            $party = $pio_data["party"];
+                            $img = $pio_data["img"];
 
-                            $pio = ucfirst($pio2firstname) . " " . ucfirst($pio2middlename[0]) . ". " . ucfirst($pio2lastname);
+                            $pio = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $pio2id; ?>" name="pio2"><?php echo $pio; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $pio; ?></option>
 
                     <?php
                         }
@@ -362,7 +397,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="businessmanager" class="form-label">Business Manager:</label>
-                <select class="form-select form-select-sm" id="businessmanager" required>
+                <select class="form-select form-select-sm" id="businessmanager">
                     <option value="1">Select Business Manager</option>
                     <?php
                     $business_manager_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Business Manager' AND course='BSIT' AND status='Active' ");
@@ -373,15 +408,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($business_manager_data = mysqli_fetch_assoc($business_manager_qry)) {
 
-                            $businessmanagerid = $business_manager_data["idnumber"];
-                            $businessmanagerfirstname = $business_manager_data["firstname"];
-                            $businessmanagermiddlename = $business_manager_data["middlename"];
-                            $businessmanagerlastname = $business_manager_data["lastname"];
+                            $id = $business_manager_data["idnumber"];
+                            $firstname = $business_manager_data["firstname"];
+                            $middlename = $business_manager_data["middlename"];
+                            $lastname = $business_manager_data["lastname"];
+                            $party = $business_manager_data["party"];
+                            $img = $business_manager_data["img"];
 
-                            $business_manager = ucfirst($businessmanagerfirstname) . " " . ucfirst($businessmanagermiddlename[0]) . ". " . ucfirst($businessmanagerlastname);
+                            $business_manager = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $businessmanagerid; ?>" name="businessmanager"><?php echo $business_manager; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $business_manager; ?></option>
 
                     <?php
                         }
@@ -399,7 +438,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="layoutartist1" class="form-label">Layout Artist:</label>
-                <select class="form-select form-select-sm" id="layoutartist1" required>
+                <select class="form-select form-select-sm" id="layoutartist1">
                     <option value="1">Select Layout Artist</option>
                     <?php
                     $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND course='BSIT' AND status='Active' ");
@@ -410,15 +449,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($layout_artist_data = mysqli_fetch_assoc($layout_artist_qry)) {
 
-                            $layoutartist1id = $layout_artist_data["idnumber"];
-                            $layoutartist1firstname = $layout_artist_data["firstname"];
-                            $layoutartist1middlename = $layout_artist_data["middlename"];
-                            $layoutartist1lastname = $layout_artist_data["lastname"];
+                            $id = $layout_artist_data["idnumber"];
+                            $firstname = $layout_artist_data["firstname"];
+                            $middlename = $layout_artist_data["middlename"];
+                            $lastname = $layout_artist_data["lastname"];
+                            $party = $layout_artist_data["party"];
+                            $img = $layout_artist_data["img"];
 
-                            $layout_artist = ucfirst($layoutartist1firstname) . " " . ucfirst($layoutartist1middlename[0]) . ". " . ucfirst($layoutartist1lastname);
+                            $layout_artist = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $layoutartist1id; ?>" name="layoutartist1"><?php echo $layout_artist; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $layout_artist; ?></option>
 
                     <?php
                         }
@@ -432,7 +475,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="layoutartist2" class="form-label">Layout Artist:</label>
-                <select class="form-select form-select-sm" id="layoutartist2" required disabled>
+                <select class="form-select form-select-sm" id="layoutartist2" disabled>
                     <option value="1">Select Layout Artist</option>
                     <?php
                     $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND course='BSIT' AND status='Active' ");
@@ -443,15 +486,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($layout_artist_data = mysqli_fetch_assoc($layout_artist_qry)) {
 
-                            $layoutartist2id = $layout_artist_data["idnumber"];
-                            $layoutartist2firstname = $layout_artist_data["firstname"];
-                            $layoutartist2middlename = $layout_artist_data["middlename"];
-                            $layoutartist2lastname = $layout_artist_data["lastname"];
+                            $id = $layout_artist_data["idnumber"];
+                            $firstname = $layout_artist_data["firstname"];
+                            $middlename = $layout_artist_data["middlename"];
+                            $lastname = $layout_artist_data["lastname"];
+                            $party = $layout_artist_data["party"];
+                            $img = $layout_artist_data["img"];
 
-                            $layout_artist = ucfirst($layoutartist2firstname) . " " . ucfirst($layoutartist2middlename[0]) . ". " . ucfirst($layoutartist2lastname);
+                            $layout_artist = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $layoutartist2id; ?>" name="layoutartist2"><?php echo $layout_artist; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $layout_artist; ?></option>
 
                     <?php
                         }
@@ -470,7 +517,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="technicalsupport1" class="form-label">Technical Support:</label>
-                <select class="form-select form-select-sm" id="technicalsupport1" required>
+                <select class="form-select form-select-sm" id="technicalsupport1">
                     <option value="1">Select Technical Support</option>
                     <?php
                     $technical_support_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Technical Support' AND course='BSIT' AND status='Active' ");
@@ -481,15 +528,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($technical_support_data = mysqli_fetch_assoc($technical_support_qry)) {
 
-                            $technicalsupport1id = $technical_support_data["idnumber"];
-                            $technicalsupport1firstname = $technical_support_data["firstname"];
-                            $technicalsupport1middlename = $technical_support_data["middlename"];
-                            $technicalsupport1lastname = $technical_support_data["lastname"];
+                            $id = $technical_support_data["idnumber"];
+                            $firstname = $technical_support_data["firstname"];
+                            $middlename = $technical_support_data["middlename"];
+                            $lastname = $technical_support_data["lastname"];
+                            $party = $technical_support_data["party"];
+                            $img = $technical_support_data["img"];
 
-                            $technical_support = ucfirst($technicalsupport1firstname) . " " . ucfirst($technicalsupport1middlename[0]) . ". " . ucfirst($technicalsupport1lastname);
+                            $technical_support = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $technicalsupport1id; ?>" name="technicalsupport1"><?php echo $technical_support; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $technical_support; ?></option>
 
                     <?php
                         }
@@ -503,13 +554,9 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="technicalsupport2" class="form-label">Technical Support:</label>
-                <select class="form-select form-select-sm" id="technicalsupport2" required disabled>
+                <select class="form-select form-select-sm" id="technicalsupport2" disabled>
                     <option value="1">Select Technical Support</option>
                     <?php
-                    if (isset($_GET['technicalsupport1'])) {
-                        $techsup = $_GET['technicalsupport1'];
-                        echo $techsup;
-                    }
                     $technical_support_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Technical Support' AND course='BSIT' AND status='Active' ");
 
                     $count_technical_support_qry = mysqli_num_rows($technical_support_qry);
@@ -518,15 +565,19 @@ include("../admindashboard/bins/connections.php");
 
                         while ($technical_support_data = mysqli_fetch_assoc($technical_support_qry)) {
 
-                            $technicalsupport2id = $technical_support_data["idnumber"];
-                            $technicalsupport2firstname = $technical_support_data["firstname"];
-                            $technicalsupport2middlename = $technical_support_data["middlename"];
-                            $technicalsupport2lastname = $technical_support_data["lastname"];
+                            $id = $technical_support_data["idnumber"];
+                            $firstname = $technical_support_data["firstname"];
+                            $middlename = $technical_support_data["middlename"];
+                            $lastname = $technical_support_data["lastname"];
+                            $party = $technical_support_data["party"];
+                            $img = $technical_support_data["img"];
 
-                            $technical_support = ucfirst($technicalsupport2firstname) . " " . ucfirst($technicalsupport2middlename[0]) . ". " . ucfirst($technicalsupport2lastname);
+                            $technical_support = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+
+                            $img_dir = substr($img, 3);
 
                     ?>
-                            <option value="<?php echo $technicalsupport2id; ?>" name="technicalsupport2"><?php echo $technical_support; ?></option>
+                            <option value="<?php echo $id; ?>"><?php echo $technical_support; ?></option>
 
                     <?php
                         }
@@ -540,8 +591,7 @@ include("../admindashboard/bins/connections.php");
 
 
         </div>
-
-        <button class="button-green mb-3 float-end" id="submitButton" data-target="submit.php">Submit</button>
+        <button class="button-green submit-link mb-3 float-end" id="submitButton" data-target="submit.php">Submit</button>
     </form>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -627,97 +677,27 @@ include("../admindashboard/bins/connections.php");
             });
         });
 
-        // Function to update the submit button's data-target attribute
-        function updateSubmitButtonUrl() {
-            var president = $('#president').val();
-            var vicePresident = $('#vicepresident').val();
-            var secretary = $('#secretary').val();
-            var assistantSecretary = $('#assistantsecretary').val();
-            var treasurer = $('#treasurer').val();
-            var assistantTreasurer = $('#assistanttreasurer').val();
-            var auditor = $('#auditor').val();
-            var assistantAuditor = $('#assistantauditor').val();
-            var pio1 = $('#pio1').val();
-            var pio2 = $('#pio2').val();
-            var businessManager = $('#businessmanager').val();
-            var layoutArtist1 = $('#layoutartist1').val();
-            var layoutArtist2 = $('#layoutartist2').val();
-            var technicalSupport1 = $('#technicalsupport1').val();
-            var technicalSupport2 = $('#technicalsupport2').val();
-
-            // Construct the new URL with selected values
-            var targetUrl = 'submit.php?president=' + encodeURIComponent(president) +
-                '&vicepresident=' + encodeURIComponent(vicePresident) +
-                '&secretary=' + encodeURIComponent(secretary) +
-                '&assistantsecretary=' + encodeURIComponent(assistantSecretary) +
-                '&treasurer=' + encodeURIComponent(treasurer) +
-                '&assistanttreasurer=' + encodeURIComponent(assistantTreasurer) +
-                '&auditor=' + encodeURIComponent(auditor) +
-                '&assistantauditor=' + encodeURIComponent(assistantAuditor) +
-                '&pio1=' + encodeURIComponent(pio1) +
-                '&pio2=' + encodeURIComponent(pio2) +
-                '&businessmanager=' + encodeURIComponent(businessManager) +
-                '&layoutartist1=' + encodeURIComponent(layoutArtist1) +
-                '&layoutartist2=' + encodeURIComponent(layoutArtist2) +
-                '&technicalsupport1=' + encodeURIComponent(technicalSupport1) +
-                '&technicalsupport2=' + encodeURIComponent(technicalSupport2);
-
-            // Update the data-target attribute of the submit button
-            $('#submitButton').data('target', targetUrl);
-        }
-
-        // Call updateSubmitButtonUrl when any select value changes
-        $('select').change(function() {
-            updateSubmitButtonUrl();
-        });
-
-        // Function to validate required fields
-        function validateForm() {
-            var isValid = true;
-
-            // Check if each required field is filled
-            $('select[required]').each(function() {
-                if ($(this).val() == '1') {
-                    isValid = false;
-                    $(this).addClass('is-invalid'); // Add a class for invalid fields
-                } else {
-                    $(this).removeClass('is-invalid'); // Remove the class if valid
-                }
-            });
-
-            return isValid;
-        }
-
-        // Remove is-invalid class when a valid option is selected
-        $('select[required]').change(function() {
-            if ($(this).val() != '1') {
-                $(this).removeClass('is-invalid');
-            }
-        });
-
+        // Event handler for register candidates button
         $('#submitButton').click(function(e) {
             e.preventDefault(); // Prevent default button behavior
+            var target = $(this).data('target'); // Get target from data attribute
+            //console.log("Loading content from: " + target); // Log target for debugging
 
-            if (validateForm()) { // Check if form is valid
-                var target = $(this).data('target'); // Get target from data attribute
-
-                // AJAX request to load content
-                $.ajax({
-                    url: target,
-                    method: 'GET',
-                    success: function(data) {
-                        // Load content into main area
-                        $('main[role="main"]').html(data);
-                        $('main[role="main"]').scrollTop(0); // Scroll to top
-                    },
-                    error: function() {
-                        // Show error message
-                        $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>');
-                    }
-                });
-            } else {
-                alert('Please fill out all required fields.'); // Show a general alert if form is invalid
-            }
+            // AJAX request to load content
+            $.ajax({
+                url: target,
+                method: 'GET',
+                success: function(data) {
+                    //console.log("Content loaded successfully."); // Log success
+                    $('main[role="main"]').html(data); // Load content into main area
+                    $('main[role="main"]').scrollTop(0); // Scroll to top
+                },
+                error: function() {
+                    //console.log("Error loading content."); // Log error
+                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
+                }
+            });
+            // return true;
         });
 
     });

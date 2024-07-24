@@ -1,5 +1,5 @@
 <?php
-include('bins/header.php');
+// include('bins/header.php');
 include("../admindashboard/bins/connections.php");
 ?>
 <div class="container">
@@ -590,5 +590,5 @@ include("../admindashboard/bins/connections.php");
 
 
 <?php
-include('bins/footer_plain.php');
+// include('bins/footer_plain.php');
 ?>

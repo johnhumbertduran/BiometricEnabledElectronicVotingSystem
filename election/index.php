@@ -147,8 +147,9 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
 
 
         <div class="col-md-6">
-            <div class=" borderblue overflow-auto" style="height: 55vh;">
-                <h3 class="text-center bgmainblue text-white sticky-top py-2" style="z-index: 1;">Vote Here</h3>
+            <main role="main" class="borderblue overflow-auto" style="padding: 0 !important; height: 55vh;">
+                <!-- <div class=" borderblue overflow-auto" style="height: 55vh;"> -->
+
 
                 <!-- check Department then ibutang iya ru Department -->
                 <div class="container">
@@ -187,10 +188,10 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
 
                     </div>
                 </div>
-            </div>
+                <!-- </div> -->
+            </main>
 
         </div>
-
 
 
         <div class="container d-flex justify-content-between pt-2">
@@ -204,45 +205,6 @@ $selectedPartyText = isset($partyOptions[$selectedParty]) ? $partyOptions[$selec
 
 </div>
 
-<script>
-    // JavaScript for making the dropdown clickable
-    document.addEventListener("DOMContentLoaded", function() {
-        var selected = document.querySelector(".select-selected");
-        var items = document.querySelectorAll(".select-item");
-
-        // Function to handle click on each item
-        function handleItemClick(item) {
-            item.addEventListener("click", function(e) {
-                e.preventDefault();
-                var selectedText = item.textContent;
-                var partyParam = item.getAttribute("href").split('=')[1];
-
-                // Update selected text
-                selected.textContent = selectedText;
-
-                // Redirect to the new URL with party parameter
-                window.location.href = window.location.pathname + "?" + partyParam;
-            });
-        }
-
-        // Toggle the dropdown visibility
-        selected.addEventListener("click", function() {
-            document.querySelector(".select-items").classList.toggle("active");
-        });
-
-        // Attach click event listener to each item
-        items.forEach(function(item) {
-            handleItemClick(item);
-        });
-
-        // Close the dropdown if the user clicks outside of it
-        document.addEventListener("click", function(e) {
-            if (!selected.contains(e.target)) {
-                document.querySelector(".select-items").classList.remove("active");
-            }
-        });
-    });
-</script>
 
 <?php
 include('bins/footer.php');
