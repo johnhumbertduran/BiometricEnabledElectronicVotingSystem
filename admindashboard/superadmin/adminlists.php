@@ -90,7 +90,7 @@ if ($count_admin > 0) {
                         $middlename = $row_admin_list["middlename"];
                         $lastname = $row_admin_list["lastname"];
                         $course = $row_admin_list["course"];
-                        $year = $row_admin_list["schoolyear"];
+                        $year = $row_admin_list["electionyear"];
 
                         $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname)
                     ?>

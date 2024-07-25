@@ -1,1 +1,29 @@
 Next button sa voting side same as navigation bar sa admin
+
+
+//superadmin-> create CSC election and/or department election?
+
+
+1.) superadmin-> create admin (includes election ID, course/department)
+2.) admin-> create department position
+3.) admin-> register candidates (includes election ID)
+4.) admin-> register voters (includes election ID)
+
+
+superadmin-> create admin (with election)
+election fields sa admin table:
+electionid
+electionyear
+electiontitle
+electionstatus
+
+Admin side:
+(Possible dynamic position)
+create candidates (includes election ID)
+create voters (includes election ID)
+
+Election Table:
+add course
+
+
+History Log

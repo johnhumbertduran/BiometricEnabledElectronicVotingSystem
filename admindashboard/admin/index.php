@@ -73,12 +73,12 @@ if (isset($_SESSION["username"])) {
                         <li class="nav-item">
                             <a class="nav-link nav-index text-white" href="#" data-target="canvassreport.php">Canvassing Report</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link nav-index text-white" href="#" data-target="historylog.php">History Log</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-index text-white" href="#" data-target="about.php">About</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
@@ -170,6 +170,8 @@ if (isset($_SESSION["username"])) {
                 }
             });
         });
+
+
     });
 </script>
 

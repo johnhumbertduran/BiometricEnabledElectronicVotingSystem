@@ -7,7 +7,7 @@ if (isset($_POST['id'])) {
     // Assuming you have a function deleteFromDatabase($id) that performs the deletion
     //$result = true; // Replace with actual deletion result
 
-    $query = "DELETE FROM electionyeartbl where id='$id'";
+    $query = "DELETE FROM admintbl where id='$id'";
 
     if (mysqli_query($connections, $query)) {
         echo 'success';

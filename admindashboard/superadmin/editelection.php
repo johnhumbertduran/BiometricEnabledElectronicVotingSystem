@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Perform database insert operation here
         // mysqli_query($connections, "UPDATE requestertbl SET reqName = '$db_Name',room = '$db_Room', dateTimeNeeded = '$db_DateNeed', /* dateSubmitted = '$db_DateSub', */ telNo = '$db_Tel' WHERE rollNo = '$roll' ");
 
-        $query = "UPDATE electionyeartbl SET electionyear = '$db_electionyear',title = '$db_title' WHERE id='$db_id' ";
+        $query = "UPDATE admintbl SET electionyear = '$db_electionyear', electiontitle = '$db_title' WHERE id='$db_id' ";
         if (mysqli_query($connections, $query)) {
             $response['status'] = 'success';
             $response['message'] = 'Student added successfully.';
@@ -66,15 +66,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-$electionlists = mysqli_query($connections, "SELECT * FROM electionyeartbl WHERE id='$get_id' ");
+$electionlists = mysqli_query($connections, "SELECT * FROM admintbl WHERE id='$get_id' ");
 
 
 $row_election_lists = mysqli_fetch_assoc($electionlists);
 $db_id = $row_election_lists["id"];
 $db_electionyear = $row_election_lists["electionyear"];
-$db_title = $row_election_lists["title"];
-$db_status = $row_election_lists["status"];
-$db_createdby = $row_election_lists["createdby"];
+$db_title = $row_election_lists["electiontitle"];
+$db_status = $row_election_lists["electionstatus"];
 ?>
 <div class="container d-flex align-items-center justify-content-center h-100">
     <form id="editElectionForm" method="POST">

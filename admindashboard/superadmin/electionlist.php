@@ -60,24 +60,25 @@ if (isset($_SESSION["username"])) {
         </ul>
     </div>
 </nav> -->
-<br>
-&nbsp;&nbsp; <button class="button-blue sticky-top" id="createElectionButton" data-target="newelection.php">+ Create New Election</button>
+<!-- <br> -->
+<!-- &nbsp;&nbsp; <button class="button-blue sticky-top" id="createElectionButton" data-target="newelection.php">+ Create New Election</button> -->
 
-<br>
 <br>
 <div class="row m-0">
 
 
     <?php
-    $electionlists = mysqli_query($connections, "SELECT * FROM electionyeartbl ORDER BY id DESC ");
+    $electionlists = mysqli_query($connections, "SELECT * FROM admintbl ORDER BY id DESC ");
 
 
     while ($row_election_lists = mysqli_fetch_assoc($electionlists)) {
         $id = $row_election_lists["id"];
         $electionyear = $row_election_lists["electionyear"];
-        $title = $row_election_lists["title"];
-        $status = $row_election_lists["status"];
-        $createdby = $row_election_lists["createdby"];
+        $title = $row_election_lists["electiontitle"];
+        $status = $row_election_lists["electionstatus"];
+        $firstname = $row_election_lists["firstname"];
+        $lastname = $row_election_lists["lastname"];
+        $createdby = $firstname . " " . $lastname;
     ?>
         <div class="col-md-4">
             <!-- <div class="card mb-4 <?php echo $status === '1' ? 'bg-success text-light' : ($status === '2' ? 'bg-warning' : ($status === '3' ? 'bg-danger text-light' : '')); ?> election_card editElectionButton" data-target="editelection.php?id=<?php echo $id; ?>"> -->

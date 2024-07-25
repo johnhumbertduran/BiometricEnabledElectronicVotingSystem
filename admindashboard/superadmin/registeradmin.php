@@ -25,7 +25,7 @@ if (isset($_SESSION["username"])) {
     header('Location: ../');
 }
 $response = ['status' => '', 'message' => ''];
-$firstname = $middlename = $lastname = $course = $schoolyear = $username = $password = $cpassword = "";
+$firstname = $middlename = $lastname = $course = $schoolyear = $electiontitle = $username = $password = $cpassword = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST["firstname"])) {
@@ -42,6 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if (!empty($_POST["schoolyear"])) {
         $schoolyear = $_POST["schoolyear"];
+    }
+    if (!empty($_POST["electiontitle"])) {
+        $electiontitle = $_POST["electiontitle"];
     }
     if (!empty($_POST["username"])) {
         $username = $_POST["username"];
@@ -104,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         exit;
                                     } else {
                                         // Perform database insert operation here
-                                        $query = "INSERT INTO admintbl (firstname, middlename, lastname, course, schoolyear, username, password, account_type) VALUES ('$firstname', '$middlename', '$lastname', '$course', '$schoolyear', '$username', '$cpassword', '2')";
+                                        $query = "INSERT INTO admintbl (firstname, middlename, lastname, course, username, password, account_type, electionyear, electiontitle, electionstatus) VALUES ('$firstname', '$middlename', '$lastname', '$course', '$username', '$cpassword', '2', '$schoolyear', '$electiontitle', '2')";
                                         if (mysqli_query($connections, $query)) {
                                             $response['status'] = 'Success';
                                             $response['message'] = 'Admin added successfully.';
@@ -170,8 +173,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-group">
                 <tr>
-                    <td class="label"><b><label for="schoolyear">School Year:<span style="color:red;"> *</span></label></b></td>
-                    <td colspan="3"><input class="form-control" type="text" value="<?php echo $schoolyear; ?>" name="schoolyear" id="schoolyear" placeholder="School Year" autocomplete="off" required></td>
+                    <td class="label"><b><label for="schoolyear">Election Year:<span style="color:red;"> *</span></label></b></td>
+                    <td colspan="3"><input class="form-control" type="text" value="<?php echo $schoolyear; ?>" name="schoolyear" id="schoolyear" placeholder="Election Year" autocomplete="off" required></td>
+                </tr>
+            </div>
+
+            <div class="form-group">
+                <tr>
+                    <td class="label"><b><label for="electiontitle">Election Title:<span style="color:red;"> *</span></label></b></td>
+                    <td colspan="3"><input class="form-control" type="text" value="<?php echo $electiontitle; ?>" name="electiontitle" id="electiontitle" placeholder="Election Title" autocomplete="off" required></td>
                 </tr>
             </div>
 

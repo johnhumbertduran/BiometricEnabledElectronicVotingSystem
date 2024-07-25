@@ -1,5 +1,29 @@
 <?php
+session_start();
 include("../admindashboard/bins/connections.php");
+
+if (isset($_SESSION["idnumber"])) {
+
+    $session_id_number = $_SESSION["idnumber"];
+    $check_voter_id_number = mysqli_query($connections, "SELECT * FROM voterstbl WHERE idnumber='$session_id_number'");
+    $get_voter_id_number = mysqli_fetch_assoc($check_voter_id_number);
+    $voter_firstName = $get_voter_id_number["firstname"];
+    $voter_middleName = $get_voter_id_number["middlename"];
+    $voter_lastName = $get_voter_id_number["lastname"];
+    $voter_year = $get_voter_id_number["year"];
+    $voter_course = $get_voter_id_number["course"];
+    $voter_biometric = $get_voter_id_number["biometric"];
+    $voter_status = $get_voter_id_number["status"];
+
+    $name = ucfirst($voter_firstName) . " " . ucfirst($voter_middleName[0]) . ". " . ucfirst($voter_lastName);
+
+    if ($voter_status == 0) {
+        // header('Location: election/');
+    } elseif ($voter_status == 1) {
+
+        header('Location: ../forbidden');
+    }
+}
 
 
 if (isset($_GET['president'])) {
@@ -360,7 +384,10 @@ if (isset($_POST['submit'])) {
         && $savepio1 && $savepio2 && $savebusinessmanager && $savelayoutartist1 && $savelayoutartist2
         && $savetechnicalsupport1 && $savetechnicalsupport2
     ) {
-        echo "<script>console.log('good');</script>";
+        // echo "<script>console.log('good');</script>";
+        $query = "INSERT INTO candidatestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$firstname', '$middlename', '$lastname', '$course', '$year', '$position', '$party', 'Active', '$targetFile')";
+        if (mysqli_query($connections, $query)) {
+        }
     }
 }
 ?>

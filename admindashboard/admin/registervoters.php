@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     exit;
                 } else {
                     // Perform database insert operation here
-                    $query = "INSERT INTO voterstbl (idnumber, firstname, middlename, lastname, year, course, status) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$year', '$admin_course', '0')";
+                    $query = "INSERT INTO voterstbl (idnumber, firstname, middlename, lastname, year, course, electionid, status) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$year', '$admin_course', '$admin_id', '0')";
                     if (mysqli_query($connections, $query)) {
                         $response['status'] = 'success';
                         $response['message'] = 'Student added successfully.';
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <div class="container col-md-6">
     <form id="registerVotersForm" method="POST" enctype="multipart/form-data">
-        NOTE!: Put Biometrics after
+        <!-- NOTE!: Put Biometrics after -->
         <hr>
         <div class="row">
             <div class="col-md-12 form-group pb-3">

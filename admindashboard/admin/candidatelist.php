@@ -12,6 +12,7 @@ if (isset($_SESSION["username"])) {
     $admin_id = $my_info["id"];
     $admin_name = $my_info["firstname"];
     $admin_course = $my_info["course"];
+    $election_year = $my_info["electionyear"];
 
     if ($account_type != 2) {
         header('Location: ../../forbidden.php');
@@ -144,7 +145,7 @@ if ($countCandidate > 0) {
                         $year = $row_candidate_lists["year"];
                         $position = $row_candidate_lists["position"];
                         $party = $row_candidate_lists["party"];
-                        $electionyear = $row_candidate_lists["electionyear"];
+                        // $electionyear = $row_candidate_lists["electionid"];
 
                         $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname)
                     ?>
@@ -154,7 +155,7 @@ if ($countCandidate > 0) {
                             <td><?php echo $year; ?></td>
                             <td><?php echo $position; ?></td>
                             <td><?php echo $party; ?></td>
-                            <td><?php echo $electionyear; ?></td>
+                            <td><?php echo $election_year; ?></td>
                         </tr>
                     <?php
                     }

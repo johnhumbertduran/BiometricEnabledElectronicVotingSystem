@@ -12,6 +12,7 @@ if (isset($_SESSION["username"])) {
     $admin_id = $my_info["id"];
     $admin_name = $my_info["firstname"];
     $admin_course = $my_info["course"];
+    $election_year = $my_info["electionyear"];
 
     if ($account_type != 2) {
         header('Location: ../../forbidden.php');
@@ -59,134 +60,134 @@ $check_vote = isset($_GET['status']) ? $_GET['status'] : 'all';
 &nbsp;&nbsp; <button class="button-blue" id="registerVoterButton" data-target="registervoters.php">+ Add Voters</button>
 <button class="button-blue">Download Excel File</button>
 
+<div id="voters-table">
+    <?php
+    $status = isset($_GET['status']) ? $_GET['status'] : 'all';
 
-<?php
-$status = isset($_GET['status']) ? $_GET['status'] : 'all';
-
-if ($status === 'all') {
-    $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course' ");
-} else {
-    $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course' AND status = '$status' ");
-}
-
-
-$countVoters = mysqli_num_rows($voterslist);
-
-if ($countVoters > 0) {
-
-?>
-    <center>
-        <div class="table-responsive-md col-md-11">
-            <table class="table table-hover table-striped table-bordered border-primary mt-3">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Course</th>
-                        <th>Year</th>
-                        <th>Position</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php
+    if ($status === 'all') {
+        $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course' ");
+    } else {
+        $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course' AND status = '$status' ");
+    }
 
 
+    $countVoters = mysqli_num_rows($voterslist);
 
-                    while ($row_voters_list = mysqli_fetch_assoc($voterslist)) {
+    if ($countVoters > 0) {
 
-                        $idnumber = $row_voters_list["idnumber"];
-                        $firstname = $row_voters_list["firstname"];
-                        $middlename = $row_voters_list["middlename"];
-                        $lastname = $row_voters_list["lastname"];
-                        $year = $row_voters_list["year"];
-                        $course = $row_voters_list["course"];
-                        $status = $row_voters_list["status"];
+        echo '<center>';
+        echo '<div class="table-responsive-md col-md-11">';
+        echo '<table class="table table-hover table-striped table-bordered border-primary mt-3">';
+        echo '<thead>';
+        echo '<tr>';
+        echo '<th>Name</th>';
+        echo '<th>Course</th>';
+        echo '<th>Year</th>';
+        echo '<th>Election Year</th>';
+        echo '<th>Status</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
 
-                        $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname)
-                    ?>
-                        <tr>
-                            <td><?php echo $idnumber; ?></td>
-                            <td><?php echo $name; ?></td>
-                            <td><?php echo $year; ?></td>
-                            <td><?php echo $course; ?></td>
-                            <td><?php echo ($status == "0") ? "Not Voted" : "Voted"; ?></td>
-                        </tr>
-                    <?php
-                    }
-                } else {
-                    ?>
-                    <center>
-                        <h4>No Records Found!</h4>
-                    </center>
-                <?php
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>
-    </center>
+        while ($row_voters_list = mysqli_fetch_assoc($voterslist)) {
 
+            $idnumber = $row_voters_list["idnumber"];
+            $firstname = $row_voters_list["firstname"];
+            $middlename = $row_voters_list["middlename"];
+            $lastname = $row_voters_list["lastname"];
+            $year = $row_voters_list["year"];
+            $course = $row_voters_list["course"];
+            $status = $row_voters_list["status"];
 
-    <script>
-        $(document).ready(function() {
+            $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+            echo '<tr>';
+            echo '<td>' . $name . '</td>';
+            echo '<td>' . $course . '</td>';
+            echo '<td>' . $year . '</td>';
+            echo '<td>' . $election_year . '</td>';
+            echo '<td>' . ($status == "0" ? "Not Voted" : "Voted") . '</td>';
+            echo '</tr>';
+        }
+        echo '</tbody>';
+        echo '</table>';
+        echo '</div>';
+    } else {
+        echo '<center><h4>No Records Found!</h4></center>';
+    }
+    echo '</center>';
 
-            // Function to update main class based on the target URL
-            function updateMainClass(target) {
+    ?>
 
-                var mainElement = $('main[role="main"]');
-                if (target === 'registervoters.php') {
-                    mainElement.addClass('d-flex align-items-center justify-content-center');
-                } else {
-                    mainElement.removeClass('d-flex align-items-center justify-content-center');
-                }
+</div>
+<script>
+    $(document).ready(function() {
+
+        // var currentStatus = '<?php echo $check_vote; ?>';
+
+        // function refreshVotersList() {
+        //     var url = 'voterslist.php?status=' + currentStatus + ' #voters-table';
+        //     $('#voters-table').load(url);
+        //     console.log("URL: " + url);
+        // }
+
+        // setInterval(refreshVotersList, 2000);
+
+        // Function to update main class based on the target URL
+        function updateMainClass(target) {
+
+            var mainElement = $('main[role="main"]');
+            if (target === 'registervoters.php') {
+                mainElement.addClass('d-flex align-items-center justify-content-center');
+            } else {
+                mainElement.removeClass('d-flex align-items-center justify-content-center');
             }
+        }
 
-            // Event handler for register candidates button
-            $('#registerVoterButton').click(function(e) {
-                e.preventDefault(); // Prevent default button behavior
-                var target = $(this).data('target'); // Get target from data attribute
-                console.log("Loading content from(registerVoterButton.phpCode): " + target); // Log target for debugging
+        // Event handler for register candidates button
+        $('#registerVoterButton').click(function(e) {
+            e.preventDefault(); // Prevent default button behavior
+            var target = $(this).data('target'); // Get target from data attribute
+            console.log("Loading content from(registerVoterButton.phpCode): " + target); // Log target for debugging
 
-                // AJAX request to load content
-                $.ajax({
-                    url: target,
-                    method: 'GET',
-                    success: function(data) {
-                        console.log("Content loaded successfully."); // Log success
-                        $('main[role="main"]').html(data); // Load content into main area
-                        updateMainClass(target); // Update main class
-                    },
-                    error: function() {
-                        console.log("Error loading content."); // Log error
-                        $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
-                    }
-                });
+            // AJAX request to load content
+            $.ajax({
+                url: target,
+                method: 'GET',
+                success: function(data) {
+                    console.log("Content loaded successfully."); // Log success
+                    $('main[role="main"]').html(data); // Load content into main area
+                    updateMainClass(target); // Update main class
+                },
+                error: function() {
+                    console.log("Error loading content."); // Log error
+                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
+                }
             });
-
-            // Event handler for navigation buttons
-            $('.nav-button').click(function(e) {
-                e.preventDefault(); // Prevent default button behavior
-                var target = $(this).data('target'); // Get target from data attribute
-                var status = $(this).data('status'); // Get status from data attribute
-                var url = target + '?status=' + status; // Construct URL with query parameter
-                //console.log("Loading content from: " + url); // Log URL for debugging
-
-                console.log(url);
-                // AJAX request to load content
-                $.ajax({
-                    url: url,
-                    method: 'GET',
-                    success: function(data) {
-                        //console.log("Content loaded successfully."); // Log success
-                        $('main[role="main"]').html(data); // Load content into main area
-                    },
-                    error: function() {
-                        //console.log("Error loading content."); // Log error
-                        $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
-                    }
-                });
-            });
-
         });
-    </script>
+
+        // Event handler for navigation buttons
+        $('.nav-button').click(function(e) {
+            e.preventDefault(); // Prevent default button behavior
+            var target = $(this).data('target'); // Get target from data attribute
+            var status = $(this).data('status'); // Get status from data attribute
+            var url = target + '?status=' + status; // Construct URL with query parameter
+            //console.log("Loading content from: " + url); // Log URL for debugging
+
+            console.log(url);
+            // AJAX request to load content
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function(data) {
+                    //console.log("Content loaded successfully."); // Log success
+                    $('main[role="main"]').html(data); // Load content into main area
+                },
+                error: function() {
+                    //console.log("Error loading content."); // Log error
+                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
+                }
+            });
+        });
+
+    });
+</script>

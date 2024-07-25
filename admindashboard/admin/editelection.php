@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query = "UPDATE electionyeartbl SET electionyear = '$db_electionyear',title = '$db_title' WHERE id='$db_id' ";
         if (mysqli_query($connections, $query)) {
             $response['status'] = 'success';
-            $response['message'] = 'Student added successfully.';
+            $response['message'] = 'Election updated successfully.';
         } else {
             $response['status'] = 'error';
             $response['message'] = 'Database error. Please try again.';
@@ -92,7 +92,7 @@ $db_createdby = $row_election_lists["createdby"];
             </div>
 
             <div class="form-group pt-4">
-                <input class="button-green float-end" type="submit" name="submit" value="Save">
+                <input class="button-green float-end" type="submit" name="submit" value="Update">
             </div>
 
         </div>

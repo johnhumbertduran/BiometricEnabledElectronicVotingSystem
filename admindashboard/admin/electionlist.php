@@ -55,16 +55,16 @@ if (isset($_SESSION["username"])) {
         </ul>
     </div>
 </nav> -->
-<br>
-&nbsp;&nbsp; <button class="button-blue sticky-top" id="createElectionButton" data-target="newelection.php">+ Create New Election</button>
+<!-- <br> -->
+<!-- &nbsp;&nbsp; <button class="button-blue sticky-top" id="createElectionButton" data-target="newelection.php">+ Create New Election</button> -->
 
-<br>
+<!-- <br> -->
 <br>
 <div class="row m-0">
 
 
     <?php
-    $electionlists = mysqli_query($connections, "SELECT * FROM electionyeartbl WHERE creatorid='$admin_id' ORDER BY id DESC ");
+    $electionlists = mysqli_query($connections, "SELECT * FROM admintbl WHERE id='$admin_id' ORDER BY id DESC ");
 
     $countCreator = mysqli_num_rows($electionlists);
 
@@ -76,9 +76,11 @@ if (isset($_SESSION["username"])) {
 
             $id = $row_election_lists["id"];
             $electionyear = $row_election_lists["electionyear"];
-            $title = $row_election_lists["title"];
-            $status = $row_election_lists["status"];
-            $createdby = $row_election_lists["createdby"];
+            $title = $row_election_lists["electiontitle"];
+            $status = $row_election_lists["electionstatus"];
+            $firstname = $row_election_lists["firstname"];
+            $lastname = $row_election_lists["lastname"];
+            $createdby = $firstname . " " . $lastname;
     ?>
             <div class="col-md-4">
                 <!-- <div class="card mb-4 <?php echo $status === '1' ? 'bg-success text-light' : ($status === '2' ? 'bg-warning' : ($status === '3' ? 'bg-danger text-light' : '')); ?> election_card editElectionButton" data-target="editelection.php?id=<?php echo $id; ?>"> -->
@@ -89,8 +91,8 @@ if (isset($_SESSION["username"])) {
                         <p class="card-text"> Status: <?php echo $status === '1' ? 'Active' : ($status === '2' ? 'Pending' : ($status === '3' ? 'Close' : '')); ?> <br> Created By: <?php echo $createdby; ?></p>
 
 
-                        <a href="#" class="button-red" id="title<?php echo $id; ?>" onclick="deleteThis<?php echo $id; ?>()">Delete</a>
-                        <a href="#" class="button-green editElectionButton" data-target="editelection.php?id=<?php echo $id; ?>">Update</a>
+                        <!-- <a href="#" class="button-red" id="title<?php echo $id; ?>" onclick="deleteThis<?php echo $id; ?>()">Delete</a> -->
+                        <!-- <a href="#" class="button-green editElectionButton" data-target="editelection.php?id=<?php echo $id; ?>">Update</a> -->
 
                         <script>
                             function deleteThis<?php echo $id; ?>() {
