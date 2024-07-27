@@ -5,7 +5,7 @@ include("../admindashboard/bins/connections.php");
 <h3 class="text-center bgmainblue text-white sticky-top py-2" style="z-index: 1;">Vote Here</h3>
 <div class="container px-5">
 
-    <form id="voteForm" method="POST">
+    <form method="POST">
 
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -699,41 +699,22 @@ include("../admindashboard/bins/connections.php");
             e.preventDefault(); // Prevent default button behavior
 
             if (validateForm()) { // Check if form is valid
-                var president = $('#president').val(); // Get selected value of president
-                var vicepresident = $('#vicepresident').val(); // Get selected value of vice president
-                var secretary = $('#secretary').val(); // Get selected value of secretary
-                var assistantsecretary = $('#assistantsecretary').val(); // Get selected value of assistant secretary
-                var treasurer = $('#treasurer').val(); // Get selected value of treasurer
-                var assistanttreasurer = $('#assistanttreasurer').val(); // Get selected value of assistant treasurer
-                var auditor = $('#auditor').val(); // Get selected value of auditor
-                var assistantauditor = $('#assistantauditor').val(); // Get selected value of assistant auditor
-                var pio1 = $('#pio1').val(); // Get selected value of pio1
-                var pio2 = $('#pio2').val(); // Get selected value of pio2
-                var businessmanager = $('#businessmanager').val(); // Get selected value of businessmanager
-                var layoutartist1 = $('#layoutartist1').val(); // Get selected value of layout artist1
-                var layoutartist2 = $('#layoutartist2').val(); // Get selected value of layout artist2
-                var technicalsupport1 = $('#technicalsupport1').val(); // Get selected value of technical support1
-                var technicalsupport2 = $('#technicalsupport2').val(); // Get selected value of technical support2
+                var target = $(this).data('target'); // Get target from data attribute
 
-                // Construct the URL with query parameters
-                var targetUrl = 'submit.php?president=' + encodeURIComponent(president) +
-                    '&&vicepresident=' + encodeURIComponent(vicepresident) +
-                    '&&secretary=' + encodeURIComponent(secretary) +
-                    '&&assistantsecretary=' + encodeURIComponent(assistantsecretary) +
-                    '&&treasurer=' + encodeURIComponent(treasurer) +
-                    '&&assistanttreasurer=' + encodeURIComponent(assistanttreasurer) +
-                    '&&auditor=' + encodeURIComponent(auditor) +
-                    '&&assistantauditor=' + encodeURIComponent(assistantauditor) +
-                    '&&pio1=' + encodeURIComponent(pio1) +
-                    '&&pio2=' + encodeURIComponent(pio2) +
-                    '&&businessmanager=' + encodeURIComponent(businessmanager) +
-                    '&&layoutartist1=' + encodeURIComponent(layoutartist1) +
-                    '&&layoutartist2=' + encodeURIComponent(layoutartist2) +
-                    '&&technicalsupport1=' + encodeURIComponent(technicalsupport1) +
-                    '&&technicalsupport2=' + encodeURIComponent(technicalsupport2);
-
-                // Redirect to the constructed URL
-                window.location.href = targetUrl;
+                // AJAX request to load content
+                $.ajax({
+                    url: target,
+                    method: 'GET',
+                    success: function(data) {
+                        // Load content into main area
+                        $('main[role="main"]').html(data);
+                        $('main[role="main"]').scrollTop(0); // Scroll to top
+                    },
+                    error: function() {
+                        // Show error message
+                        $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>');
+                    }
+                });
             } else {
                 alert('Please fill out all required fields.'); // Show a general alert if form is invalid
             }

@@ -70,9 +70,9 @@ if (isset($_SESSION["username"])) {
                         <li class="nav-item">
                             <a class="nav-link nav-index text-white" href="#" data-target="voterslist.php">Voter's List</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link nav-index text-white" href="#" data-target="canvassreport.php">Canvassing Report</a>
-                        </li>
+                        </li> -->
                         <!-- <li class="nav-item">
                             <a class="nav-link nav-index text-white" href="#" data-target="historylog.php">History Log</a>
                         </li>

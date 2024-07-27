@@ -94,7 +94,7 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
     </div>
 </nav>
 <br>
-&nbsp;&nbsp; <button class="button-blue" id="registerCandidatesButton" data-target="registercandidates.php">+ Add Candidates</button>
+<!-- &nbsp;&nbsp; <button class="button-blue" id="registerCandidatesButton" data-target="registercandidates.php">+ Add Candidates</button> -->
 
 
 <?php
@@ -104,9 +104,9 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
 $position = isset($_GET['position']) ? $_GET['position'] : 'all';
 
 if ($position === 'all') {
-    $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND status = 'Active' ");
+    $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND status = 'Active' AND electionid = '$admin_id' ");
 } else {
-    $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND position = '$position' AND status = 'Active' ");
+    $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND position = '$position' AND status = 'Active' AND electionid = '$admin_id' ");
 }
 
 
@@ -116,6 +116,7 @@ if ($countCandidate > 0) {
 
 ?>
     <center>
+        <h4>Results</h4>
         <div class="table-responsive-md col-md-11">
             <table class="table table-hover table-striped table-bordered border-primary mt-3">
                 <thead>
@@ -125,7 +126,7 @@ if ($countCandidate > 0) {
                         <th>Year</th>
                         <th>Position</th>
                         <th>Party</th>
-                        <th>Election Year</th>
+                        <th>Count</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -134,28 +135,57 @@ if ($countCandidate > 0) {
 
 
 
+
+
                     while ($row_candidate_lists = mysqli_fetch_assoc($candidatelists)) {
 
 
-                        $id = $row_candidate_lists["id"];
-                        $firstname = $row_candidate_lists["firstname"];
-                        $middlename = $row_candidate_lists["middlename"];
-                        $lastname = $row_candidate_lists["lastname"];
-                        $course = $row_candidate_lists["course"];
-                        $year = $row_candidate_lists["year"];
-                        $position = $row_candidate_lists["position"];
-                        $party = $row_candidate_lists["party"];
+                        $candidateid = $row_candidate_lists["id"];
+                        $candidateidnumber = $row_candidate_lists["idnumber"];
+                        $candidatefirstname = $row_candidate_lists["firstname"];
+                        $candidatemiddlename = $row_candidate_lists["middlename"];
+                        $candidatelastname = $row_candidate_lists["lastname"];
+                        $candidatecourse = $row_candidate_lists["course"];
+                        $candidateyear = $row_candidate_lists["year"];
+                        $candidateposition = $row_candidate_lists["position"];
+                        $candidateparty = $row_candidate_lists["party"];
                         // $electionyear = $row_candidate_lists["electionid"];
 
-                        $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
+                        $candidatename = ucfirst($candidatefirstname) . " " . ucfirst($candidatemiddlename[0]) . ". " . ucfirst($candidatelastname);
+
+
+
                     ?>
                         <tr>
-                            <td><?php echo $name; ?></td>
-                            <td><?php echo $course; ?></td>
-                            <td><?php echo $year; ?></td>
-                            <td><?php echo $position; ?></td>
-                            <td><?php echo $party; ?></td>
-                            <td><?php echo $election_year; ?></td>
+                            <td><?php echo $candidatename; ?></td>
+                            <td><?php echo $candidatecourse; ?></td>
+                            <td><?php echo $candidateyear; ?></td>
+                            <td><?php echo $candidateposition; ?></td>
+                            <td><?php echo $candidateparty; ?></td>
+                            <td><?php
+                                $votelist = mysqli_query($connections, "SELECT * FROM votestbl WHERE electionid = '$admin_id' AND candidatevoted = '$candidateidnumber' ");
+                                if ($row_vote_list = mysqli_fetch_assoc($votelist)) {
+
+                                    $id = $row_vote_list["id"];
+                                    $voteridnumber = $row_vote_list["voteridnumber"];
+                                    $electionid = $row_vote_list["electionid"];
+                                    $position = $row_vote_list["position"];
+                                    $candidatevoted = $row_vote_list["candidatevoted"];
+
+                                    if ($candidateidnumber == $candidatevoted) {;
+
+                                        $count_votes = mysqli_query($connections, "SELECT * FROM votestbl WHERE candidatevoted =  '$candidatevoted'");
+                                        $row_count_vote = mysqli_num_rows($count_votes);
+                                        // $mycount = $row_count_vote['candidatevoted'];
+                                        echo $row_count_vote;
+                                    }
+                                } else {
+                                    echo "0";
+                                }
+
+
+                                ?></td>
+
                         </tr>
                     <?php
                     }

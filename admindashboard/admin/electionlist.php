@@ -84,7 +84,7 @@ if (isset($_SESSION["username"])) {
     ?>
             <div class="col-md-4">
                 <!-- <div class="card mb-4 <?php echo $status === '1' ? 'bg-success text-light' : ($status === '2' ? 'bg-warning' : ($status === '3' ? 'bg-danger text-light' : '')); ?> election_card editElectionButton" data-target="editelection.php?id=<?php echo $id; ?>"> -->
-                <div class="card mb-4 <?php echo $status === '1' ? 'bg-success text-light' : ($status === '2' ? 'bg-warning' : ($status === '3' ? 'bg-danger text-light' : '')); ?> election_card">
+                <div class="card mb-4 <?php echo $status === '1' ? 'bg-success text-light' : ($status === '2' ? 'bg-warning' : ($status === '3' ? 'bg-danger text-light' : '')); ?> election_card" id="electionResultsButton" data-target="electionresults.php">
                     <div class="card-body">
                         <h6 class="card-title"> Election Year: <?php echo $electionyear; ?></h6>
                         <h6 class="card-subtitle mb-2"> Title: <?php echo $title; ?></h6>
@@ -197,6 +197,27 @@ if (isset($_SESSION["username"])) {
             });
         });
 
+
+        // Event handler for register candidates button
+        $('#electionResultsButton').click(function(e) {
+            e.preventDefault(); // Prevent default button behavior
+            var target = $(this).data('target'); // Get target from data attribute
+            //console.log("Loading content from: " + target); // Log target for debugging
+
+            // AJAX request to load content
+            $.ajax({
+                url: target,
+                method: 'GET',
+                success: function(data) {
+                    //console.log("Content loaded successfully."); // Log success
+                    $('main[role="main"]').html(data); // Load content into main area
+                },
+                error: function() {
+                    //console.log("Error loading content."); // Log error
+                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
+                }
+            });
+        });
 
 
 
