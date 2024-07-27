@@ -52,43 +52,43 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
     <div class="container-fluid">
         <ul class="navbar-nav" style="font-size: 11.6px;">
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'all') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="all">All</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'all') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="all">All</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'President') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="President">President</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'President') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="President">President</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Vice President') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Vice President">Vice President</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Vice President') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Vice President">Vice President</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Secretary') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Secretary">Secretary</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Secretary') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Secretary">Secretary</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Secretary') ? 'active' : ''; ?>" data-target=" candidatelist.php" data-position="Assistant Secretary">Assistant Secretary</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Secretary') ? 'active' : ''; ?>" data-target=" electionresults.php" data-position="Assistant Secretary">Assistant Secretary</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Treasurer') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Treasurer">Treasurer</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Treasurer') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Treasurer">Treasurer</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Treasurer') ? 'active' : ''; ?>" data-target=" candidatelist.php" data-position="Assistant Treasurer">Assistant Treasurer</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Treasurer') ? 'active' : ''; ?>" data-target=" electionresults.php" data-position="Assistant Treasurer">Assistant Treasurer</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Auditor') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Auditor">Auditor</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Auditor') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Auditor">Auditor</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Auditor') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Assistant Auditor">Assistant Auditor</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Auditor') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Assistant Auditor">Assistant Auditor</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'P.I.O.') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="P.I.O.">P.I.O.</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'P.I.O.') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="P.I.O.">P.I.O.</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Business Manager') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Business Manager">Business Manager</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Business Manager') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Business Manager">Business Manager</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Layout Artist') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Layout Artist">Layout Artist</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Layout Artist') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Layout Artist">Layout Artist</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Technical Support') ? 'active' : ''; ?>" data-target="candidatelist.php" data-position="Technical Support">Technical Support</button>
+                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Technical Support') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Technical Support">Technical Support</button>
             </li>
         </ul>
     </div>
