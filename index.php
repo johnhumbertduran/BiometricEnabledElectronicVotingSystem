@@ -61,11 +61,12 @@ if (isset($_POST['login'])) {
 
 <style>
     .full-height {
-        height: 70vh;
+        height: 80vh;
     }
 
     .borderblue {
         border: 1px solid blue;
+        border-radius: 10px;
         /* Example border style */
     }
 
@@ -82,8 +83,8 @@ if (isset($_POST['login'])) {
 
 
 <div class="container d-flex align-items-center justify-content-center full-height">
-    <div class="row d-flex align-items-stretch equal-height justify-content-center w-100">
-        <div class="col-md-5 borderblue flex-column">
+    <!-- <div class="row d-flex align-items-stretch equal-height justify-content-center w-100"> -->
+    <!-- <div class="col-md-5 borderblue flex-column">
             <div class="row flex-grow-1">
                 <div class="col-md-6 px-3 py-3">
                     <h2>Mission</h2>
@@ -94,32 +95,32 @@ if (isset($_POST['login'])) {
                     <p>"A RESEARCH UNIVERSITY ADVANCING QUALITY EDUCATION TOWARDS SOCIETAL TRANSFORMATION AND GLOBAL RECOGNITION"</p>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <!-- Spacer -->
-        <div class="col-md-1"></div>
+    <!-- Spacer -->
+    <!-- <div class="col-md-1"></div> -->
 
-        <div class="col-md-5 borderblue flex-column">
-            <div>
-                <h2 class="text-center">Login</h2>
-                <br>
-                <form method="POST">
-                    <div class="container col-10">
-                        <div class="row">
-                            <div class="input-group mb-3 col-2">
-                                <span class="input-group-text">ID Number</span>
-                                <input type="text" name="idnumber" class="form-control" value="<?php echo $session_id_number; ?>" placeholder="Please input your ID Number" required autocomplete="off">
-                            </div>
+    <div class="col-md-5 borderblue flex-column h-75">
+        <div>
+            <h2 class="text-center">Login</h2>
+            <br>
+            <form method="POST">
+                <div class="container col-10">
+                    <div class="row">
+                        <div class="input-group mb-3 col-2">
+                            <span class="input-group-text">ID Number</span>
+                            <input type="text" name="idnumber" class="form-control" value="<?php echo $session_id_number; ?>" placeholder="Please input your ID Number" required autocomplete="off">
                         </div>
-                        <input type="submit" name="login" value="Login" class="button-blue">
-                        <!-- <div class="container textred">
+                    </div>
+                    <input type="submit" name="login" value="Login" class="button-blue">
+                    <!-- <div class="container textred">
                             <p><span class="textredbold">Note: </span><br> - Please check ID Number <br> - You can only vote once</p>
                         </div> -->
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+    <!-- </div> -->
 </div>
 
 

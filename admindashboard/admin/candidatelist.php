@@ -119,13 +119,14 @@ if ($countCandidate > 0) {
         <div class="table-responsive-md col-md-11">
             <table class="table table-hover table-striped table-bordered border-primary mt-3">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>Name</th>
                         <th>Course</th>
                         <th>Year</th>
                         <th>Position</th>
                         <th>Party</th>
                         <th>Election Year</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -149,13 +150,55 @@ if ($countCandidate > 0) {
 
                         $name = ucfirst($firstname) . " " . ucfirst($middlename[0]) . ". " . ucfirst($lastname);
                     ?>
-                        <tr>
+                        <tr class="text-center">
                             <td><?php echo $name; ?></td>
                             <td><?php echo $course; ?></td>
                             <td><?php echo $year; ?></td>
                             <td><?php echo $position; ?></td>
                             <td><?php echo $party; ?></td>
                             <td><?php echo $election_year; ?></td>
+                            <td>
+                                <a href="#" class="button-red" id="title<?php echo $id; ?>" onclick="deleteThisCandidate<?php echo $id; ?>()">Delete</a>&nbsp;
+                                <a href="#" class="button-green updateCandidateButton" data-target="editcandidate.php?id=<?php echo $id; ?>">Update</a>
+
+                                <script>
+                                    function deleteThisCandidate<?php echo $id; ?>() {
+
+                                        var userDecision = confirm('Are you sure you want to remove <?php echo $name; ?> from the candidate\'s list ? ');
+                                        if (userDecision) {
+                                            // alert('You chose yes.');
+                                            // Add your code for the delete action here
+
+
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'deletecandidate.php',
+                                                data: {
+                                                    id: <?php echo $id; ?>
+                                                },
+                                                success: function(response) {
+                                                    if (response === 'success') {
+                                                        alert('Election deleted successfully.');
+                                                        $('main[role="main"]').load('candidatelist.php');
+                                                    } else {
+                                                        alert('Failed to delete item.');
+                                                    }
+                                                },
+                                                error: function() {
+                                                    alert('Error occurred while deleting the item.');
+                                                }
+                                            });
+
+
+                                        } else {
+                                            // alert('You chose no.');
+                                            // Add your code for the cancel action here
+                                        }
+
+                                    }
+                                </script>
+
+                            </td>
                         </tr>
                     <?php
                     }
@@ -224,6 +267,25 @@ if ($countCandidate > 0) {
             });
 
 
+            $('.updateCandidateButton').click(function(e) {
+                e.preventDefault(); // Prevent default button behavior
+                var target = $(this).data('target'); // Get target from data attribute
+                console.log("Loading content from: " + target); // Log target for debugging
+
+                // AJAX request to load content
+                $.ajax({
+                    url: target,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log("Content loaded successfully."); // Log success
+                        $('main[role="main"]').html(data); // Load content into main area
+                    },
+                    error: function() {
+                        console.log("Error loading content."); // Log error
+                        $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
+                    }
+                });
+            });
 
 
         });

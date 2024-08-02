@@ -47,6 +47,17 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
         /* Adjust active background color */
         /* font-weight: bold; */
     }
+
+    #candidateimg {
+        /* width: 100%; */
+        /* Make the image cover the entire width of the container */
+        /* height: 100%; */
+        /* Make the image cover the entire height of the container */
+        object-fit: cover;
+        border-radius: 50%;
+        /* Maintain aspect ratio while covering the container */
+        /* display: block; */
+    }
 </style>
 <nav class="navbar navbar-expand-sm navbar-dark bgmainblue">
     <div class="container-fluid">
@@ -149,6 +160,7 @@ if ($countCandidate > 0) {
                         $candidateyear = $row_candidate_lists["year"];
                         $candidateposition = $row_candidate_lists["position"];
                         $candidateparty = $row_candidate_lists["party"];
+                        $candidateimg = $row_candidate_lists["img"];
                         // $electionyear = $row_candidate_lists["electionid"];
 
                         $candidatename = ucfirst($candidatefirstname) . " " . ucfirst($candidatemiddlename[0]) . ". " . ucfirst($candidatelastname);
@@ -157,7 +169,7 @@ if ($countCandidate > 0) {
 
                     ?>
                         <tr>
-                            <td><?php echo $candidatename; ?></td>
+                            <td> <img src="<?php echo $candidateimg; ?>" alt="<?php echo $candidateimg; ?>" width="50px" height="50px" id="candidateimg"> &nbsp;<?php echo $candidatename; ?></td>
                             <td><?php echo $candidatecourse; ?></td>
                             <td><?php echo $candidateyear; ?></td>
                             <td><?php echo $candidateposition; ?></td>

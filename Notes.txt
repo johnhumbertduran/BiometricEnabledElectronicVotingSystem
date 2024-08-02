@@ -1,3 +1,15 @@
+#########################################################################
+#########################################################################
+!!! IN EVERY (Uncaught SyntaxError: Unexpected token '<', "<br />      ##
+!!! <b>"... is not valid JSON)					       ##
+!!!								       ##
+!!! YOU NEED TO CALL THE ROWS OF THE QUERY IN THE		       ##
+!!! (mysqli_fetch_assoc())					       ##
+#########################################################################
+#########################################################################
+
+
+
 Next button sa voting side same as navigation bar sa admin
 
 
@@ -26,4 +38,12 @@ Election Table:
 add course
 
 
-History Log
+//History Log
+
+
+###########################################################################
+08-01-24
+
+* create viewing after the voters have voted
+* add select drop down "section" (Section1, Section 2) to voters list
+

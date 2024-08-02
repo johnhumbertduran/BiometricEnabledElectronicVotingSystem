@@ -10,6 +10,7 @@ if (isset($_SESSION["username"])) {
     $account_type = $my_info["account_type"];
     $admin_name = $my_info["firstname"];
     $admin_course = $my_info["course"];
+    $electiontitle = $my_info["electiontitle"];
 }
 ?>
 <div class="container">
@@ -20,7 +21,7 @@ if (isset($_SESSION["username"])) {
         </div>
 
         <div class="flex-fill d-flex align-items-center">
-            <h2 class="text-center"><?php echo $admin_course; ?> Election</h2>
+            <h2 class="text-center"><?php echo $electiontitle; ?></h2>
         </div>
 
     </div>

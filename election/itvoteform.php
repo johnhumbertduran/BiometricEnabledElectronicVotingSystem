@@ -10,7 +10,7 @@ include("../admindashboard/bins/connections.php");
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="president" class="form-label">President:</label>
-                <select class="form-select form-select-sm" id="president" required>
+                <select class="form-select form-select-sm" id="president">
                     <option value="1">Select President</option>
                     <?php
                     $president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='President' AND course='BSIT' AND status='Active' ");
@@ -44,7 +44,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="vicepresident" class="form-label">Vice President:</label>
-                <select class="form-select form-select-sm" id="vicepresident" required>
+                <select class="form-select form-select-sm" id="vicepresident">
                     <option value="1">Select Vice President</option>
                     <?php
                     $vice_president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Vice President' AND course='BSIT' AND status='Active' ");
@@ -80,7 +80,7 @@ include("../admindashboard/bins/connections.php");
             <br>
             <div class="col-md-6 mb-3">
                 <label for="secretary" class="form-label">Secretary:</label>
-                <select class="form-select form-select-sm" id="secretary" required>
+                <select class="form-select form-select-sm" id="secretary">
                     <option value="1">Select Secretary</option>
                     <?php
                     $secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Secretary' AND course='BSIT' AND status='Active' ");
@@ -114,7 +114,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="assistantsecretary" class="form-label">Assistant Secretary:</label>
-                <select class="form-select form-select-sm" id="assistantsecretary" required>
+                <select class="form-select form-select-sm" id="assistantsecretary">
                     <option value="1">Select Assistant Secretary</option>
                     <?php
                     $assistant_secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Secretary' AND course='BSIT' AND status='Active' ");
@@ -154,7 +154,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="treasurer" class="form-label">Treasurer:</label>
-                <select class="form-select form-select-sm" id="treasurer" required>
+                <select class="form-select form-select-sm" id="treasurer">
                     <option value="1">Select Treasurer</option>
                     <?php
                     $treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Treasurer' AND course='BSIT' AND status='Active' ");
@@ -187,7 +187,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="assistanttreasurer" class="form-label">Assistant Treasurer:</label>
-                <select class="form-select form-select-sm" id="assistanttreasurer" required>
+                <select class="form-select form-select-sm" id="assistanttreasurer">
                     <option value="1">Select Assistant Treasurer</option>
                     <?php
                     $assistant_treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Treasurer' AND course='BSIT' AND status='Active' ");
@@ -224,7 +224,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="auditor" class="form-label">Auditor:</label>
-                <select class="form-select form-select-sm" id="auditor" required>
+                <select class="form-select form-select-sm" id="auditor">
                     <option value="1">Select Auditor</option>
                     <?php
                     $auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Auditor' AND course='BSIT' AND status='Active' ");
@@ -257,7 +257,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="assistantauditor" class="form-label">Assistant Auditor:</label>
-                <select class="form-select form-select-sm" id="assistantauditor" required>
+                <select class="form-select form-select-sm" id="assistantauditor">
                     <option value="1">Select Assistant Auditor</option>
                     <?php
                     $assistant_auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Auditor' AND course='BSIT' AND status='Active' ");
@@ -294,7 +294,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="pio1" class="form-label">P.I.O.:</label>
-                <select class="form-select form-select-sm" id="pio1" required>
+                <select class="form-select form-select-sm" id="pio1">
                     <option value="1">Select P.I.O.</option>
                     <?php
                     $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND course='BSIT' AND status='Active' ");
@@ -326,7 +326,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="pio2" class="form-label">P.I.O.:</label>
-                <select class="form-select form-select-sm" id="pio2" required disabled>
+                <select class="form-select form-select-sm" id="pio2" disabled>
                     <option value="1">Select P.I.O.</option>
                     <?php
                     $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND course='BSIT' AND status='Active' ");
@@ -362,7 +362,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="businessmanager" class="form-label">Business Manager:</label>
-                <select class="form-select form-select-sm" id="businessmanager" required>
+                <select class="form-select form-select-sm" id="businessmanager">
                     <option value="1">Select Business Manager</option>
                     <?php
                     $business_manager_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Business Manager' AND course='BSIT' AND status='Active' ");
@@ -399,7 +399,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="layoutartist1" class="form-label">Layout Artist:</label>
-                <select class="form-select form-select-sm" id="layoutartist1" required>
+                <select class="form-select form-select-sm" id="layoutartist1">
                     <option value="1">Select Layout Artist</option>
                     <?php
                     $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND course='BSIT' AND status='Active' ");
@@ -432,7 +432,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="layoutartist2" class="form-label">Layout Artist:</label>
-                <select class="form-select form-select-sm" id="layoutartist2" required disabled>
+                <select class="form-select form-select-sm" id="layoutartist2" disabled>
                     <option value="1">Select Layout Artist</option>
                     <?php
                     $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND course='BSIT' AND status='Active' ");
@@ -470,7 +470,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="technicalsupport1" class="form-label">Technical Support:</label>
-                <select class="form-select form-select-sm" id="technicalsupport1" required>
+                <select class="form-select form-select-sm" id="technicalsupport1">
                     <option value="1">Select Technical Support</option>
                     <?php
                     $technical_support_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Technical Support' AND course='BSIT' AND status='Active' ");
@@ -503,7 +503,7 @@ include("../admindashboard/bins/connections.php");
 
             <div class="col-md-6 mb-3">
                 <label for="technicalsupport2" class="form-label">Technical Support:</label>
-                <select class="form-select form-select-sm" id="technicalsupport2" required disabled>
+                <select class="form-select form-select-sm" id="technicalsupport2" disabled>
                     <option value="1">Select Technical Support</option>
                     <?php
                     if (isset($_GET['technicalsupport1'])) {
@@ -672,21 +672,21 @@ include("../admindashboard/bins/connections.php");
         });
 
         // Function to validate required fields
-        function validateForm() {
-            var isValid = true;
+        // function validateForm() {
+        //     var isValid = true;
 
-            // Check if each required field is filled
-            $('select[required]').each(function() {
-                if ($(this).val() == '1') {
-                    isValid = false;
-                    $(this).addClass('is-invalid'); // Add a class for invalid fields
-                } else {
-                    $(this).removeClass('is-invalid'); // Remove the class if valid
-                }
-            });
+        //     // Check if each required field is filled
+        //     $('select[required]').each(function() {
+        //         if ($(this).val() == '1') {
+        //             isValid = false;
+        //             $(this).addClass('is-invalid'); // Add a class for invalid fields
+        //         } else {
+        //             $(this).removeClass('is-invalid'); // Remove the class if valid
+        //         }
+        //     });
 
-            return isValid;
-        }
+        //     return isValid;
+        // }
 
         // Remove is-invalid class when a valid option is selected
         $('select[required]').change(function() {

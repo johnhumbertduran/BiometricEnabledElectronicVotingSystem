@@ -102,11 +102,12 @@ if (isset($_POST["login"])) {
 ?>
 <style>
     .full-height {
-        height: 70vh;
+        height: 80vh;
     }
 
     .borderblue {
         border: 1px solid blue;
+        border-radius: 10px;
         /* Example border style */
     }
 
@@ -118,8 +119,8 @@ if (isset($_POST["login"])) {
 </style>
 
 <div class="container d-flex align-items-center justify-content-center full-height">
-    <div class="row d-flex align-items-stretch equal-height justify-content-center w-100">
-        <div class="col-md-5 borderblue flex-column">
+    <!-- <div class="row d-flex align-items-stretch equal-height justify-content-center w-100"> -->
+    <!-- <div class="col-md-5 borderblue flex-column">
             <div class="row flex-grow-1">
                 <div class="col-md-6 px-3 py-3">
                     <h2>Mission</h2>
@@ -130,33 +131,33 @@ if (isset($_POST["login"])) {
                     <p>"A RESEARCH UNIVERSITY ADVANCING QUALITY EDUCATION TOWARDS SOCIETAL TRANSFORMATION AND GLOBAL RECOGNITION"</p>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <!-- Spacer -->
-        <div class="col-md-1"></div>
+    <!-- Spacer -->
+    <!-- <div class="col-md-1"></div> -->
 
-        <div class="col-md-5 borderblue flex-column">
-            <div>
-                <h2 class="text-center">Login</h2>
-                <br>
-                <form method="POST">
-                    <div class="container col-8">
-                        <div class="row">
-                            <div class="input-group mb-3 col-12">
-                                <span class="input-group-text">Username</span>
-                                <input type="text" class="form-control" name="username" autocomplete="off" placeholder="Username" required>
-                            </div>
-                            <div class="input-group mb-3 col-12">
-                                <span class="input-group-text">Password</span>
-                                <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Password" required>
-                            </div>
+    <div class="col-md-5 borderblue flex-column h-75">
+        <div>
+            <h2 class="text-center">Login</h2>
+            <br>
+            <form method="POST">
+                <div class="container col-8">
+                    <div class="row">
+                        <div class="input-group mb-3 col-12">
+                            <span class="input-group-text">Username</span>
+                            <input type="text" class="form-control" name="username" autocomplete="off" placeholder="Username" required>
                         </div>
-                        <input type="submit" class="button-blue" name="login" value="Login">
+                        <div class="input-group mb-3 col-12">
+                            <span class="input-group-text">Password</span>
+                            <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Password" required>
+                        </div>
                     </div>
-                </form>
-            </div>
+                    <input type="submit" class="button-blue" name="login" value="Login">
+                </div>
+            </form>
         </div>
     </div>
+    <!-- </div> -->
 </div>
 
 
