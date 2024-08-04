@@ -102,7 +102,7 @@ if (isset($_POST["login"])) {
 ?>
 <style>
     .full-height {
-        height: 80vh;
+        height: 60vh;
     }
 
     .borderblue {
@@ -118,7 +118,11 @@ if (isset($_POST["login"])) {
     }
 </style>
 
-<div class="container d-flex align-items-center justify-content-center full-height">
+<br>
+
+<h2 class="text-center">Login</h2>
+<br>
+<div class="container d-flex align-items-center justify-content-center">
     <!-- <div class="row d-flex align-items-stretch equal-height justify-content-center w-100"> -->
     <!-- <div class="col-md-5 borderblue flex-column">
             <div class="row flex-grow-1">
@@ -136,28 +140,31 @@ if (isset($_POST["login"])) {
     <!-- Spacer -->
     <!-- <div class="col-md-1"></div> -->
 
-    <div class="col-md-5 borderblue flex-column h-75">
-        <div>
-            <h2 class="text-center">Login</h2>
-            <br>
-            <form method="POST">
-                <div class="container col-8">
-                    <div class="row">
-                        <div class="input-group mb-3 col-12">
-                            <span class="input-group-text">Username</span>
-                            <input type="text" class="form-control" name="username" autocomplete="off" placeholder="Username" required>
-                        </div>
-                        <div class="input-group mb-3 col-12">
-                            <span class="input-group-text">Password</span>
-                            <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Password" required>
-                        </div>
+    <div class="col-md-5 borderblue flex-column full-height">
+
+        <center>
+            <img src="../bins/img/wvsulogo.png" alt="Western Visayas State University Logo" width="100px">
+
+            <h5 class="mt-3">Western Visayas State University </br> Himalayan Campus</h5>
+        </center>
+
+        <br>
+        <form method="POST">
+            <div class="container col-8">
+                <div class="row">
+                    <div class="input-group mb-3 col-12">
+                        <span class="input-group-text">Username</span>
+                        <input type="text" class="form-control" name="username" autocomplete="off" placeholder="Username" required>
                     </div>
-                    <input type="submit" class="button-blue" name="login" value="Login">
+                    <div class="input-group mb-3 col-12">
+                        <span class="input-group-text">Password</span>
+                        <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Password" required>
+                    </div>
                 </div>
-            </form>
-        </div>
+                <input type="submit" class="button-blue" name="login" value="Login">
+            </div>
+        </form>
     </div>
-    <!-- </div> -->
 </div>
 
 

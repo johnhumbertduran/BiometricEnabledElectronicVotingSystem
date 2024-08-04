@@ -178,7 +178,7 @@ if ($countCandidate > 0) {
                                                 },
                                                 success: function(response) {
                                                     if (response === 'success') {
-                                                        alert('Election deleted successfully.');
+                                                        alert('Candidate deleted successfully.');
                                                         $('main[role="main"]').load('candidatelist.php');
                                                     } else {
                                                         alert('Failed to delete item.');

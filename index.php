@@ -61,7 +61,7 @@ if (isset($_POST['login'])) {
 
 <style>
     .full-height {
-        height: 80vh;
+        height: 50vh;
     }
 
     .borderblue {
@@ -81,8 +81,10 @@ if (isset($_POST['login'])) {
 <br>
 
 
+<h2 class="text-center">Login</h2>
+<br>
+<div class="container d-flex align-items-center justify-content-center">
 
-<div class="container d-flex align-items-center justify-content-center full-height">
     <!-- <div class="row d-flex align-items-stretch equal-height justify-content-center w-100"> -->
     <!-- <div class="col-md-5 borderblue flex-column">
             <div class="row flex-grow-1">
@@ -100,26 +102,34 @@ if (isset($_POST['login'])) {
     <!-- Spacer -->
     <!-- <div class="col-md-1"></div> -->
 
-    <div class="col-md-5 borderblue flex-column h-75">
-        <div>
-            <h2 class="text-center">Login</h2>
-            <br>
-            <form method="POST">
-                <div class="container col-10">
-                    <div class="row">
-                        <div class="input-group mb-3 col-2">
-                            <span class="input-group-text">ID Number</span>
-                            <input type="text" name="idnumber" class="form-control" value="<?php echo $session_id_number; ?>" placeholder="Please input your ID Number" required autocomplete="off">
-                        </div>
+
+    <div class="col-md-5 borderblue flex-column full-height">
+        <br>
+        <center>
+            <img src="bins/img/wvsulogo.png" alt="Western Visayas State University Logo" width="100px">
+
+            <h5 class="mt-3">Western Visayas State University </br> Himalayan Campus</h5>
+        </center>
+        <!-- <div> -->
+        <br>
+        <form method="POST">
+            <div class="container col-10">
+                <div class="row">
+                    <div class="input-group mb-3 col-2">
+                        <span class="input-group-text">ID Number</span>
+                        <input type="text" name="idnumber" class="form-control" value="<?php echo $session_id_number; ?>" placeholder="Please input your ID Number" required autocomplete="off">
                     </div>
-                    <input type="submit" name="login" value="Login" class="button-blue">
-                    <!-- <div class="container textred">
+                </div>
+                <br>
+                <input style="float:right;" type="submit" name="login" value="Login" class="button-blue">
+                <!-- <div class="container textred">
                             <p><span class="textredbold">Note: </span><br> - Please check ID Number <br> - You can only vote once</p>
                         </div> -->
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
+        <br>
     </div>
+    <!-- </div> -->
     <!-- </div> -->
 </div>
 

@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../registration"
+		},
+		{
+			"path": "../Thesis"
 		}
 	],
 	"settings": {}
