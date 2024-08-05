@@ -1,5 +1,7 @@
 <?php
 session_start();
+include('bins/header.php');
+include('bins/navigation.php');
 include("../bins/connections.php");
 
 if (isset($_SESSION["username"])) {
@@ -59,214 +61,257 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
         /* display: block; */
     }
 </style>
-<nav class="navbar navbar-expand-sm navbar-dark bgmainblue">
-    <div class="container-fluid">
-        <ul class="navbar-nav" style="font-size: 11.6px;">
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'all') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="all">All</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'President') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="President">President</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Vice President') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Vice President">Vice President</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Secretary') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Secretary">Secretary</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Secretary') ? 'active' : ''; ?>" data-target=" electionresults.php" data-position="Assistant Secretary">Assistant Secretary</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Treasurer') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Treasurer">Treasurer</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Treasurer') ? 'active' : ''; ?>" data-target=" electionresults.php" data-position="Assistant Treasurer">Assistant Treasurer</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Auditor') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Auditor">Auditor</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Auditor') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Assistant Auditor">Assistant Auditor</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'P.I.O.') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="P.I.O.">P.I.O.</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Business Manager') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Business Manager">Business Manager</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Layout Artist') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Layout Artist">Layout Artist</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Technical Support') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Technical Support">Technical Support</button>
-            </li>
-        </ul>
+
+
+<div class="d-flex">
+    <!-- Sidebar -->
+    <nav class="bgmainblue text-white position-fixed h-100" style="width: 250px;">
+        <div class="p-3">
+            <h4>Sidebar Menu</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="../">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="electionlist.php">Election List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="candidatelist.php">Candidate's List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="voterslist.php">Voter's List</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="flex-grow-1" style="margin-left: 250px; padding: 1rem;">
+
+        <nav class="navbar navbar-expand-sm navbar-dark bgmainblue">
+            <div class="container-fluid">
+                <ul class="navbar-nav" style="font-size: 11.6px;">
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'all') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="all">All</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'President') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="President">President</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Vice President') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Vice President">Vice President</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Secretary') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Secretary">Secretary</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Secretary') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Assistant Secretary">Assistant Secretary</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Treasurer') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Treasurer">Treasurer</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Treasurer') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Assistant Treasurer">Assistant Treasurer</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Auditor') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Auditor">Auditor</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Assistant Auditor') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Assistant Auditor">Assistant Auditor</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'P.I.O.') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="P.I.O.">P.I.O.</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Business Manager') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Business Manager">Business Manager</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Layout Artist') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Layout Artist">Layout Artist</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-candidate nav-button <?php echo ($check_position == 'Technical Support') ? 'active' : ''; ?>" data-target="electionresults.php" data-position="Technical Support">Technical Support</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <!-- &nbsp;&nbsp; <button class="button-blue" id="registerCandidatesButton" data-target="registercandidates.php">+ Add Candidates</button> -->
+
+
+        <?php
+
+        echo '<div id="resultsContent">';
+
+        $position = isset($_GET['position']) ? $_GET['position'] : 'all';
+
+        if ($position === 'all') {
+            $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND status = 'Active' AND electionid = '$admin_id' ");
+        } else {
+            $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND position = '$position' AND status = 'Active' AND electionid = '$admin_id' ");
+        }
+
+
+        $countCandidate = mysqli_num_rows($candidatelists);
+
+        if ($countCandidate > 0) {
+
+        ?>
+            <center>
+                <h4>Results</h4>
+                <div class="table-responsive-md col-md-11">
+                    <table class="table table-hover table-striped table-bordered border-primary mt-3">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Course</th>
+                                <th>Year</th>
+                                <th>Position</th>
+                                <th>Party</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+
+
+
+
+
+                            while ($row_candidate_lists = mysqli_fetch_assoc($candidatelists)) {
+
+
+                                $candidateid = $row_candidate_lists["id"];
+                                $candidateidnumber = $row_candidate_lists["idnumber"];
+                                $candidatefirstname = $row_candidate_lists["firstname"];
+                                $candidatemiddlename = $row_candidate_lists["middlename"];
+                                $candidatelastname = $row_candidate_lists["lastname"];
+                                $candidatecourse = $row_candidate_lists["course"];
+                                $candidateyear = $row_candidate_lists["year"];
+                                $candidateposition = $row_candidate_lists["position"];
+                                $candidateparty = $row_candidate_lists["party"];
+                                $candidateimg = $row_candidate_lists["img"];
+                                // $electionyear = $row_candidate_lists["electionid"];
+
+                                $candidatename = ucfirst($candidatefirstname) . " " . ucfirst($candidatemiddlename[0]) . ". " . ucfirst($candidatelastname);
+
+
+
+                            ?>
+                                <tr>
+                                    <td> <img src="<?php echo $candidateimg; ?>" alt="<?php echo $candidateimg; ?>" width="50px" height="50px" id="candidateimg"> &nbsp;<?php echo $candidatename; ?></td>
+                                    <td><?php echo $candidatecourse; ?></td>
+                                    <td><?php echo $candidateyear; ?></td>
+                                    <td><?php echo $candidateposition; ?></td>
+                                    <td><?php echo $candidateparty; ?></td>
+                                    <td><?php
+                                        $votelist = mysqli_query($connections, "SELECT * FROM votestbl WHERE electionid = '$admin_id' AND candidatevoted = '$candidateidnumber' ");
+                                        if ($row_vote_list = mysqli_fetch_assoc($votelist)) {
+
+                                            $id = $row_vote_list["id"];
+                                            $voteridnumber = $row_vote_list["voteridnumber"];
+                                            $electionid = $row_vote_list["electionid"];
+                                            $position = $row_vote_list["position"];
+                                            $candidatevoted = $row_vote_list["candidatevoted"];
+
+                                            if ($candidateidnumber == $candidatevoted) {;
+
+                                                $count_votes = mysqli_query($connections, "SELECT * FROM votestbl WHERE candidatevoted =  '$candidatevoted'");
+                                                $row_count_vote = mysqli_num_rows($count_votes);
+                                                // $mycount = $row_count_vote['candidatevoted'];
+                                                echo $row_count_vote;
+                                            }
+                                        } else {
+                                            echo "0";
+                                        }
+
+
+                                        ?></td>
+
+                                </tr>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <center>
+                                <h4>No Records Found!</h4>
+                            </center>
+                        <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </center>
+            <?php
+            echo '</div>';
+            ?>
     </div>
-</nav>
+</div>
+
 <br>
-<!-- &nbsp;&nbsp; <button class="button-blue" id="registerCandidatesButton" data-target="registercandidates.php">+ Add Candidates</button> -->
+<br>
+
+
+
+<script>
+    $(document).ready(function() {
+
+
+        // Event handler for register candidates button
+        $('#registerCandidatesButton').click(function(e) {
+            e.preventDefault(); // Prevent default button behavior
+            var target = $(this).data('target'); // Get target from data attribute
+            //console.log("Loading content from: " + target); // Log target for debugging
+
+            // AJAX request to load content
+            $.ajax({
+                url: target,
+                method: 'GET',
+                success: function(data) {
+                    //console.log("Content loaded successfully."); // Log success
+                    $('main[role="main"]').html(data); // Load content into main area
+                },
+                error: function() {
+                    //console.log("Error loading content."); // Log error
+                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
+                }
+            });
+        });
+
+
+
+        // Event handler for navigation buttons
+        $('.nav-button').click(function(e) {
+            e.preventDefault(); // Prevent default button behavior
+
+            var position = $(this).data('position'); // Get position from data attribute
+            var target = $(this).data('target'); // Get target from data attribute
+            var url = target + '?position=' + position; // Construct URL with query parameter
+
+            // Remove active class from all buttons and add to the clicked one
+            $('.nav-button').removeClass('active');
+            $(this).addClass('active');
+
+            // AJAX request to load the new content
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function(data) {
+                    $('#resultsContent').html($(data).find('#resultsContent').html()); // Load only the desired content
+                },
+                error: function() {
+                    $('#resultsContent').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
+                }
+            });
+        });
+
+
+
+
+    });
+</script>
 
 
 <?php
-
-
-
-$position = isset($_GET['position']) ? $_GET['position'] : 'all';
-
-if ($position === 'all') {
-    $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND status = 'Active' AND electionid = '$admin_id' ");
-} else {
-    $candidatelists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE course = '$admin_course' AND position = '$position' AND status = 'Active' AND electionid = '$admin_id' ");
-}
-
-
-$countCandidate = mysqli_num_rows($candidatelists);
-
-if ($countCandidate > 0) {
-
+include('bins/footer.php');
 ?>
-    <center>
-        <h4>Results</h4>
-        <div class="table-responsive-md col-md-11">
-            <table class="table table-hover table-striped table-bordered border-primary mt-3">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Course</th>
-                        <th>Year</th>
-                        <th>Position</th>
-                        <th>Party</th>
-                        <th>Count</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php
-
-
-
-
-
-                    while ($row_candidate_lists = mysqli_fetch_assoc($candidatelists)) {
-
-
-                        $candidateid = $row_candidate_lists["id"];
-                        $candidateidnumber = $row_candidate_lists["idnumber"];
-                        $candidatefirstname = $row_candidate_lists["firstname"];
-                        $candidatemiddlename = $row_candidate_lists["middlename"];
-                        $candidatelastname = $row_candidate_lists["lastname"];
-                        $candidatecourse = $row_candidate_lists["course"];
-                        $candidateyear = $row_candidate_lists["year"];
-                        $candidateposition = $row_candidate_lists["position"];
-                        $candidateparty = $row_candidate_lists["party"];
-                        $candidateimg = $row_candidate_lists["img"];
-                        // $electionyear = $row_candidate_lists["electionid"];
-
-                        $candidatename = ucfirst($candidatefirstname) . " " . ucfirst($candidatemiddlename[0]) . ". " . ucfirst($candidatelastname);
-
-
-
-                    ?>
-                        <tr>
-                            <td> <img src="<?php echo $candidateimg; ?>" alt="<?php echo $candidateimg; ?>" width="50px" height="50px" id="candidateimg"> &nbsp;<?php echo $candidatename; ?></td>
-                            <td><?php echo $candidatecourse; ?></td>
-                            <td><?php echo $candidateyear; ?></td>
-                            <td><?php echo $candidateposition; ?></td>
-                            <td><?php echo $candidateparty; ?></td>
-                            <td><?php
-                                $votelist = mysqli_query($connections, "SELECT * FROM votestbl WHERE electionid = '$admin_id' AND candidatevoted = '$candidateidnumber' ");
-                                if ($row_vote_list = mysqli_fetch_assoc($votelist)) {
-
-                                    $id = $row_vote_list["id"];
-                                    $voteridnumber = $row_vote_list["voteridnumber"];
-                                    $electionid = $row_vote_list["electionid"];
-                                    $position = $row_vote_list["position"];
-                                    $candidatevoted = $row_vote_list["candidatevoted"];
-
-                                    if ($candidateidnumber == $candidatevoted) {;
-
-                                        $count_votes = mysqli_query($connections, "SELECT * FROM votestbl WHERE candidatevoted =  '$candidatevoted'");
-                                        $row_count_vote = mysqli_num_rows($count_votes);
-                                        // $mycount = $row_count_vote['candidatevoted'];
-                                        echo $row_count_vote;
-                                    }
-                                } else {
-                                    echo "0";
-                                }
-
-
-                                ?></td>
-
-                        </tr>
-                    <?php
-                    }
-                } else {
-                    ?>
-                    <center>
-                        <h4>No Records Found!</h4>
-                    </center>
-                <?php
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>
-    </center>
-
-
-    <script>
-        $(document).ready(function() {
-
-
-            // Event handler for register candidates button
-            $('#registerCandidatesButton').click(function(e) {
-                e.preventDefault(); // Prevent default button behavior
-                var target = $(this).data('target'); // Get target from data attribute
-                //console.log("Loading content from: " + target); // Log target for debugging
-
-                // AJAX request to load content
-                $.ajax({
-                    url: target,
-                    method: 'GET',
-                    success: function(data) {
-                        //console.log("Content loaded successfully."); // Log success
-                        $('main[role="main"]').html(data); // Load content into main area
-                    },
-                    error: function() {
-                        //console.log("Error loading content."); // Log error
-                        $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
-                    }
-                });
-            });
-
-
-
-            // Event handler for navigation buttons
-            $('.nav-button').click(function(e) {
-                e.preventDefault(); // Prevent default button behavior
-                var target = $(this).data('target'); // Get target from data attribute
-                var position = $(this).data('position'); // Get position from data attribute
-                var url = target + '?position=' + position; // Construct URL with query parameter
-                //console.log("Loading content from: " + url); // Log URL for debugging
-
-                // AJAX request to load content
-                $.ajax({
-                    url: url,
-                    method: 'GET',
-                    success: function(data) {
-                        //console.log("Content loaded successfully."); // Log success
-                        $('main[role="main"]').html(data); // Load content into main area
-                    },
-                    error: function() {
-                        //console.log("Error loading content."); // Log error
-                        $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
-                    }
-                });
-            });
-
-
-
-
-        });
-    </script>

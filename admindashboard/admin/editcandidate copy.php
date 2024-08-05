@@ -1,8 +1,6 @@
 <?php
 session_start();
-include('bins/header.php');
-include('bins/navigation.php');
-include("../bins/connections.php");
+include('../bins/connections.php');
 
 if (isset($_SESSION['username'])) {
 
@@ -71,7 +69,7 @@ $uploadOk = 1;
 
 $student_no = $firstname = $middlename = $lastname = $year = $position = $party = "";
 
-if (isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $student_no = $_POST["student_no"] ?? '';
     $firstname = $_POST["firstname"] ?? '';
     $middlename = $_POST["middlename"] ?? '';
@@ -89,26 +87,23 @@ if (isset($_POST['submit'])) {
 
     if ($student_no && $firstname && $middlename && $lastname && $year && $position && $party) {
         if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstname)) {
-            // $response['status'] = 'error';
-            // $response['message'] = 'First Name should not have numbers or symbols.';
-            // echo json_encode($response);
-            // exit;
-            echo "<script>alert('Error: First Name should not have numbers or symbols.');</script>";
+            $response['status'] = 'error';
+            $response['message'] = 'First Name should not have numbers or symbols.';
+            echo json_encode($response);
+            exit;
         } else {
 
             if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $middlename)) {
-                // $response['status'] = 'Error';
-                // $response['message'] = 'Middle Name should not have numbers or symbols.';
-                // echo json_encode($response);
-                // exit;
-                echo "<script>alert('Error: Middle Name should not have numbers or symbols.');</script>";
+                $response['status'] = 'Error';
+                $response['message'] = 'Middle Name should not have numbers or symbols.';
+                echo json_encode($response);
+                exit;
             } else {
                 if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $lastname)) {
-                    // $response['status'] = 'Error';
-                    // $response['message'] = 'Last Name should not have numbers or symbols.';
-                    // echo json_encode($response);
-                    // exit;
-                    echo "<script>alert('Error:Last Name should not have numbers or symbols.');</script>";
+                    $response['status'] = 'Error';
+                    $response['message'] = 'Last Name should not have numbers or symbols.';
+                    echo json_encode($response);
+                    exit;
                 } else {
                     // if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $course)) {
                     //     $response['status'] = 'Error';
@@ -149,33 +144,26 @@ if (isset($_POST['submit'])) {
                                 // Perform database insert operation here if image is uploaded
                                 $query = "UPDATE candidatestbl SET idnumber = '$student_no', firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', year = '$year', position = '$position', party = '$party', img = '$targetFile' WHERE id='$myid' ";
                                 if (mysqli_query($connections, $query)) {
-                                    // $response['status'] = 'success';
-                                    // $response['message'] = 'Candidate updated successfully.';
-                                    echo "<script>alert('Candidate updated successfully.');</script>";
-                                    echo "<script>window.location.href = 'candidatelist.php';</script>";
+                                    $response['status'] = 'success';
+                                    $response['message'] = 'Candidate updated successfully.';
                                 } else {
-                                    // $response['status'] = 'error';
-                                    // $response['message'] = 'Database error. Please try again.';
-                                    echo "<script>alert('Error: Database error. Please try again.');</script>";
+                                    $response['status'] = 'error';
+                                    $response['message'] = 'Database error. Please try again.';
                                 }
                             } else {
                                 // Display an error message if the file move fails
-                                // echo "Error uploading image.";
-                                echo "<script>alert('Error uploading image.');</script>";
+                                echo "Error uploading image.";
                             }
                         }
                     } else {
                         // Perform database insert operation here if image is NOT uploaded
                         $query = "UPDATE candidatestbl SET idnumber = '$student_no', firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', year = '$year', position = '$position', party = '$party' WHERE id='$myid' ";
                         if (mysqli_query($connections, $query)) {
-                            // $response['status'] = 'success';
-                            // $response['message'] = 'Candidate updated successfully. PLEASE NOTE THAT IMAGE WAS NOT UPLOADED. Student No: ' . $student_no . ' Firstname: ' . $firstname . ' Middlename: ' . $middlename . ' Lastname: ' . $lastname . ' Year: ' . $year . ' Position: ' . $position . ' Party: ' . $party . ' ID: ' . $get_id;
-                            echo "<script>alert('Candidate updated successfully.\\nPLEASE NOTE THAT THERE WAS NO IMAGE UPLOADED.');</script>";
-                            echo "<script>window.location.href = 'candidatelist.php';</script>";
+                            $response['status'] = 'success';
+                            $response['message'] = 'Candidate updated successfully. PLEASE NOTE THAT IMAGE WAS NOT UPLOADED. Student No: ' . $student_no . ' Firstname: ' . $firstname . ' Middlename: ' . $middlename . ' Lastname: ' . $lastname . ' Year: ' . $year . ' Position: ' . $position . ' Party: ' . $party . ' ID: ' . $get_id;
                         } else {
-                            // $response['status'] = 'error';
-                            // $response['message'] = 'Database error. Please try again.';
-                            echo "<script>alert('Error: Database error. Please try again.');</script>";
+                            $response['status'] = 'error';
+                            $response['message'] = 'Database error. Please try again.';
                         }
                     }
                     // }
@@ -183,12 +171,11 @@ if (isset($_POST['submit'])) {
             }
         }
     } else {
-        // $response['status'] = 'error';
-        // $response['message'] = 'All fields are required.';
-        echo "<script>alert('Error: All fields are required.');</script>";
+        $response['status'] = 'error';
+        $response['message'] = 'All fields are required.';
     }
-    // echo json_encode($response);
-    // exit;
+    echo json_encode($response);
+    exit;
 }
 
 
@@ -271,115 +258,102 @@ if (isset($_POST['submit'])) {
         color: #c025c0 !important;
     }
 </style>
+<h3 class="text-center bgmainblue sticky-top text-white">Update Candididate</h3>
+<div class="container col-md-10">
+    <form id="updateCandidateForm" method="POST" enctype="multipart/form-data">
+        <!-- <hr> -->
+        <div class="row mt-4">
+            <div class="col-md-12 form-group pb-3">
+                <label for="student_no"><b>ID Number:<span style="color:red;"> *</span></b></label>
+                <input class="form-control" type="text" value="<?php echo $db_idnumber; ?>" name="student_no" id="student_no" placeholder="ID Number" autocomplete="off" autofocus required>
+            </div>
 
-<div class="d-flex">
-    <!-- Sidebar -->
-    <?php
-    include('bins/sidebar.php');
-    ?>
+            <div class="col-md-4 form-group pb-4">
+                <label for="firstname"><b>First Name:<span style="color:red;"> *</span></b></label>
+                <input class="form-control" type="text" value="<?php echo $db_firstname; ?>" name="firstname" id="firstname" placeholder="First Name" autocomplete="off" required>
+            </div>
 
-    <!-- Main content -->
-    <div class="flex-grow-1" style="margin-left: 250px; padding: 1rem;">
+            <div class="col-md-4 form-group pb-4">
+                <label for="middlename"><b>Middle Name:<span style="color:red;"> *</span></b></label>
+                <input class="form-control" type="text" value="<?php echo $db_middlename; ?>" name="middlename" id="middlename" placeholder="Middle Name" autocomplete="off" required>
+            </div>
 
-        <h3 class="text-center bgmainblue sticky-top text-white">Update Candididate</h3>
-        <div class="container col-md-10">
-            <form id="updateCandidateForm" method="POST" enctype="multipart/form-data">
-                <!-- <hr> -->
-                <div class="row mt-4">
-                    <div class="col-md-12 form-group pb-3">
-                        <label for="student_no"><b>ID Number:<span style="color:red;"> *</span></b></label>
-                        <input class="form-control" type="text" value="<?php echo $db_idnumber; ?>" name="student_no" id="student_no" placeholder="ID Number" autocomplete="off" autofocus required>
-                    </div>
+            <div class="col-md-4 form-group pb-4">
+                <label for="lastname"><b>Last Name:<span style="color:red;"> *</span></b></label>
+                <input class="form-control" type="text" value="<?php echo $db_lastname; ?>" name="lastname" id="lastname" placeholder="Last Name" autocomplete="off" required>
+            </div>
 
-                    <div class="col-md-4 form-group pb-4">
-                        <label for="firstname"><b>First Name:<span style="color:red;"> *</span></b></label>
-                        <input class="form-control" type="text" value="<?php echo $db_firstname; ?>" name="firstname" id="firstname" placeholder="First Name" autocomplete="off" required>
-                    </div>
-
-                    <div class="col-md-4 form-group pb-4">
-                        <label for="middlename"><b>Middle Name:<span style="color:red;"> *</span></b></label>
-                        <input class="form-control" type="text" value="<?php echo $db_middlename; ?>" name="middlename" id="middlename" placeholder="Middle Name" autocomplete="off" required>
-                    </div>
-
-                    <div class="col-md-4 form-group pb-4">
-                        <label for="lastname"><b>Last Name:<span style="color:red;"> *</span></b></label>
-                        <input class="form-control" type="text" value="<?php echo $db_lastname; ?>" name="lastname" id="lastname" placeholder="Last Name" autocomplete="off" required>
-                    </div>
-
-                    <!-- <div class="col-md-4 form-group pb-4">
+            <!-- <div class="col-md-4 form-group pb-4">
                 <label for="course"><b>Course:<span style="color:red;"> *</span></b></label>
                 <input class="form-control" type="text" value="<?php echo $course; ?>" name="course" id="course" placeholder="Course" autocomplete="off" required>
             </div> -->
 
-                    <div class="col-md-4 form-group pb-4">
-                        <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
-                        <select class="form-select form-control form-select" name="year" id="year">
-                            <option name="year" value="1st Year" <?php if ($db_year == "1st Year") {
-                                                                        echo "selected";
-                                                                    } ?>>First Year</option>
-                            <option name="year" value="2nd Year" <?php if ($db_year == "2nd Year") {
-                                                                        echo "selected";
-                                                                    } ?>>Second Year</option>
-                            <option name="year" value="3rd Year" <?php if ($db_year == "3rd Year") {
-                                                                        echo "selected";
-                                                                    } ?>>Third Year</option>
-                            <option name="year" value="4th Year" <?php if ($db_year == "4th Year") {
-                                                                        echo "selected";
-                                                                    } ?>>Fourth Year</option>
-                        </select>
-                        <!-- <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
+            <div class="col-md-4 form-group pb-4">
+                <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
+                <select class="form-select form-control form-select" name="year" id="year">
+                    <option name="year" value="1st Year" <?php if ($db_year == "1st Year") {
+                                                                echo "selected";
+                                                            } ?>>First Year</option>
+                    <option name="year" value="2nd Year" <?php if ($db_year == "2nd Year") {
+                                                                echo "selected";
+                                                            } ?>>Second Year</option>
+                    <option name="year" value="3rd Year" <?php if ($db_year == "3rd Year") {
+                                                                echo "selected";
+                                                            } ?>>Third Year</option>
+                    <option name="year" value="4th Year" <?php if ($db_year == "4th Year") {
+                                                                echo "selected";
+                                                            } ?>>Fourth Year</option>
+                </select>
+                <!-- <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
                 <input class="form-control" type="text" value="<?php //echo $year; 
                                                                 ?>" name="year" id="year" placeholder="Year" autocomplete="off" required> -->
+            </div>
+
+            <div class="col-md-4 form-group pb-4">
+                <label for="position"><b>Position:<span style="color:red;"> *</span></b></label>
+                <input class="form-control" type="text" value="<?php echo $db_position; ?>" name="position" id="position" autocomplete="off" placeholder="Position" required>
+            </div>
+
+            <div class="col-md-4 form-group pb-4">
+                <label for="party"><b>Party:<span style="color:red;"> *</span></b></label>
+                <input class="form-control" type="text" value="<?php echo $db_party; ?>" name="party" id="party" autocomplete="off" placeholder="Party" required>
+                <input type="hidden" name="myid" value="<?php echo $_GET['id']; ?>">
+            </div>
+
+            <div class="col-md-12 form-group">
+                <div class="d-flex align-items-start">
+                    <div class="d-flex flex-column align-items-center me-3" id="db_img">
+                        <img class="mb-2" src="<?php echo $db_img; ?>" alt="<?php echo $name; ?>" width="100px" height="100px" style="object-fit: cover; border-radius:10px;">
+                        <button class="button-green" id="updateimg">Update Image</button>
                     </div>
 
-                    <div class="col-md-4 form-group pb-4">
-                        <label for="position"><b>Position:<span style="color:red;"> *</span></b></label>
-                        <input class="form-control" type="text" value="<?php echo $db_position; ?>" name="position" id="position" autocomplete="off" placeholder="Position" required>
-                    </div>
 
-                    <div class="col-md-4 form-group pb-4">
-                        <label for="party"><b>Party:<span style="color:red;"> *</span></b></label>
-                        <input class="form-control" type="text" value="<?php echo $db_party; ?>" name="party" id="party" autocomplete="off" placeholder="Party" required>
-                        <input type="hidden" name="myid" value="<?php echo $_GET['id']; ?>">
-                    </div>
-
-                    <div class="col-md-12 form-group">
-                        <div class="d-flex align-items-start">
-                            <div class="d-flex flex-column align-items-center me-3" id="db_img">
-                                <img class="mb-2" src="<?php echo $db_img; ?>" alt="<?php echo $name; ?>" width="100px" height="100px" style="object-fit: cover; border-radius:10px;">
-                                <button class="button-green" id="updateimg">Update Image</button>
+                    <div class="d-flex flex-column align-items-center d-none" id="preview_img">
+                        <label for="post_image" class="post-image-preview-cursor">
+                            <div id="preview" class="center-container">
+                                <i class="fa-solid fa-camera-retro fa-2xl" id="camera-icon" style="color: #82b0eb; font-size:5em;"></i>
+                                <button type="button" class="btn-close close-upload-btn" id="close-upload-btn" onclick="removePreview();"></button>
                             </div>
-
-
-                            <div class="d-flex flex-column align-items-center d-none" id="preview_img">
-                                <label for="post_image" class="post-image-preview-cursor">
-                                    <div id="preview" class="center-container">
-                                        <i class="fa-solid fa-camera-retro fa-2xl" id="camera-icon" style="color: #82b0eb; font-size:5em;"></i>
-                                        <button type="button" class="btn-close close-upload-btn" id="close-upload-btn" onclick="removePreview();"></button>
-                                    </div>
-                                </label>
-                                <label for="post_image" class="custom_file_upload button-blue w-100">
-                                    <i class="fa-solid fa-file-image" style="color: #ffffff;"></i>
-                                    <span>Add Photo</span>
-                                    <input type="file" name="post_image" class="btn btn-info" id="post_image" onchange="displayPreview(this.files);" accept="image/*">
-                                </label>
-                            </div>
-                            <input class="float-end button-green ms-auto align-self-end" type="submit" name="submit" value="Save">
-                        </div>
+                        </label>
+                        <label for="post_image" class="custom_file_upload button-blue w-100">
+                            <i class="fa-solid fa-file-image" style="color: #ffffff;"></i>
+                            <span>Add Photo</span>
+                            <input type="file" name="post_image" class="btn btn-info" id="post_image" onchange="displayPreview(this.files);" accept="image/*">
+                        </label>
                     </div>
+                    <input class="float-end button-green ms-auto align-self-end" type="submit" name="submit" value="Save">
+                </div>
+            </div>
 
 
-                    <!-- <div class="col-md-12 form-group">
+            <!-- <div class="col-md-12 form-group">
 
             </div> -->
-                </div>
-
-                <!-- <hr> -->
-            </form>
         </div>
-    </div>
-</div>
 
+        <!-- <hr> -->
+    </form>
+</div>
 
 
 <script>
@@ -464,47 +438,43 @@ if (isset($_POST['submit'])) {
 
 
 
-        // $('#updateCandidateForm').submit(function(e) {
-        //     e.preventDefault(); // Prevent default form submission
-        //     //var formData = $(this).serialize(); // Serialize form data
-        //     var formData = new FormData(this); // Use FormData to handle form data
+        $('#updateCandidateForm').submit(function(e) {
+            e.preventDefault(); // Prevent default form submission
+            //var formData = $(this).serialize(); // Serialize form data
+            var formData = new FormData(this); // Use FormData to handle form data
 
-        //     $.ajax({
-        //         url: 'editcandidate.php', // Change this to your actual form processing URL if needed
-        //         type: 'POST',
-        //         data: formData,
-        //         contentType: false,
-        //         processData: false,
-        //         success: function(response) {
-        //             var res = JSON.parse(response);
-        //             if (res.status === 'success') {
-        //                 alert(res.message);
-        //                 // Use history.pushState to remain on the same view
-        //                 // history.pushState(null, '', 'candidatelist.php');
-        //                 // Reload the form to clear fields
-        //                 $('main[role="main"]').load('candidatelist.php');
-        //             } else {
-        //                 alert('Error: ' + res.message);
-        //             }
-        //         },
-        //         error: function(xhr, status, error) {
+            $.ajax({
+                url: 'editcandidate.php', // Change this to your actual form processing URL if needed
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    var res = JSON.parse(response);
+                    if (res.status === 'success') {
+                        alert(res.message);
+                        // Use history.pushState to remain on the same view
+                        // history.pushState(null, '', 'candidatelist.php');
+                        // Reload the form to clear fields
+                        $('main[role="main"]').load('candidatelist.php');
+                    } else {
+                        alert('Error: ' + res.message);
+                    }
+                },
+                error: function(xhr, status, error) {
 
-        //             console.log('Error status:', status);
-        //             console.log('Error message:', error);
-        //             console.log('Response:', xhr.responseText);
+                    console.log('Error status:', status);
+                    console.log('Error message:', error);
+                    console.log('Response:', xhr.responseText);
 
-        //             console.log('Error submitting form.');
-        //             alert('Error adding candidate. Please try again.');
-        //         }
-        //     });
-        // });
+                    console.log('Error submitting form.');
+                    alert('Error adding candidate. Please try again.');
+                }
+            });
+        });
 
 
 
 
     });
 </script>
-
-<?php
-include('bins/footer.php');
-?>

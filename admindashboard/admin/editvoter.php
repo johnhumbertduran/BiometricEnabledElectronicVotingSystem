@@ -1,5 +1,7 @@
 <?php
 session_start();
+include('bins/header.php');
+include('bins/navigation.php');
 include("../bins/connections.php");
 
 if (isset($_SESSION["username"])) {
@@ -54,11 +56,11 @@ if (mysqli_num_rows($voterlist) > 0) {
 }
 
 
-$response = ['status' => '', 'message' => ''];
+// $response = ['status' => '', 'message' => ''];
 
 $student_no = $firstname = $middlename = $lastname = $year = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['submit'])) {
     $student_no = $_POST["student_no"] ?? '';
     $firstname = $_POST["firstname"] ?? '';
     $middlename = $_POST["middlename"] ?? '';
@@ -67,109 +69,102 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($student_no && $firstname && $middlename && $lastname && $year) {
         if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstname)) {
-            $response['status'] = 'error';
-            $response['message'] = 'First Name should not have numbers or symbols.';
-            echo json_encode($response);
-            exit;
+            // $response['status'] = 'error';
+            // $response['message'] = 'First Name should not have numbers or symbols.';
+            // echo json_encode($response);
+            // exit;
+            echo "<script>alert('Error: First Name should not have numbers or symbols.');</script>";
         } else {
             if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $middlename)) {
-                $response['status'] = 'Error';
-                $response['message'] = 'Middle Name should not have numbers or symbols.';
-                echo json_encode($response);
-                exit;
+                // $response['status'] = 'Error';
+                // $response['message'] = 'Middle Name should not have numbers or symbols.';
+                // echo json_encode($response);
+                // exit;
+                echo "<script>alert('Error: Middle Name should not have numbers or symbols.');</script>";
             } else {
                 if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $lastname)) {
-                    $response['status'] = 'Error';
-                    $response['message'] = 'Last Name should not have numbers or symbols.';
-                    echo json_encode($response);
-                    exit;
+                    // $response['status'] = 'Error';
+                    // $response['message'] = 'Last Name should not have numbers or symbols.';
+                    // echo json_encode($response);
+                    // exit;
+                    echo "<script>alert('Error: Last Name should not have numbers or symbols.');</script>";
                 } else {
                     // Perform database insert operation here
-                    $query = "INSERT INTO voterstbl (idnumber, firstname, middlename, lastname, year, course, electionid, status) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$year', '$admin_course', '$admin_id', '0')";
+                    $query = "UPDATE voterstbl SET idnumber = '$student_no', firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', year = '$year' WHERE id='$db_id' ";
                     if (mysqli_query($connections, $query)) {
-                        $response['status'] = 'success';
-                        $response['message'] = 'Student added successfully.';
+                        // $response['status'] = 'success';
+                        // $response['message'] = 'Student added successfully.';
+                        echo "<script>alert('Student updated successfully.');</script>";
+                        echo "<script>window.location.href = 'voterslist.php';</script>";
                     } else {
-                        $response['status'] = 'error';
-                        $response['message'] = 'Database error. Please try again.';
+                        // $response['status'] = 'error';
+                        // $response['message'] = 'Database error. Please try again.';
+                        echo "<script>alert('Error: Database error. Please try again.');</script>";
                     }
                 }
             }
         }
     } else {
-        $response['status'] = 'error';
-        $response['message'] = 'All fields are required.';
+        // $response['status'] = 'error';
+        // $response['message'] = 'All fields are required.';
+        echo "<script>alert('Error: All fields are required.');</script>";
     }
-    echo json_encode($response);
-    exit;
+    // echo json_encode($response);
+    // exit;
 }
 ?>
-<div class="container d-flex align-items-center col-md-6" style="height: 100%;">
-    <form id="registerVotersForm" method="POST" enctype="multipart/form-data">
-        <!-- NOTE!: Put Biometrics after -->
-        <hr>
-        <div class="row">
-            <div class="col-md-12 form-group pb-3">
-                <label for="student_no"><b>ID Number:<span style="color:red;"> *</span></b></label>
-                <input class="form-control txt_input" type="text" value="<?php echo $db_idnumber; ?>" name="student_no" id="student_no" placeholder="ID Number" autocomplete="off" autofocus required>
-            </div>
 
-            <div class="col-md-6 form-group pb-3">
-                <label for="firstname"><b>First Name:<span style="color:red;"> *</span></b></label>
-                <input class="form-control txt_input" type="text" value="<?php echo $db_firstname; ?>" name="firstname" id="firstname" placeholder="First Name" autocomplete="off" required>
-            </div>
+<div class="d-flex">
+    <!-- Sidebar -->
+    <?php
+    include('bins/sidebar.php');
+    ?>
 
-            <div class="col-md-6 form-group pb-3">
-                <label for="middlename"><b>Middle Name:<span style="color:red;"> *</span></b></label>
-                <input class="form-control txt_input" type="text" value="<?php echo $db_middlename; ?>" name="middlename" id="middlename" placeholder="Middle Name" autocomplete="off" required>
-            </div>
+    <!-- Main content -->
+    <div class="flex-grow-1" style="margin-left: 250px; padding: 1rem;">
 
-            <div class="col-md-6 form-group pb-3">
-                <label for="lastname"><b>Last Name:<span style="color:red;"> *</span></b></label>
-                <input class="form-control txt_input" type="text" value="<?php echo $db_lastname; ?>" name="lastname" id="lastname" placeholder="Last Name" autocomplete="off" required>
-            </div>
+        <div class="container d-flex align-items-center col-md-6" style="height: 100%;">
+            <form method="POST">
+                <!-- NOTE!: Put Biometrics after -->
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 form-group pb-3">
+                        <label for="student_no"><b>ID Number:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control txt_input" type="text" value="<?php echo $db_idnumber; ?>" name="student_no" id="student_no" placeholder="ID Number" autocomplete="off" autofocus required>
+                    </div>
 
-            <div class="col-md-6 form-group pb-3">
-                <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
-                <input class="form-control txt_input" type="text" value="<?php echo $db_year; ?>" name="year" id="year" placeholder="Year" autocomplete="off" required>
-            </div>
+                    <div class="col-md-6 form-group pb-3">
+                        <label for="firstname"><b>First Name:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control txt_input" type="text" value="<?php echo $db_firstname; ?>" name="firstname" id="firstname" placeholder="First Name" autocomplete="off" required>
+                    </div>
+
+                    <div class="col-md-6 form-group pb-3">
+                        <label for="middlename"><b>Middle Name:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control txt_input" type="text" value="<?php echo $db_middlename; ?>" name="middlename" id="middlename" placeholder="Middle Name" autocomplete="off" required>
+                    </div>
+
+                    <div class="col-md-6 form-group pb-3">
+                        <label for="lastname"><b>Last Name:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control txt_input" type="text" value="<?php echo $db_lastname; ?>" name="lastname" id="lastname" placeholder="Last Name" autocomplete="off" required>
+                    </div>
+
+                    <div class="col-md-6 form-group pb-3">
+                        <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control txt_input" type="text" value="<?php echo $db_year; ?>" name="year" id="year" placeholder="Year" autocomplete="off" required>
+                    </div>
 
 
-            <div class="col-md-12 form-group pt-4">
-                <input style="float:right;" class="button-green" type="submit" name="submit" value="Save">
-            </div>
+                    <div class="col-md-12 form-group pt-4">
+                        <input style="float:right;" class="button-green" type="submit" name="submit" value="Save">
+                    </div>
+                </div>
+                <hr>
+            </form>
         </div>
-        <hr>
-    </form>
+    </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $('#registerVotersForm').submit(function(e) {
-            e.preventDefault(); // Prevent default form submission
-            var formData = $(this).serialize(); // Serialize form data
 
-            $.ajax({
-                url: 'registervoters.php', // Change this to your actual form processing URL if needed
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    var res = JSON.parse(response);
-                    if (res.status === 'success') {
-                        alert(res.message);
-                        // Use history.pushState to remain on the same view
-                        // history.pushState(null, '', 'registervoters.php');
-                        // Reload the form to clear fields
-                        $('main[role="main"]').load('registervoters.php');
-                    } else {
-                        alert('Error: ' + res.message);
-                    }
-                },
-                error: function() {
-                    console.log('Error submitting form.');
-                    alert('Error adding student. Please try again.');
-                }
-            });
-        });
-    });
-</script>
+<?php
+include('bins/footer.php');
+?>

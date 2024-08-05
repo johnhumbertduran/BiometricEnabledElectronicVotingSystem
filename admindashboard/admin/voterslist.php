@@ -1,5 +1,7 @@
 <?php
 session_start();
+include('bins/header.php');
+include('bins/navigation.php');
 include("../bins/connections.php");
 
 if (isset($_SESSION["username"])) {
@@ -50,228 +52,191 @@ if (isset($_GET['status'])) {
     }
 </style>
 
-<nav class="navbar navbar-expand-sm navbar-dark bgmainblue">
-    <div class="container-fluid">
-        <ul class="navbar-nav" style="font-size: 12px;">
-            <li class="nav-item">
-                <button class="nav-link nav-voter nav-button <?php echo ($check_vote == 'all') ? 'active' : ' '; ?>" data-target="voterslist.php" data-status="all">All</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-voter nav-button <?php echo ($check_vote == '1') ? 'active' : ' '; ?>" data-target="voterslist.php" data-status="1">Voted Voters</button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link nav-voter nav-button <?php echo ($check_vote == '0') ? 'active' : ' '; ?>" data-target="voterslist.php" data-status="0">Unvoted Voters</button>
-            </li>
-        </ul>
-    </div>
-</nav>
-<br>
-&nbsp;&nbsp; <button class="button-blue" id="registerVoterButton" data-target="registervoters.php">+ Add Voters</button>
-<button class="button-blue">Download Excel File</button>
 
-<?php
+<div class="d-flex">
+    <!-- Sidebar -->
+    <?php
+    include('bins/sidebar.php');
+    ?>
 
-function displayVotersList($voterslist, $divId, $election_year)
-{
-    $countVoters = mysqli_num_rows($voterslist);
+    <!-- Main content -->
+    <div class="flex-grow-1" style="margin-left: 250px; padding: 1rem;">
 
-    if ($countVoters > 0) {
-        echo '<div id="' . $divId . '">';
-        echo '<center>';
-        echo '<div class="table-responsive-md col-md-11">';
-        echo '<table class="table table-hover table-striped table-bordered border-primary mt-3">';
-        echo '<thead>';
-        echo '<tr>';
-        echo '<th>Name</th>';
-        echo '<th>Course</th>';
-        echo '<th>Year</th>';
-        echo '<th>Election Year</th>';
-        echo '<th>Status</th>';
-        echo '<th>Action</th>';
-        echo '</tr>';
-        echo '</thead>';
-        echo '<tbody>';
+        <nav class="navbar navbar-expand-sm navbar-dark bgmainblue">
+            <div class="container-fluid">
+                <ul class="navbar-nav" style="font-size: 12px;">
+                    <li class="nav-item">
+                        <button class="nav-link nav-voter nav-button <?php echo ($check_vote == 'all') ? 'active' : ' '; ?>" data-target="voterslist.php" data-status="all">All</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-voter nav-button <?php echo ($check_vote == '1') ? 'active' : ' '; ?>" data-target="voterslist.php" data-status="1">Voted Voters</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link nav-voter nav-button <?php echo ($check_vote == '0') ? 'active' : ' '; ?>" data-target="voterslist.php" data-status="0">Unvoted Voters</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        &nbsp;&nbsp; <button class="button-blue" id="registerVoterButton" data-target="registervoters.php">+ Add Voters</button>
+        <button class="button-blue">Download Excel File</button>
 
-        while ($row_voters_list = mysqli_fetch_assoc($voterslist)) {
-            $id = $row_voters_list["id"];
-            $name = ucfirst($row_voters_list["firstname"]) . " " . ucfirst($row_voters_list["middlename"][0]) . ". " . ucfirst($row_voters_list["lastname"]);
-            echo '<tr>';
-            echo '<td>' . $name . '</td>';
-            echo '<td>' . $row_voters_list["course"] . '</td>';
-            echo '<td>' . $row_voters_list["year"] . '</td>';
-            echo '<td>' . $election_year . '</td>';
-            echo '<td>' . ($row_voters_list["status"] == "0" ? "Not Voted" : "Voted") . '</td>';
-            echo '<td>
-                  <a href="#" class="button-red" id="title' . $id . '" onclick="deleteThisVoter' . $id . '()">Delete</a>&nbsp;
+        <?php
+
+        echo '<div id="votersList">';
+
+        function displayVotersList($voterslist, $divId, $election_year)
+        {
+            $countVoters = mysqli_num_rows($voterslist);
+
+            if ($countVoters > 0) {
+                echo '<div id="' . $divId . '">';
+                echo '<center>';
+                echo '<div class="table-responsive-md col-md-11">';
+                echo '<table class="table table-hover table-striped table-bordered border-primary mt-3">';
+                echo '<thead>';
+                echo '<tr>';
+                echo '<th>Name</th>';
+                echo '<th>Course</th>';
+                echo '<th>Year</th>';
+                echo '<th>Election Year</th>';
+                echo '<th>Status</th>';
+                echo '<th>Action</th>';
+                echo '</tr>';
+                echo '</thead>';
+                echo '<tbody>';
+
+                while ($row_voters_list = mysqli_fetch_assoc($voterslist)) {
+                    $id = $row_voters_list["id"];
+                    $name = ucfirst($row_voters_list["firstname"]) . " " . ucfirst($row_voters_list["middlename"][0]) . ". " . ucfirst($row_voters_list["lastname"]);
+                    echo '<tr>';
+                    echo '<td>' . $name . '</td>';
+                    echo '<td>' . $row_voters_list["course"] . '</td>';
+                    echo '<td>' . $row_voters_list["year"] . '</td>';
+                    echo '<td>' . $election_year . '</td>';
+                    echo '<td>' . ($row_voters_list["status"] == "0" ? "Not Voted" : "Voted") . '</td>';
+                    echo '<td>
+                  <a href="#" class="button-red" id="title' . $id . '" onclick="deleteThisVoter' . $id . '(event)">Delete</a>&nbsp;
                   <a href="#" class="button-green updateVoterButton" data-target="editvoter.php?id=' . $id . '">Update</a>
                   </td>';
-?>
-            <script>
-                function deleteThisVoter<?php echo $id; ?>() {
+        ?>
+                    <script>
+                        function deleteThisVoter<?php echo $id; ?>(event) {
+                            event.preventDefault(); // Prevent default button behavior
 
-                    var userDecision = confirm('Are you sure you want to remove <?php echo $name; ?> from the voter\'s list ? ');
-                    if (userDecision) {
-                        // alert('You chose yes.');
-                        // Add your code for the delete action here
+                            var userDecision = confirm('Are you sure you want to remove <?php echo $name; ?> from the voter\'s list ? ');
+                            if (userDecision) {
+                                // alert('You chose yes.');
+                                // Add your code for the delete action here
 
 
-                        $.ajax({
-                            type: 'POST',
-                            url: 'deletevoter.php',
-                            data: {
-                                id: <?php echo $id; ?>
-                            },
-                            success: function(response) {
-                                if (response === 'success') {
-                                    alert('Voter deleted successfully.');
-                                    $('main[role="main"]').load('voterslist.php');
-                                } else {
-                                    alert('Failed to delete item.');
-                                }
-                            },
-                            error: function() {
-                                alert('Error occurred while deleting the item.');
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'deletevoter.php',
+                                    data: {
+                                        id: <?php echo $id; ?>
+                                    },
+                                    success: function(response) {
+                                        if (response === 'success') {
+                                            alert('Voter deleted successfully.');
+                                            $('main[role="main"]').load('voterslist.php');
+                                        } else {
+                                            alert('Failed to delete item.');
+                                        }
+                                    },
+                                    error: function() {
+                                        alert('Error occurred while deleting the item.');
+                                    }
+                                });
+
+
+                            } else {
+                                // alert('You chose no.');
+                                // Add your code for the cancel action here
                             }
-                        });
 
+                        }
+                    </script>
 
-                    } else {
-                        // alert('You chose no.');
-                        // Add your code for the cancel action here
-                    }
-
+        <?php
+                    echo '</tr>';
                 }
-            </script>
 
-<?php
-            echo '</tr>';
+                echo '</tbody>';
+                echo '</table>';
+                echo '</div>';
+                echo '</center>';
+                echo '</div>';
+            } else {
+                echo '<center><h4>No Records Found!</h4></center>';
+            }
         }
 
-        echo '</tbody>';
-        echo '</table>';
+        if ($check_vote === 'all') {
+            $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course'");
+            displayVotersList($voterslist, "allvoters", $election_year);
+        } elseif ($check_vote === '1') {
+            $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course' AND status = '1'");
+            displayVotersList($voterslist, "votedvoters", $election_year);
+        } elseif ($check_vote === '0') {
+            $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course' AND status = '0'");
+            displayVotersList($voterslist, "notvotedvoters", $election_year);
+        }
+
+        ?>
+
+
+        <input type="hidden" value="<?php echo $check_vote; ?>" id="votestatus">
+        <?php
         echo '</div>';
-        echo '</center>';
-        echo '</div>';
-    } else {
-        echo '<center><h4>No Records Found!</h4></center>';
-    }
-}
+        ?>
+    </div>
+</div>
 
-if ($check_vote === 'all') {
-    $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course'");
-    displayVotersList($voterslist, "allvoters", $election_year);
-} elseif ($check_vote === '1') {
-    $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course' AND status = '1'");
-    displayVotersList($voterslist, "votedvoters", $election_year);
-} elseif ($check_vote === '0') {
-    $voterslist = mysqli_query($connections, "SELECT * FROM voterstbl WHERE course = '$admin_course' AND status = '0'");
-    displayVotersList($voterslist, "notvotedvoters", $election_year);
-}
-
-?>
-
-
-<input type="hidden" value="<?php echo $check_vote; ?>" id="votestatus">
+<br>
+<br>
 
 <script>
     $(document).ready(function() {
 
-        // var currentStatus = document.getElementById('votestatus').value;
-        var currentStatus = $('#votestatus').val();
-
-        var refreshTimeout;
-
-        if (refreshTimeout) {
-            clearTimeout(refreshTimeout);
-        }
-
-
-        function checkVoteStatus() {
-            //clearTimeout(refreshTimeout); // Clear any existing timeout before setting a new one
-            if (currentStatus == 'all') {
-                var url = 'voterslist.php?status=all #allvoters';
-                $('#allvoters').load(url, function() {
-                    console.log("All");
-                    if (refreshTimeout) {
-                        clearTimeout(refreshTimeout);
-                    }
-                    // refreshTimeout = setTimeout(checkVoteStatus, 5000);
-                });
-            }
-            if (currentStatus == '1') {
-                var url = 'voterslist.php?status=1 #votedvoters';
-                $('#votedvoters').load(url, function() {
-                    console.log("Voted");
-                    if (refreshTimeout) {
-                        clearTimeout(refreshTimeout);
-                    }
-                    // refreshTimeout = setTimeout(checkVoteStatus, 5000);
-                });
-            }
-            if (currentStatus == '0') {
-                var url = 'voterslist.php?status=0 #notvotedvoters';
-                $('#notvotedvoters').load(url, function() {
-                    console.log("Not Voted");
-                    if (refreshTimeout) {
-                        clearTimeout(refreshTimeout);
-                    }
-                    // refreshTimeout = setTimeout(checkVoteStatus, 5000);
-                });
-            }
-        }
-
-        refreshTimeout = setTimeout(checkVoteStatus, 2000);
-
-        // checkVoteStatus();
-
-
-
-        // Function to update main class based on the target URL
-        function updateMainClass(target) {
-
-            var mainElement = $('main[role="main"]');
-            if (target === 'registervoters.php') {
-                mainElement.addClass('d-flex align-items-center justify-content-center');
-            } else {
-                mainElement.removeClass('d-flex align-items-center justify-content-center');
-            }
-        }
-
-        // Event handler for register voters button
-        $(document).on('click', '#registerVoterButton', function(e) {
-            e.preventDefault();
-            var target = $(this).data('target');
+        function fetchVotersList(status) {
             $.ajax({
-                url: target,
-                method: 'GET',
+                type: 'GET',
+                url: 'voterslist.php',
+                data: {
+                    status: status
+                },
                 success: function(data) {
-                    $('main[role="main"]').html(data);
-                    updateMainClass(target);
+                    $('#votersList').html($(data).find('#votersList').html());
                 },
                 error: function() {
-                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>');
+                    $('#votersList').html('<p>Sorry, the content could not be loaded.</p>');
                 }
             });
-        });
+        }
+
+        // Set interval to refresh data every 2 seconds
+        setInterval(function() {
+            var status = $('#votestatus').val();
+            console.log(status);
+            fetchVotersList(status);
+        }, 2000);
 
         // Event handler for navigation buttons
-        $(document).on('click', '.nav-button', function(e) {
-            e.preventDefault();
-            var target = $(this).data('target');
-            var status = $(this).data('status');
-            var url = target + '?status=' + status;
+        $('.nav-button').click(function(e) {
+            e.preventDefault(); // Prevent default button behavior
 
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function(data) {
-                    clearTimeout(refreshTimeout);
-                    $('main[role="main"]').html(data);
-                },
-                error: function() {
-                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>');
-                }
-            });
+            var status = $(this).data('status'); // Get status from data attribute
+
+            // Update hidden input value
+            $('#votestatus').val(status);
+
+            // Remove active class from all buttons and add to the clicked one
+            $('.nav-button').removeClass('active');
+            $(this).addClass('active');
+
+            // Fetch and update the voters list
+            fetchVotersList(status);
         });
 
 
@@ -279,49 +244,44 @@ if ($check_vote === 'all') {
         $(document).on('click', '.updateVoterButton', function(e) {
             e.preventDefault();
             var target = $(this).data('target');
-            $.ajax({
-                url: target,
-                method: 'GET',
-                success: function(data) {
-                    $('main[role="main"]').html(data);
-                },
-                error: function() {
-                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>');
-                }
-            });
+            window.location.href = target;
+            // $.ajax({
+            //     url: target,
+            //     method: 'GET',
+            //     success: function(data) {
+            //         $('main[role="main"]').html(data);
+            //     },
+            //     error: function() {
+            //         $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>');
+            //     }
+            // });
+        });
+
+        // Event handler for register voters button
+        $(document).on('click', '#registerVoterButton', function(e) {
+            e.preventDefault();
+            var target = $(this).data('target');
+            window.location.href = target;
+            // $.ajax({
+            //     url: target,
+            //     method: 'GET',
+            //     success: function(data) {
+            //         $('main[role="main"]').html(data);
+            //         updateMainClass(target);
+            //     },
+            //     error: function() {
+            //         $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>');
+            //     }
+            // });
         });
 
 
 
-        // // Event handler for delete buttons
-        // $(document).on('click', '.button-red', function(e) {
-        //     e.preventDefault();
-        //     var id = $(this).attr('id').replace('title', '');
-        //     var name = $(this).closest('tr').find('td:first').text();
-
-        //     var userDecision = confirm('Are you sure you want to remove ' + name + ' from the voter\'s list?');
-        //     if (userDecision) {
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: 'deletevoter.php',
-        //             data: {
-        //                 id: id
-        //             },
-        //             success: function(response) {
-        //                 if (response === 'success') {
-        //                     alert('Voter deleted successfully.');
-        //                     $('main[role="main"]').load('voterslist.php');
-        //                 } else {
-        //                     alert('Failed to delete item.');
-        //                 }
-        //             },
-        //             error: function() {
-        //                 alert('Error occurred while deleting the item.');
-        //             }
-        //         });
-        //     }
-        // });
-
-
     });
 </script>
+
+
+
+<?php
+include('bins/footer.php');
+?>

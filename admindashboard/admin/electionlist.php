@@ -1,5 +1,7 @@
 <?php
 session_start();
+include('bins/header.php');
+include('bins/navigation.php');
 include("../bins/connections.php");
 
 if (isset($_SESSION["username"])) {
@@ -25,127 +27,108 @@ if (isset($_SESSION["username"])) {
         cursor: pointer;
     }
 </style>
-<!-- <nav class="navbar navbar-expand-sm navbar-dark bgmainblue">
-    <div class="container-fluid">
-        <ul class="navbar-nav" style="font-size: 12px;">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">All</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Chairperson</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Vice-Chairperson</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Councilor</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">SPE-Representative</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">SICT-Representative</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">SBM-Representative</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">SOE-Representative</a>
-            </li>
-        </ul>
-    </div>
-</nav> -->
-<!-- <br> -->
-<!-- &nbsp;&nbsp; <button class="button-blue sticky-top" id="createElectionButton" data-target="newelection.php">+ Create New Election</button> -->
-
-<!-- <br> -->
-<br>
-<div class="row m-0">
 
 
+
+<div class="d-flex">
+    <!-- Sidebar -->
     <?php
-    $electionlists = mysqli_query($connections, "SELECT * FROM admintbl WHERE id='$admin_id' ORDER BY id DESC ");
-
-    $countCreator = mysqli_num_rows($electionlists);
-
-    if ($countCreator > 0) {
-
-
-        while ($row_election_lists = mysqli_fetch_assoc($electionlists)) {
-
-
-            $id = $row_election_lists["id"];
-            $electionyear = $row_election_lists["electionyear"];
-            $title = $row_election_lists["electiontitle"];
-            $status = $row_election_lists["electionstatus"];
-            $firstname = $row_election_lists["firstname"];
-            $lastname = $row_election_lists["lastname"];
-            $createdby = $firstname . " " . $lastname;
+    include('bins/sidebar.php');
     ?>
-            <div class="col-md-4">
-                <!-- <div class="card mb-4 <?php echo $status === '1' ? 'bg-success text-light' : ($status === '2' ? 'bg-warning' : ($status === '3' ? 'bg-danger text-light' : '')); ?> election_card editElectionButton" data-target="editelection.php?id=<?php echo $id; ?>"> -->
-                <div class="card mb-4 <?php echo $status === '1' ? 'bg-success text-light' : ($status === '2' ? 'bg-warning' : ($status === '3' ? 'bg-danger text-light' : '')); ?> election_card" id="electionResultsButton" data-target="electionresults.php">
-                    <div class="card-body">
-                        <h6 class="card-title"> Election Year: <?php echo $electionyear; ?></h6>
-                        <h6 class="card-subtitle mb-2"> Title: <?php echo $title; ?></h6>
-                        <p class="card-text"> Status: <?php echo $status === '1' ? 'Active' : ($status === '2' ? 'Pending' : ($status === '3' ? 'Close' : '')); ?> <br> Created By: <?php echo $createdby; ?></p>
+
+    <!-- Main content -->
+    <div class="flex-grow-1" style="margin-left: 250px; padding: 1rem;">
+        <div class="row m-0">
 
 
-                        <!-- <a href="#" class="button-red" id="title<?php echo $id; ?>" onclick="deleteThis<?php echo $id; ?>()">Delete</a> -->
-                        <!-- <a href="#" class="button-green editElectionButton" data-target="editelection.php?id=<?php echo $id; ?>">Update</a> -->
+            <?php
+            $electionlists = mysqli_query($connections, "SELECT * FROM admintbl WHERE id='$admin_id' ORDER BY id DESC ");
 
-                        <script>
-                            function deleteThis<?php echo $id; ?>() {
+            $countCreator = mysqli_num_rows($electionlists);
 
-                                var userDecision = confirm('Are you sure you want to remove <?php echo $title; ?>?');
-                                if (userDecision) {
-                                    // alert('You chose yes.');
-                                    // Add your code for the delete action here
+            if ($countCreator > 0) {
 
 
-                                    $.ajax({
-                                        type: 'POST',
-                                        url: 'deleteelection.php',
-                                        data: {
-                                            id: <?php echo $id; ?>
-                                        },
-                                        success: function(response) {
-                                            if (response === 'success') {
-                                                alert('Item deleted successfully.');
-                                                $('main[role="main"]').load('electionlist.php');
-                                            } else {
-                                                alert('Failed to delete item.');
-                                            }
-                                        },
-                                        error: function() {
-                                            alert('Error occurred while deleting the item.');
+                while ($row_election_lists = mysqli_fetch_assoc($electionlists)) {
+
+
+                    $id = $row_election_lists["id"];
+                    $electionyear = $row_election_lists["electionyear"];
+                    $title = $row_election_lists["electiontitle"];
+                    $status = $row_election_lists["electionstatus"];
+                    $firstname = $row_election_lists["firstname"];
+                    $lastname = $row_election_lists["lastname"];
+                    $createdby = $firstname . " " . $lastname;
+            ?>
+                    <div class="col-md-4">
+                        <!-- <div class="card mb-4 <?php echo $status === '1' ? 'bg-success text-light' : ($status === '2' ? 'bg-warning' : ($status === '3' ? 'bg-danger text-light' : '')); ?> election_card editElectionButton" data-target="editelection.php?id=<?php echo $id; ?>"> -->
+                        <div class="card mb-4 <?php echo $status === '1' ? 'bg-success text-light' : ($status === '2' ? 'bg-warning' : ($status === '3' ? 'bg-danger text-light' : '')); ?> election_card" id="electionResultsButton" data-target="electionresults.php">
+                            <div class="card-body">
+                                <h6 class="card-title"> Election Year: <?php echo $electionyear; ?></h6>
+                                <h6 class="card-subtitle mb-2"> Title: <?php echo $title; ?></h6>
+                                <p class="card-text"> Status: <?php echo $status === '1' ? 'Active' : ($status === '2' ? 'Pending' : ($status === '3' ? 'Close' : '')); ?> <br> Created By: <?php echo $createdby; ?></p>
+
+
+                                <!-- <a href="#" class="button-red" id="title<?php echo $id; ?>" onclick="deleteThis<?php echo $id; ?>()">Delete</a> -->
+                                <!-- <a href="#" class="button-green editElectionButton" data-target="editelection.php?id=<?php echo $id; ?>">Update</a> -->
+
+                                <script>
+                                    function deleteThis<?php echo $id; ?>() {
+
+                                        var userDecision = confirm('Are you sure you want to remove <?php echo $title; ?>?');
+                                        if (userDecision) {
+                                            // alert('You chose yes.');
+                                            // Add your code for the delete action here
+
+
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'deleteelection.php',
+                                                data: {
+                                                    id: <?php echo $id; ?>
+                                                },
+                                                success: function(response) {
+                                                    if (response === 'success') {
+                                                        alert('Item deleted successfully.');
+                                                        $('main[role="main"]').load('electionlist.php');
+                                                    } else {
+                                                        alert('Failed to delete item.');
+                                                    }
+                                                },
+                                                error: function() {
+                                                    alert('Error occurred while deleting the item.');
+                                                }
+                                            });
+
+
+                                        } else {
+                                            // alert('You chose no.');
+                                            // Add your code for the cancel action here
                                         }
-                                    });
 
-
-                                } else {
-                                    // alert('You chose no.');
-                                    // Add your code for the cancel action here
-                                }
-
-                            }
-                        </script>
+                                    }
+                                </script>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-        <?php
-        }
-    } else {
-        ?>
-        <center>
-            <h4>No Records Found!</h4>
-        </center>
-    <?php
-    }
-    ?>
+                <?php
+                }
+            } else {
+                ?>
+                <center>
+                    <h4>No Records Found!</h4>
+                </center>
+            <?php
+            }
+            ?>
 
+        </div>
+
+    </div>
 </div>
+
+
 
 
 
@@ -198,28 +181,19 @@ if (isset($_SESSION["username"])) {
         });
 
 
-        // Event handler for register candidates button
+        // Event handler for election results button
         $('#electionResultsButton').click(function(e) {
-            e.preventDefault(); // Prevent default button behavior
+            e.preventDefault(); // Prevent default link behavior
             var target = $(this).data('target'); // Get target from data attribute
-            //console.log("Loading content from: " + target); // Log target for debugging
-
-            // AJAX request to load content
-            $.ajax({
-                url: target,
-                method: 'GET',
-                success: function(data) {
-                    //console.log("Content loaded successfully."); // Log success
-                    $('main[role="main"]').html(data); // Load content into main area
-                },
-                error: function() {
-                    //console.log("Error loading content."); // Log error
-                    $('main[role="main"]').html('<p>Sorry, the content could not be loaded.</p>'); // Show error message
-                }
-            });
+            window.location.href = target; // Redirect to the target page
         });
 
 
 
     });
 </script>
+
+
+<?php
+include('bins/footer.php');
+?>

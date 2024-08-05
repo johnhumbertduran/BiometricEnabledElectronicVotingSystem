@@ -1,5 +1,7 @@
 <?php
 session_start();
+include('bins/header.php');
+include('bins/navigation.php');
 include("../bins/connections.php");
 
 if (isset($_SESSION["username"])) {
@@ -28,7 +30,7 @@ $targetDir = "../../bins/img/candidate_img/";
 // Initialize for checking if upload is okay
 $uploadOk = 1;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['submit'])) {
     $student_no = $_POST["student_no"] ?? '';
     $firstname = $_POST["firstname"] ?? '';
     $middlename = $_POST["middlename"] ?? '';
@@ -43,23 +45,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($student_no && $firstname && $middlename && $lastname && $year && $position && $party) {
         if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstname)) {
-            $response['status'] = 'error';
-            $response['message'] = 'First Name should not have numbers or symbols.';
-            echo json_encode($response);
-            exit;
+            // $response['status'] = 'error';
+            // $response['message'] = 'First Name should not have numbers or symbols.';
+
+            echo "<script>alert('Error: First Name should not have numbers or symbols.');</script>";
+            // echo json_encode($response);
+            // exit;
         } else {
 
             if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $middlename)) {
-                $response['status'] = 'Error';
-                $response['message'] = 'Middle Name should not have numbers or symbols.';
-                echo json_encode($response);
-                exit;
+                // $response['status'] = 'Error';
+                // $response['message'] = 'Middle Name should not have numbers or symbols.';
+
+                echo "<script>alert('Error: Middle Name should not have numbers or symbols.');</script>";
+                // echo json_encode($response);
+                // exit;
             } else {
                 if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $lastname)) {
-                    $response['status'] = 'Error';
-                    $response['message'] = 'Last Name should not have numbers or symbols.';
-                    echo json_encode($response);
-                    exit;
+                    // $response['status'] = 'Error';
+                    // $response['message'] = 'Last Name should not have numbers or symbols.';
+
+                    echo "<script>alert('Error:Last Name should not have numbers or symbols.');</script>";
+                    // echo json_encode($response);
+                    // exit;
                 } else {
                     // if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $course)) {
                     //     $response['status'] = 'Error';
@@ -100,26 +108,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 // Perform database insert operation here if image is uploaded
                                 $query = "INSERT INTO candidatestbl (idnumber, firstname, middlename, lastname, course, year, position, party, status, electionid, img) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$admin_course', '$year', '$position', '$party', 'Active', '$admin_id', '$targetFile')";
                                 if (mysqli_query($connections, $query)) {
-                                    $response['status'] = 'success';
-                                    $response['message'] = 'Candidate added successfully.';
+                                    // $response['status'] = 'success';
+                                    // $response['message'] = 'Candidate added successfully.';
+                                    echo "<script>alert('Candidate added successfully.');</script>";
+                                    echo "<script>window.location.href = 'registercandidates.php';</script>";
                                 } else {
-                                    $response['status'] = 'error';
-                                    $response['message'] = 'Database error. Please try again.';
+                                    // $response['status'] = 'error';
+                                    // $response['message'] = 'Database error. Please try again.';
+                                    echo "<script>alert('Error: Database error. Please try again.');</script>";
                                 }
                             } else {
                                 // Display an error message if the file move fails
-                                echo "Error uploading image.";
+                                // echo "Error uploading image.";
+                                echo "<script>alert('Error uploading image.');</script>";
                             }
                         }
                     } else {
                         // Perform database insert operation here if image is NOT uploaded
                         $query = "INSERT INTO candidatestbl (idnumber, firstname, middlename, lastname, course, year, position, party, status, electionid) VALUES ('$student_no', '$firstname', '$middlename', '$lastname', '$admin_course', '$year', '$position', '$party', 'Active', '$admin_id',)";
                         if (mysqli_query($connections, $query)) {
-                            $response['status'] = 'success';
-                            $response['message'] = 'Candidate added successfully. \n PLEASE NOTE THAT IMAGE WAS NOT UPLOADED.';
+                            // $response['status'] = 'success';
+                            // $response['message'] = 'Candidate added successfully. \n PLEASE NOTE THAT IMAGE WAS NOT UPLOADED.';
+
+                            echo "<script>alert('Candidate added successfully. \n PLEASE NOTE THAT IMAGE WAS NOT UPLOADED.');</script>";
+                            echo "<script>window.location.href = 'registercandidates.php';</script>";
                         } else {
-                            $response['status'] = 'error';
-                            $response['message'] = 'Database error. Please try again.';
+                            // $response['status'] = 'error';
+                            // $response['message'] = 'Database error. Please try again.';
+                            echo "<script>alert('Error: Database error. Please try again.');</script>";
                         }
                     }
                     // }
@@ -127,11 +143,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     } else {
-        $response['status'] = 'error';
-        $response['message'] = 'All fields are required.';
+        // $response['status'] = 'error';
+        // $response['message'] = 'All fields are required.';
+        echo "<script>alert('Error: All fields are required.');</script>";
     }
-    echo json_encode($response);
-    exit;
+    // echo json_encode($response);
+    // exit;
 }
 ?>
 <style>
@@ -202,90 +219,105 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         color: #c025c0 !important;
     }
 </style>
-<div class="container col-md-10">
-    <form id="registerCandidateForm" method="POST" enctype="multipart/form-data">
-        <hr>
-        <div class="row">
-            <div class="col-md-12 form-group pb-3">
-                <label for="student_no"><b>ID Number:<span style="color:red;"> *</span></b></label>
-                <input class="form-control" type="text" value="<?php echo $student_no; ?>" name="student_no" id="student_no" placeholder="ID Number" autocomplete="off" autofocus required>
-            </div>
 
-            <div class="col-md-4 form-group pb-4">
-                <label for="firstname"><b>First Name:<span style="color:red;"> *</span></b></label>
-                <input class="form-control" type="text" value="<?php echo $firstname; ?>" name="firstname" id="firstname" placeholder="First Name" autocomplete="off" required>
-            </div>
 
-            <div class="col-md-4 form-group pb-4">
-                <label for="middlename"><b>Middle Name:<span style="color:red;"> *</span></b></label>
-                <input class="form-control" type="text" value="<?php echo $middlename; ?>" name="middlename" id="middlename" placeholder="Middle Name" autocomplete="off" required>
-            </div>
+<div class="d-flex">
+    <!-- Sidebar -->
+    <?php
+    include('bins/sidebar.php');
+    ?>
 
-            <div class="col-md-4 form-group pb-4">
-                <label for="lastname"><b>Last Name:<span style="color:red;"> *</span></b></label>
-                <input class="form-control" type="text" value="<?php echo $lastname; ?>" name="lastname" id="lastname" placeholder="Last Name" autocomplete="off" required>
-            </div>
+    <!-- Main content -->
+    <div class="flex-grow-1" style="margin-left: 250px; padding: 1rem;">
 
-            <!-- <div class="col-md-4 form-group pb-4">
+        <div class="container col-md-10">
+            <form id="registerCandidateForm" method="POST" enctype="multipart/form-data">
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 form-group pb-3">
+                        <label for="student_no"><b>ID Number:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control" type="text" value="<?php echo $student_no; ?>" name="student_no" id="student_no" placeholder="ID Number" autocomplete="off" autofocus required>
+                    </div>
+
+                    <div class="col-md-4 form-group pb-4">
+                        <label for="firstname"><b>First Name:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control" type="text" value="<?php echo $firstname; ?>" name="firstname" id="firstname" placeholder="First Name" autocomplete="off" required>
+                    </div>
+
+                    <div class="col-md-4 form-group pb-4">
+                        <label for="middlename"><b>Middle Name:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control" type="text" value="<?php echo $middlename; ?>" name="middlename" id="middlename" placeholder="Middle Name" autocomplete="off" required>
+                    </div>
+
+                    <div class="col-md-4 form-group pb-4">
+                        <label for="lastname"><b>Last Name:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control" type="text" value="<?php echo $lastname; ?>" name="lastname" id="lastname" placeholder="Last Name" autocomplete="off" required>
+                    </div>
+
+                    <!-- <div class="col-md-4 form-group pb-4">
                 <label for="course"><b>Course:<span style="color:red;"> *</span></b></label>
                 <input class="form-control" type="text" value="<?php echo $course; ?>" name="course" id="course" placeholder="Course" autocomplete="off" required>
             </div> -->
 
-            <div class="col-md-4 form-group pb-4">
-                <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
-                <select class="form-select form-control form-select" name="year" id="year">
-                    <option name="year" value="1st Year" <?php if ($year == "1st Year") {
-                                                                echo "selected";
-                                                            } ?>>First Year</option>
-                    <option name="year" value="2nd Year" <?php if ($year == "2nd Year") {
-                                                                echo "selected";
-                                                            } ?>>Second Year</option>
-                    <option name="year" value="3rd Year" <?php if ($year == "3rd Year") {
-                                                                echo "selected";
-                                                            } ?>>Third Year</option>
-                    <option name="year" value="4th Year" <?php if ($year == "4th Year") {
-                                                                echo "selected";
-                                                            } ?>>Fourth Year</option>
-                </select>
-                <!-- <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
+                    <div class="col-md-4 form-group pb-4">
+                        <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
+                        <select class="form-select form-control form-select" name="year" id="year">
+                            <option name="year" value="1st Year" <?php if ($year == "1st Year") {
+                                                                        echo "selected";
+                                                                    } ?>>First Year</option>
+                            <option name="year" value="2nd Year" <?php if ($year == "2nd Year") {
+                                                                        echo "selected";
+                                                                    } ?>>Second Year</option>
+                            <option name="year" value="3rd Year" <?php if ($year == "3rd Year") {
+                                                                        echo "selected";
+                                                                    } ?>>Third Year</option>
+                            <option name="year" value="4th Year" <?php if ($year == "4th Year") {
+                                                                        echo "selected";
+                                                                    } ?>>Fourth Year</option>
+                        </select>
+                        <!-- <label for="year"><b>Year:<span style="color:red;"> *</span></b></label>
                 <input class="form-control" type="text" value="<?php //echo $year; 
                                                                 ?>" name="year" id="year" placeholder="Year" autocomplete="off" required> -->
-            </div>
-
-            <div class="col-md-4 form-group pb-4">
-                <label for="position"><b>Position:<span style="color:red;"> *</span></b></label>
-                <input class="form-control" type="text" value="<?php echo $position; ?>" name="position" id="position" autocomplete="off" placeholder="Position" required>
-            </div>
-
-            <div class="col-md-4 form-group pb-4">
-                <label for="party"><b>Party:<span style="color:red;"> *</span></b></label>
-                <input class="form-control" type="text" value="<?php echo $party; ?>" name="party" id="party" autocomplete="off" placeholder="Party" required>
-            </div>
-
-            <div class="col-md-12 form-group">
-                <label for="post_image" class="post-image-preview-cursor">
-                    <div id="preview" class="center-container">
-                        <i class="fa-solid fa-camera-retro fa-2xl" id="camera-icon" style="color: #82b0eb; font-size:5em;"></i>
-                        <button type="button" class="btn-close close-upload-btn" id="close-upload-btn" onclick="removePreview();"></button>
                     </div>
-                </label>
-                <br>
-                <label for="post_image" class="custom_file_upload button-blue">
-                    <i class="fa-solid fa-file-image" style="color: #ffffff;"></i>
-                    <span>Add Photo</span>
-                    <input type="file" name="post_image" class="btn btn-info" id="post_image" onchange="displayPreview(this.files);" accept="image/*">
-                </label>
-                <input style="float:right;" class="button-green" type="submit" name="submit" value="Save">
-            </div>
 
-            <!-- <div class="col-md-12 form-group">
+                    <div class="col-md-4 form-group pb-4">
+                        <label for="position"><b>Position:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control" type="text" value="<?php echo $position; ?>" name="position" id="position" autocomplete="off" placeholder="Position" required>
+                    </div>
+
+                    <div class="col-md-4 form-group pb-4">
+                        <label for="party"><b>Party:<span style="color:red;"> *</span></b></label>
+                        <input class="form-control" type="text" value="<?php echo $party; ?>" name="party" id="party" autocomplete="off" placeholder="Party" required>
+                    </div>
+
+                    <div class="col-md-12 form-group">
+                        <label for="post_image" class="post-image-preview-cursor">
+                            <div id="preview" class="center-container">
+                                <i class="fa-solid fa-camera-retro fa-2xl" id="camera-icon" style="color: #82b0eb; font-size:5em;"></i>
+                                <button type="button" class="btn-close close-upload-btn" id="close-upload-btn" onclick="removePreview();"></button>
+                            </div>
+                        </label>
+                        <br>
+                        <label for="post_image" class="custom_file_upload button-blue">
+                            <i class="fa-solid fa-file-image" style="color: #ffffff;"></i>
+                            <span>Add Photo</span>
+                            <input type="file" name="post_image" class="btn btn-info" id="post_image" onchange="displayPreview(this.files);" accept="image/*">
+                        </label>
+                        <input style="float:right;" class="button-green" type="submit" name="submit" value="Save">
+                    </div>
+
+                    <!-- <div class="col-md-12 form-group">
 
             </div> -->
-        </div>
+                </div>
 
-        <hr>
-    </form>
+                <hr>
+            </form>
+        </div>
+    </div>
 </div>
+
+
 
 <script>
     var _URL = window.URL || window.webkitURL;
@@ -322,35 +354,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $("#camera-icon").css("display", "block");
     }
 
-    $(document).ready(function() {
-        $('#registerCandidateForm').submit(function(e) {
-            e.preventDefault(); // Prevent default form submission
-            //var formData = $(this).serialize(); // Serialize form data
-            var formData = new FormData(this); // Use FormData to handle form data
+    // $(document).ready(function() {
+    //     $('#registerCandidateForm').submit(function(e) {
+    //         e.preventDefault(); // Prevent default form submission
+    //         //var formData = $(this).serialize(); // Serialize form data
+    //         var formData = new FormData(this); // Use FormData to handle form data
 
-            $.ajax({
-                url: 'registercandidates.php', // Change this to your actual form processing URL if needed
-                type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    var res = JSON.parse(response);
-                    if (res.status === 'success') {
-                        alert(res.message);
-                        // Use history.pushState to remain on the same view
-                        // history.pushState(null, '', 'registercandidates.php');
-                        // Reload the form to clear fields
-                        $('main[role="main"]').load('registercandidates.php');
-                    } else {
-                        alert('Error: ' + res.message);
-                    }
-                },
-                error: function() {
-                    console.log('Error submitting form.');
-                    alert('Error adding candidate. Please try again.');
-                }
-            });
-        });
-    });
+    //         $.ajax({
+    //             url: 'registercandidates.php', // Change this to your actual form processing URL if needed
+    //             type: 'POST',
+    //             data: formData,
+    //             contentType: false,
+    //             processData: false,
+    //             success: function(response) {
+    //                 var res = JSON.parse(response);
+    //                 if (res.status === 'success') {
+    //                     alert(res.message);
+    //                     // Use history.pushState to remain on the same view
+    //                     // history.pushState(null, '', 'registercandidates.php');
+    //                     // Reload the form to clear fields
+    //                     $('main[role="main"]').load('registercandidates.php');
+    //                 } else {
+    //                     alert('Error: ' + res.message);
+    //                 }
+    //             },
+    //             error: function() {
+    //                 console.log('Error submitting form.');
+    //                 alert('Error adding candidate. Please try again.');
+    //             }
+    //         });
+    //     });
+    // });
 </script>
+
+
+
+<?php
+include('bins/footer.php');
+?>
