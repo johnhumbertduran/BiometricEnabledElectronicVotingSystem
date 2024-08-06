@@ -93,7 +93,8 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
             ?>
                 <center>
                     <div class="table-responsive-md col-md-11">
-                        <table class="table table-hover table-striped table-bordered border-primary mt-3">
+                        <table class="table table-hover table-striped mt-3">
+                            <!-- <table class="table table-hover table-striped table-bordered border-primary mt-3"> -->
                             <thead>
                                 <tr class="text-center">
                                     <th>Name</th>
@@ -119,8 +120,8 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
                                         <td><?php echo $row_candidate_lists["party"]; ?></td>
                                         <td><?php echo $election_year; ?></td>
                                         <td>
-                                            <a href="#" class="button-red" id="title<?php echo $id; ?>" onclick="deleteThisCandidate(<?php echo $id; ?>, '<?php echo $name; ?>', event)">Delete</a>&nbsp;
-                                            <a href="#" class="button-green updateCandidateButton" data-target="editcandidate.php?id=<?php echo $id; ?>">Update</a>
+                                            <a href="#" class="button-green updateCandidateButton" data-target="editcandidate.php?id=<?php echo $id; ?>">Update</a>&nbsp;
+                                            <a href="#" class="button-red" id="title<?php echo $id; ?>" onclick="deleteThisCandidate(<?php echo $id; ?>, '<?php echo $name; ?>', event)">Delete</a>
                                         </td>
                                     </tr>
                                 <?php

@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
                     // $response['status'] = 'Error';
                     // $response['message'] = 'Last Name should not have numbers or symbols.';
 
-                    echo "<script>alert('Error:Last Name should not have numbers or symbols.');</script>";
+                    echo "<script>alert('Error: Last Name should not have numbers or symbols.');</script>";
                     // echo json_encode($response);
                     // exit;
                 } else {

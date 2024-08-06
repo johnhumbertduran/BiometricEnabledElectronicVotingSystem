@@ -26,8 +26,41 @@ if (isset($_SESSION["username"])) {
 
     header('Location: ../');
 }
+
+
+$get_id = '';
+
+
+if (isset($_GET['id'])) {
+    $get_id = $_GET['id'];
+}
+
+
+$adminlist = mysqli_query($connections, "SELECT * FROM admintbl WHERE id='$get_id' ");
+
+$db_id =  $db_firstname =  $db_middlename =  $db_lastname =  $db_course =  $db_year =  $db_position =  $db_party =  $db_img = "";
+
+if (mysqli_num_rows($adminlist) > 0) {
+
+    $row_admin_list = mysqli_fetch_assoc($adminlist);
+    $db_id = $row_admin_list['id'];
+    $db_firstname = $row_admin_list['firstname'];
+    $db_middlename = $row_admin_list['middlename'];
+    $db_lastname = $row_admin_list['lastname'];
+    $db_course = $row_admin_list['course'];
+    $db_username = $row_admin_list['username'];
+    $db_password = $row_admin_list['password'];
+    $db_electionyear = $row_admin_list['electionyear'];
+    $db_electiontitle = $row_admin_list['electiontitle'];
+    // $db_position = $row_admin_list['position'];
+    // $db_party = $row_admin_list['party'];
+    // $db_img = $row_admin_list['img'];
+
+    $name = ucfirst($db_firstname) . " " . ucfirst($db_middlename[0]) . ". " . ucfirst($db_lastname);
+}
+
 $response = ['status' => '', 'message' => ''];
-$firstname = $middlename = $lastname = $course = $schoolyear = $electiontitle = $username = $password = $cpassword = "";
+$firstname = $middlename = $lastname = $course = $electionyear = $electiontitle = $username = $password = $cpassword = "";
 
 if (isset($_POST['submit'])) {
 
@@ -35,7 +68,7 @@ if (isset($_POST['submit'])) {
     $middlename = $_POST["middlename"] ?? '';
     $lastname = $_POST["lastname"] ?? '';
     $course = $_POST["course"] ?? '';
-    $schoolyear = $_POST["schoolyear"] ?? '';
+    $electionyear = $_POST["schoolyear"] ?? '';
     $electiontitle = $_POST["electiontitle"] ?? '';
     $username = $_POST["username"] ?? '';
     $password = $_POST["password"] ?? '';
@@ -69,7 +102,8 @@ if (isset($_POST['submit'])) {
     //     $cpassword = $_POST["cpassword"];
     // }
 
-    if ($firstname && $middlename && $lastname && $course && $schoolyear && $username && $password && $cpassword) {
+    if ($firstname && $middlename && $lastname && $course && $electionyear && $username) {
+        // if ($firstname && $middlename && $lastname && $course && $schoolyear && $username && $password && $cpassword) {
         if (!preg_match("/^[a-zA-Z.ñÑ\- ]*$/", $firstname)) {
             // $response['status'] = 'Error';
             // $response['message'] = 'First Name should not have numbers or symbols.';
@@ -106,42 +140,43 @@ if (isset($_POST['submit'])) {
                             // exit;
                             echo "<script>alert('Error: Username should have atleast 8 characters.');</script>";
                         } else {
-                            if (strlen($password) <= 7) {
-                                // $response['status'] = 'Error';
-                                // $response['message'] = 'Password should have atleast 8 characters';
-                                // echo json_encode($response);
-                                // exit;
-                                echo "<script>alert('Error: Password should have atleast 8 characters.');</script>";
+                            // if (strlen($password) <= 7) {
+                            // $response['status'] = 'Error';
+                            // $response['message'] = 'Password should have atleast 8 characters';
+                            // echo json_encode($response);
+                            // exit;
+                            //     echo "<script>alert('Error: Password should have atleast 8 characters.');</script>";
+                            // } else {
+                            // if (strlen($cpassword) <= 7) {
+                            //     // $response['status'] = 'Error';
+                            //     // $response['message'] = 'Confirm Password should have atleast 8 characters';
+                            //     // echo json_encode($response);
+                            //     // exit;
+                            //     echo "<script>alert('Error: Confirm Password should have atleast 8 characters.');</script>";
+                            // } else {
+                            //     if ($cpassword != $password) {
+                            //         // $response['status'] = 'Error';
+                            //         // $response['message'] = 'Confirm Password should match the Password given';
+                            //         // echo json_encode($response);
+                            //         // exit;
+                            //         echo "<script>alert('Error: Confirm Password should match the Password given.');</script>";
+                            //     } else {
+                            // Perform database insert operation here
+                            // $query = "INSERT INTO admintbl (firstname, middlename, lastname, course, username, password, account_type, electionyear, electiontitle, electionstatus) VALUES ('$firstname', '$middlename', '$lastname', '$course', '$username', '$cpassword', '2', '$schoolyear', '$electiontitle', '2')";
+                            $query = "UPDATE admintbl SET firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', course = '$course', username = '$username', electionyear = '$electionyear' WHERE id='$db_id' ";
+                            if (mysqli_query($connections, $query)) {
+                                // $response['status'] = 'Success';
+                                // $response['message'] = 'Admin added successfully.';
+                                echo "<script>alert('Admin updated successfully.');</script>";
+                                echo "<script>window.location.href = 'adminlists.php';</script>";
                             } else {
-                                if (strlen($cpassword) <= 7) {
-                                    // $response['status'] = 'Error';
-                                    // $response['message'] = 'Confirm Password should have atleast 8 characters';
-                                    // echo json_encode($response);
-                                    // exit;
-                                    echo "<script>alert('Error: Confirm Password should have atleast 8 characters.');</script>";
-                                } else {
-                                    if ($cpassword != $password) {
-                                        // $response['status'] = 'Error';
-                                        // $response['message'] = 'Confirm Password should match the Password given';
-                                        // echo json_encode($response);
-                                        // exit;
-                                        echo "<script>alert('Error: Confirm Password should match the Password given.');</script>";
-                                    } else {
-                                        // Perform database insert operation here
-                                        $query = "INSERT INTO admintbl (firstname, middlename, lastname, course, username, password, account_type, electionyear, electiontitle, electionstatus) VALUES ('$firstname', '$middlename', '$lastname', '$course', '$username', '$cpassword', '2', '$schoolyear', '$electiontitle', '2')";
-                                        if (mysqli_query($connections, $query)) {
-                                            // $response['status'] = 'Success';
-                                            // $response['message'] = 'Admin added successfully.';
-                                            echo "<script>alert('Admin added successfully.');</script>";
-                                            echo "<script>window.location.href = 'registeradmin.php';</script>";
-                                        } else {
-                                            // $response['status'] = 'Error';
-                                            // $response['message'] = 'Database error. Please try again.';
-                                            echo "<script>alert('Error: Database error. Please try again.');</script>";
-                                        }
-                                    }
-                                }
+                                // $response['status'] = 'Error';
+                                // $response['message'] = 'Database error. Please try again.';
+                                echo "<script>alert('Error: Database error. Please try again.');</script>";
                             }
+                            // }
+                            // }
+                            // }
                         }
                     }
                 }
@@ -180,53 +215,53 @@ if (isset($_POST['submit'])) {
                         <div class="form-group">
                             <tr>
                                 <td class="label"><b><label for="firstname">First Name:<span style="color:red;"> *</span></label></b></td>
-                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $firstname; ?>" name="firstname" id="firstname" placeholder="First Name" autocomplete="off" autofocus required></td>
+                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $db_firstname; ?>" name="firstname" id="firstname" placeholder="First Name" autocomplete="off" autofocus required></td>
                             </tr>
                         </div>
 
                         <div class="form-group">
                             <tr>
                                 <td class="label"><b><label for="middlename">Middle Name:<span style="color:red;"> *</span></label></b></td>
-                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $middlename; ?>" name="middlename" id="middlename" placeholder="Middle Name" autocomplete="off" required></td>
+                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $db_middlename; ?>" name="middlename" id="middlename" placeholder="Middle Name" autocomplete="off" required></td>
                             </tr>
                         </div>
 
                         <div class="form-group">
                             <tr>
                                 <td class="label"><b><label for="lastname">Last Name:<span style="color:red;"> *</span></label></b></td>
-                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $lastname; ?>" name="lastname" id="lastname" placeholder="Last Name" autocomplete="off" required></td>
+                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $db_lastname; ?>" name="lastname" id="lastname" placeholder="Last Name" autocomplete="off" required></td>
                             </tr>
                         </div>
 
                         <div class="form-group">
                             <tr>
                                 <td class="label"><b><label for="course">Course:<span style="color:red;"> *</span></label></b></td>
-                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $course; ?>" name="course" id="course" placeholder="Course" autocomplete="off" required></td>
+                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $db_course; ?>" name="course" id="course" placeholder="Course" autocomplete="off" required></td>
                             </tr>
                         </div>
 
                         <div class="form-group">
                             <tr>
                                 <td class="label"><b><label for="schoolyear">Election Year:<span style="color:red;"> *</span></label></b></td>
-                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $schoolyear; ?>" name="schoolyear" id="schoolyear" placeholder="Election Year" autocomplete="off" required></td>
+                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $db_electionyear; ?>" name="schoolyear" id="schoolyear" placeholder="Election Year" autocomplete="off" required></td>
                             </tr>
                         </div>
 
                         <div class="form-group">
                             <tr>
                                 <td class="label"><b><label for="electiontitle">Election Title:<span style="color:red;"> *</span></label></b></td>
-                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $electiontitle; ?>" name="electiontitle" id="electiontitle" placeholder="Election Title" autocomplete="off" required></td>
+                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $db_electiontitle; ?>" name="electiontitle" id="electiontitle" placeholder="Election Title" autocomplete="off" required></td>
                             </tr>
                         </div>
 
                         <div class="form-group">
                             <tr>
                                 <td class="label"><b><label for="username">Username:<span style="color:red;"> *</span></label></b></td>
-                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $username; ?>" name="username" id="username" placeholder="Username" autocomplete="off" required></td>
+                                <td colspan="3"><input class="form-control" type="text" value="<?php echo $db_username; ?>" name="username" id="username" placeholder="Username" autocomplete="off" required></td>
                             </tr>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <tr>
                                 <td class="label"><b><label for="password">Password:<span style="color:red;"> *</span></label></b></td>
                                 <td colspan="3"><input class="form-control" type="password" value="<?php echo $password; ?>" name="password" id="password" placeholder="Password" autocomplete="off" required></td>
@@ -238,7 +273,7 @@ if (isset($_POST['submit'])) {
                                 <td class="label"><b><label for="cpassword">Confirm Password:<span style="color:red;"> *</span></label></b></td>
                                 <td colspan="3"><input class="form-control" type="password" value="<?php echo $cpassword; ?>" name="cpassword" id="cpassword" placeholder="Confirm Password" autocomplete="off" required></td>
                             </tr>
-                        </div>
+                        </div> -->
 
                         <tr>
                             <td colspan="4">

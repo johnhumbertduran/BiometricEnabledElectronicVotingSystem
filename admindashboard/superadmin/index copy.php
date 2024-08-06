@@ -10,11 +10,8 @@ if (isset($_SESSION["username"])) {
 
     $query_info = mysqli_query($connections, "SELECT * FROM admintbl WHERE username='$session_user'");
     $my_info = mysqli_fetch_assoc($query_info);
-    $admin_id = $my_info["id"];
     $account_type = $my_info["account_type"];
-    $admin_first_name = $my_info["firstname"];
-    $admin_last_name = $my_info["lastname"];
-    $admin_course = $my_info["course"];
+    $name = ucfirst($my_info["firstname"]);
 
 
     if ($account_type != 1) {
@@ -26,7 +23,7 @@ if (isset($_SESSION["username"])) {
     header('Location: ../');
 }
 ?>
-<!-- 
+
 <style>
     /* Add this CSS to your stylesheet or inside a <style> tag */
 
@@ -45,26 +42,73 @@ if (isset($_SESSION["username"])) {
         /* Adjust active background color */
         /* font-weight: bold; */
     }
-</style> -->
+</style>
+<br>
+<div class="container-fluid px-5">
+    <div class="row d-flex" style="height: 70vh;">
 
-<div class="d-flex">
-    <!-- Sidebar -->
-    <?php include('bins/sidebar.php'); ?>
+        <!-- Button to toggle sidebar -->
+        <nav class="navbar navbar-dark bgmainblue col-md-2 d-md-none">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
 
-    <!-- Main content -->
-    <div class="flex-grow-1 d-flex justify-content-center" style="margin-left: 250px; padding: 1rem; min-height: 90vh;">
-        <div class="flex-fill d-flex align-items-center justify-content-center">
-            <img src="../../bins/img/logo.png" class="rounded-circle" width="200px" alt="Logo">
-        </div>
+        <!-- Vertical Navigation Bar -->
+        <nav id="sidebarMenu" class="col-md-2 d-md-block bgmainblue sidebar" style="height: 100%;">
+            <div class="d-flex flex-column h-100">
 
-        <div class="flex-fill d-flex align-items-center justify-content-center">
-            <h2 class="text-center">Campus Student Council Election</h2>
-        </div>
+                <br>
+                <h3 class="text-white">Welcome - <?php echo $name; ?></h3>
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column mb-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" href="#" data-target="home.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="electionlist.php">Election List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="adminlists.php">Admin List</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="candidatelist.php">Candidate's List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="voterslist.php">Voter's List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="canvassreport.php">Canvassing Report</a>
+                        </li> -->
+                        <!-- <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="historylog.php">History Log</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#" data-target="about.php">About</a>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div class="mt-auto text-center">
+                    <a href="logout.php" class="button-blue border border-light">Logout</a>
+                </div>
+                <br>
+            </div>
+        </nav>
+
+        <!-- Spacer -->
+        <!-- <div class="col-md-1"></div> -->
+
+        <!-- Main Content Area -->
+        <main role="main" class="col-md-8 ml-auto px-md-4 border-blue overflow-auto d-flex align-items-center flex-fill" style="padding: 0 !important; height: 100%;">
+
+        </main>
     </div>
 </div>
 
 
-<!-- <script>
+
+<script>
     $(document).ready(function() {
         //console.log("Document is ready."); // Check if document is ready
 
@@ -131,7 +175,7 @@ if (isset($_SESSION["username"])) {
             });
         });
     });
-</script> -->
+</script>
 
 <?php
 include('bins/footer.php');

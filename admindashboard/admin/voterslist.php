@@ -93,7 +93,8 @@ if (isset($_GET['status'])) {
                 echo '<div id="' . $divId . '">';
                 echo '<center>';
                 echo '<div class="table-responsive-md col-md-11">';
-                echo '<table class="table table-hover table-striped table-bordered border-primary mt-3">';
+                echo '<table class="table table-hover table-striped mt-3">';
+                // echo '<table class="table table-hover table-striped table-bordered border-primary mt-3">';
                 echo '<thead>';
                 echo '<tr>';
                 echo '<th>Name</th>';
@@ -116,8 +117,8 @@ if (isset($_GET['status'])) {
                     echo '<td>' . $election_year . '</td>';
                     echo '<td>' . ($row_voters_list["status"] == "0" ? "Not Voted" : "Voted") . '</td>';
                     echo '<td>
-                  <a href="#" class="button-red" id="title' . $id . '" onclick="deleteThisVoter' . $id . '(event)">Delete</a>&nbsp;
-                  <a href="#" class="button-green updateVoterButton" data-target="editvoter.php?id=' . $id . '">Update</a>
+                    <a href="#" class="button-green updateVoterButton" data-target="editvoter.php?id=' . $id . '">Update</a>&nbsp;
+                  <a href="#" class="button-red" id="title' . $id . '" onclick="deleteThisVoter' . $id . '(event)">Delete</a>
                   </td>';
         ?>
                     <script>

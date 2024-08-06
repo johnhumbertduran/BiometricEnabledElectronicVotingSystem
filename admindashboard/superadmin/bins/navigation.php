@@ -5,7 +5,7 @@ date_default_timezone_set('Asia/Manila');
 $date_now = date("m/d/Y");
 $time_now = date("h:i a");
 ?>
-<nav class="navbar navbar-expand-sm navbar-dark bgmainblue">
+<nav class="navbar navbar-expand-sm navbar-dark bgmainblue sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="javascript:void(0)"><img src="../../bins/img/logo.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">

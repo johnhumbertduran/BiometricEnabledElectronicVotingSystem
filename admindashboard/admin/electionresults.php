@@ -158,7 +158,8 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
             <center>
                 <h4>Results</h4>
                 <div class="table-responsive-md col-md-11">
-                    <table class="table table-hover table-striped table-bordered border-primary mt-3">
+                    <table class="table table-hover table-striped mt-3">
+                        <!-- <table class="table table-hover table-striped table-bordered border-primary mt-3"> -->
                         <thead>
                             <tr>
                                 <th>Name</th>

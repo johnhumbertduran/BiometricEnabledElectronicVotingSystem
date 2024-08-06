@@ -1,5 +1,7 @@
 <?php
 session_start();
+include('bins/header.php');
+include('bins/navigation.php');
 include("../bins/connections.php");
 
 if (isset($_SESSION["username"])) {
@@ -37,7 +39,7 @@ $response = ['status' => '', 'message' => ''];
 
 $election_year = $title = $id = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['submit'])) {
     $election_year = $_POST["electionyear"] ?? '';
     $title = $_POST["title"] ?? '';
     $id = $_POST["id"] ?? '';
@@ -52,18 +54,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $query = "UPDATE admintbl SET electionyear = '$db_electionyear', electiontitle = '$db_title' WHERE id='$db_id' ";
         if (mysqli_query($connections, $query)) {
-            $response['status'] = 'success';
-            $response['message'] = 'Student added successfully.';
+            // $response['status'] = 'success';
+            // $response['message'] = 'Student added successfully.';
+            echo "<script>alert('Election updated successfully.');</script>";
+            echo "<script>window.location.href = 'electionlist.php';</script>";
         } else {
-            $response['status'] = 'error';
-            $response['message'] = 'Database error. Please try again.';
+            // $response['status'] = 'error';
+            // $response['message'] = 'Database error. Please try again.';
+            echo "<script>alert('Error: Database error. Please try again.');</script>";
         }
     } else {
-        $response['status'] = 'error';
-        $response['message'] = 'All fields are required.';
+        // $response['status'] = 'error';
+        // $response['message'] = 'All fields are required.';
+        echo "<script>alert('Error: All fields are required.');</script>";
     }
-    echo json_encode($response);
-    exit;
+    // echo json_encode($response);
+    // exit;
 }
 
 $electionlists = mysqli_query($connections, "SELECT * FROM admintbl WHERE id='$get_id' ");
@@ -75,61 +81,85 @@ $db_electionyear = $row_election_lists["electionyear"];
 $db_title = $row_election_lists["electiontitle"];
 $db_status = $row_election_lists["electionstatus"];
 ?>
-<div class="container d-flex align-items-center justify-content-center h-100">
-    <form id="editElectionForm" method="POST">
 
-        <h3>Edit Election</h3>
-        <hr>
-        <div class="row">
 
-            <div class="col-md-5 form-group pb-3">
-                <label for="electionyear"><b>Election Year:<span style="color:red;"> *</span></b></label>
-                <input class="form-control" type="text" value="<?php echo $db_electionyear; ?>" name="electionyear" id="electionyear" placeholder="Election Year" autocomplete="off" required>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-md-5 form-group pb-3">
-                <label for="title"><b>Title:<span style="color:red;"> *</span></b></label>
-                <input class="form-control" type="text" value="<?php echo $db_title;  ?>" name="title" id="title" placeholder="Title" autocomplete="off" required>
-                <input type="hidden" value="<?php echo $db_id; ?>" name="id">
-            </div>
+<div class="d-flex">
+    <!-- Sidebar -->
+    <?php include('bins/sidebar.php'); ?>
 
-            <div class="form-group pt-4">
-                <input class="button-green float-end" type="submit" name="submit" value="Save">
+    <!-- Main content -->
+    <div class="flex-grow-1 d-flex justify-content-center" style="margin-left: 250px; padding: 1rem; min-height: 90vh;">
+        <div class="flex-fill d-flex align-items-center justify-content-center">
+            <img src="../../bins/img/logo.png" class="rounded-circle" width="200px" alt="Logo">
+        </div>
+
+        <div class="flex-fill d-flex align-items-center justify-content-center">
+
+            <div class="container d-flex align-items-center justify-content-center h-100">
+                <form method="POST">
+
+                    <h3>Edit Election</h3>
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-md-5 form-group pb-3">
+                            <label for="electionyear"><b>Election Year:<span style="color:red;"> *</span></b></label>
+                            <input class="form-control" type="text" value="<?php echo $db_electionyear; ?>" name="electionyear" id="electionyear" placeholder="Election Year" autocomplete="off" required>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-md-5 form-group pb-3">
+                            <label for="title"><b>Title:<span style="color:red;"> *</span></b></label>
+                            <input class="form-control" type="text" value="<?php echo $db_title;  ?>" name="title" id="title" placeholder="Title" autocomplete="off" required>
+                            <input type="hidden" value="<?php echo $db_id; ?>" name="id">
+                        </div>
+
+                        <div class="form-group pt-4">
+                            <input class="button-green float-end" type="submit" name="submit" value="Save">
+                        </div>
+
+                    </div>
+                    <hr>
+                </form>
+
             </div>
 
         </div>
-        <hr>
-    </form>
-
+    </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $('#editElectionForm').submit(function(e) {
-            e.preventDefault(); // Prevent default form submission
-            var formData = $(this).serialize(); // Serialize form data
 
-            $.ajax({
-                url: 'editelection.php', // Change this to your actual form processing URL if needed
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    var res = JSON.parse(response);
-                    if (res.status === 'success') {
-                        alert(res.message);
-                        // Use history.pushState to remain on the same view
-                        // history.pushState(null, '', 'editelection.php');
-                        // Reload the form to clear fields
-                        $('main[role="main"]').load('electionlist.php');
-                    } else {
-                        alert('Error: ' + res.message);
-                    }
-                },
-                error: function() {
-                    console.log('Error submitting form.');
-                    alert('Error adding election. Please try again.');
-                }
-            });
-        });
-    });
+<script>
+    // $(document).ready(function() {
+    //     $('#editElectionForm').submit(function(e) {
+    //         e.preventDefault(); // Prevent default form submission
+    //         var formData = $(this).serialize(); // Serialize form data
+
+    //         $.ajax({
+    //             url: 'editelection.php', // Change this to your actual form processing URL if needed
+    //             type: 'POST',
+    //             data: formData,
+    //             success: function(response) {
+    //                 var res = JSON.parse(response);
+    //                 if (res.status === 'success') {
+    //                     alert(res.message);
+    //                     // Use history.pushState to remain on the same view
+    //                     // history.pushState(null, '', 'editelection.php');
+    //                     // Reload the form to clear fields
+    //                     $('main[role="main"]').load('electionlist.php');
+    //                 } else {
+    //                     alert('Error: ' + res.message);
+    //                 }
+    //             },
+    //             error: function() {
+    //                 console.log('Error submitting form.');
+    //                 alert('Error adding election. Please try again.');
+    //             }
+    //         });
+    //     });
+    // });
 </script>
+
+
+<?php
+include('bins/footer.php');
+?>
