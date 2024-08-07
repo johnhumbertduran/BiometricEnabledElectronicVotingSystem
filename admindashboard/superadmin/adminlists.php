@@ -119,7 +119,7 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
                                             <td><?php echo $year; ?></td>
                                             <td class="text-center px-0">
                                                 <a href="#" class="button-green updateAdminButton" data-target="editadmin.php?id=<?php echo $id; ?>">Update</a>&nbsp;
-                                                <a href="#" class="button-red" id="title<?php echo $id; ?>" onclick="deleteThisAdmin(<?php echo $id; ?>, '<?php echo $name; ?>', event)">Delete</a>
+                                                <a href="#" class="button-red" id="admin<?php echo $id; ?>" onclick="deleteThisAdmin(<?php echo $id; ?>, '<?php echo $name; ?>', event)">Delete</a>
                                             </td>
                                         </tr>
                                     <?php
@@ -146,7 +146,34 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
 <br>
 
 <script>
+    function deleteThisAdmin(id, name, event) {
+        event.preventDefault(); // Prevent the default action (e.g., page navigation)
+
+        var userDecision = confirm('Are you sure you want to remove ' + name + ' from the admin\'s list?');
+        if (userDecision) {
+            $.ajax({
+                type: 'POST',
+                url: 'deleteadmin.php',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    if (response === 'success') {
+                        alert('Admin deleted successfully.');
+                        $('.nav-button.active').click(); // Refresh the list based on active button
+                    } else {
+                        alert('Failed to delete item.');
+                    }
+                },
+                error: function() {
+                    alert('Error occurred while deleting the item.');
+                }
+            });
+        }
+    }
     $(document).ready(function() {
+
+
 
         function loadAdminList() {
             $.ajax({

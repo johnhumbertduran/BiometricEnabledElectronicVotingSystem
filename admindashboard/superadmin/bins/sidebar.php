@@ -6,10 +6,10 @@
                 <a class="nav-link text-white" href="../">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="electionlist.php">Election List</a>
+                <a class="nav-link text-white" href="electionlist.php">Election Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="adminlists.php">Admin List</a>
+                <a class="nav-link text-white" href="adminlists.php">Admin Management</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="logout.php">Logout</a>
