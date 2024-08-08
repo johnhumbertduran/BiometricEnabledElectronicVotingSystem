@@ -79,7 +79,7 @@ if (isset($_GET['status'])) {
         </nav>
         <br>
         &nbsp;&nbsp; <button class="button-blue" id="registerVoterButton" data-target="registervoters.php">+ Add Voters</button>
-        <button class="button-blue">Download Excel File</button>
+        <!-- <button class="button-blue">Download Excel File</button> -->
 
         <?php
 

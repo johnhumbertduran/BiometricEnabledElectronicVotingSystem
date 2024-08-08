@@ -11,7 +11,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="president" class="form-label">President:</label>
                 <select class="form-select form-select-sm" id="president">
-                    <option value="1">Select President</option>
+                    <option value="None" name="president">Select President</option>
                     <?php
                     $president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='President' AND course='BSIT' AND status='Active' ");
 
@@ -45,7 +45,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="vicepresident" class="form-label">Vice President:</label>
                 <select class="form-select form-select-sm" id="vicepresident">
-                    <option value="1">Select Vice President</option>
+                    <option value="None" name="vicepresident">Select Vice President</option>
                     <?php
                     $vice_president_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Vice President' AND course='BSIT' AND status='Active' ");
 
@@ -81,7 +81,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="secretary" class="form-label">Secretary:</label>
                 <select class="form-select form-select-sm" id="secretary">
-                    <option value="1">Select Secretary</option>
+                    <option value="None" name="secretary">Select Secretary</option>
                     <?php
                     $secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Secretary' AND course='BSIT' AND status='Active' ");
 
@@ -115,7 +115,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="assistantsecretary" class="form-label">Assistant Secretary:</label>
                 <select class="form-select form-select-sm" id="assistantsecretary">
-                    <option value="1">Select Assistant Secretary</option>
+                    <option value="None" name="assistantsecretary">Select Assistant Secretary</option>
                     <?php
                     $assistant_secretary_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Secretary' AND course='BSIT' AND status='Active' ");
 
@@ -155,7 +155,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="treasurer" class="form-label">Treasurer:</label>
                 <select class="form-select form-select-sm" id="treasurer">
-                    <option value="1">Select Treasurer</option>
+                    <option value="None" name="treasurer">Select Treasurer</option>
                     <?php
                     $treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Treasurer' AND course='BSIT' AND status='Active' ");
 
@@ -188,7 +188,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="assistanttreasurer" class="form-label">Assistant Treasurer:</label>
                 <select class="form-select form-select-sm" id="assistanttreasurer">
-                    <option value="1">Select Assistant Treasurer</option>
+                    <option value="None" name="assistanttreasurer">Select Assistant Treasurer</option>
                     <?php
                     $assistant_treasurer_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Treasurer' AND course='BSIT' AND status='Active' ");
 
@@ -225,7 +225,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="auditor" class="form-label">Auditor:</label>
                 <select class="form-select form-select-sm" id="auditor">
-                    <option value="1">Select Auditor</option>
+                    <option value="None" name="auditor">Select Auditor</option>
                     <?php
                     $auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Auditor' AND course='BSIT' AND status='Active' ");
 
@@ -258,7 +258,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="assistantauditor" class="form-label">Assistant Auditor:</label>
                 <select class="form-select form-select-sm" id="assistantauditor">
-                    <option value="1">Select Assistant Auditor</option>
+                    <option value="None" name="assistantauditor">Select Assistant Auditor</option>
                     <?php
                     $assistant_auditor_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Assistant Auditor' AND course='BSIT' AND status='Active' ");
 
@@ -295,7 +295,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="pio1" class="form-label">P.I.O.:</label>
                 <select class="form-select form-select-sm" id="pio1">
-                    <option value="1">Select P.I.O.</option>
+                    <option value="None" name="pio1">Select P.I.O.</option>
                     <?php
                     $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND course='BSIT' AND status='Active' ");
 
@@ -310,10 +310,10 @@ include("../admindashboard/bins/connections.php");
                             $pio1middlename = $pio_data["middlename"];
                             $pio1lastname = $pio_data["lastname"];
 
-                            $pio = ucfirst($pio1firstname) . " " . ucfirst($pio1middlename[0]) . ". " . ucfirst($pio1lastname);
+                            $pio1 = ucfirst($pio1firstname) . " " . ucfirst($pio1middlename[0]) . ". " . ucfirst($pio1lastname);
 
                     ?>
-                            <option value="<?php echo $pio1id; ?>" name="pio1"><?php echo $pio; ?></option>
+                            <option value="<?php echo $pio1id; ?>" name="pio1"><?php echo $pio1; ?></option>
 
                     <?php
                         }
@@ -327,7 +327,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="pio2" class="form-label">P.I.O.:</label>
                 <select class="form-select form-select-sm" id="pio2" disabled>
-                    <option value="1">Select P.I.O.</option>
+                    <option value="None" name="pio2">Select P.I.O.</option>
                     <?php
                     $pio_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='P.I.O.' AND course='BSIT' AND status='Active' ");
 
@@ -342,10 +342,10 @@ include("../admindashboard/bins/connections.php");
                             $pio2middlename = $pio_data["middlename"];
                             $pio2lastname = $pio_data["lastname"];
 
-                            $pio = ucfirst($pio2firstname) . " " . ucfirst($pio2middlename[0]) . ". " . ucfirst($pio2lastname);
+                            $pio2 = ucfirst($pio2firstname) . " " . ucfirst($pio2middlename[0]) . ". " . ucfirst($pio2lastname);
 
                     ?>
-                            <option value="<?php echo $pio2id; ?>" name="pio2"><?php echo $pio; ?></option>
+                            <option value="<?php echo $pio2id; ?>" name="pio2"><?php echo $pio2; ?></option>
 
                     <?php
                         }
@@ -363,7 +363,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="businessmanager" class="form-label">Business Manager:</label>
                 <select class="form-select form-select-sm" id="businessmanager">
-                    <option value="1">Select Business Manager</option>
+                    <option value="None" name="businessmanager">Select Business Manager</option>
                     <?php
                     $business_manager_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Business Manager' AND course='BSIT' AND status='Active' ");
 
@@ -400,7 +400,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="layoutartist1" class="form-label">Layout Artist:</label>
                 <select class="form-select form-select-sm" id="layoutartist1">
-                    <option value="1">Select Layout Artist</option>
+                    <option value="None" name="layoutartist1">Select Layout Artist</option>
                     <?php
                     $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND course='BSIT' AND status='Active' ");
 
@@ -415,10 +415,10 @@ include("../admindashboard/bins/connections.php");
                             $layoutartist1middlename = $layout_artist_data["middlename"];
                             $layoutartist1lastname = $layout_artist_data["lastname"];
 
-                            $layout_artist = ucfirst($layoutartist1firstname) . " " . ucfirst($layoutartist1middlename[0]) . ". " . ucfirst($layoutartist1lastname);
+                            $layout_artist1 = ucfirst($layoutartist1firstname) . " " . ucfirst($layoutartist1middlename[0]) . ". " . ucfirst($layoutartist1lastname);
 
                     ?>
-                            <option value="<?php echo $layoutartist1id; ?>" name="layoutartist1"><?php echo $layout_artist; ?></option>
+                            <option value="<?php echo $layoutartist1id; ?>" name="layoutartist1"><?php echo $layout_artist1; ?></option>
 
                     <?php
                         }
@@ -433,7 +433,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="layoutartist2" class="form-label">Layout Artist:</label>
                 <select class="form-select form-select-sm" id="layoutartist2" disabled>
-                    <option value="1">Select Layout Artist</option>
+                    <option value="None" name="layoutartist2">Select Layout Artist</option>
                     <?php
                     $layout_artist_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Layout Artist' AND course='BSIT' AND status='Active' ");
 
@@ -448,10 +448,10 @@ include("../admindashboard/bins/connections.php");
                             $layoutartist2middlename = $layout_artist_data["middlename"];
                             $layoutartist2lastname = $layout_artist_data["lastname"];
 
-                            $layout_artist = ucfirst($layoutartist2firstname) . " " . ucfirst($layoutartist2middlename[0]) . ". " . ucfirst($layoutartist2lastname);
+                            $layout_artist2 = ucfirst($layoutartist2firstname) . " " . ucfirst($layoutartist2middlename[0]) . ". " . ucfirst($layoutartist2lastname);
 
                     ?>
-                            <option value="<?php echo $layoutartist2id; ?>" name="layoutartist2"><?php echo $layout_artist; ?></option>
+                            <option value="<?php echo $layoutartist2id; ?>" name="layoutartist2"><?php echo $layout_artist2; ?></option>
 
                     <?php
                         }
@@ -471,7 +471,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="technicalsupport1" class="form-label">Technical Support:</label>
                 <select class="form-select form-select-sm" id="technicalsupport1">
-                    <option value="1">Select Technical Support</option>
+                    <option value="None" name="technicalsupport1">Select Technical Support</option>
                     <?php
                     $technical_support_qry = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE position='Technical Support' AND course='BSIT' AND status='Active' ");
 
@@ -486,10 +486,10 @@ include("../admindashboard/bins/connections.php");
                             $technicalsupport1middlename = $technical_support_data["middlename"];
                             $technicalsupport1lastname = $technical_support_data["lastname"];
 
-                            $technical_support = ucfirst($technicalsupport1firstname) . " " . ucfirst($technicalsupport1middlename[0]) . ". " . ucfirst($technicalsupport1lastname);
+                            $technical_support1 = ucfirst($technicalsupport1firstname) . " " . ucfirst($technicalsupport1middlename[0]) . ". " . ucfirst($technicalsupport1lastname);
 
                     ?>
-                            <option value="<?php echo $technicalsupport1id; ?>" name="technicalsupport1"><?php echo $technical_support; ?></option>
+                            <option value="<?php echo $technicalsupport1id; ?>" name="technicalsupport1"><?php echo $technical_support1; ?></option>
 
                     <?php
                         }
@@ -504,7 +504,7 @@ include("../admindashboard/bins/connections.php");
             <div class="col-md-6 mb-3">
                 <label for="technicalsupport2" class="form-label">Technical Support:</label>
                 <select class="form-select form-select-sm" id="technicalsupport2" disabled>
-                    <option value="1">Select Technical Support</option>
+                    <option value="None" name="technicalsupport2">Select Technical Support</option>
                     <?php
                     if (isset($_GET['technicalsupport1'])) {
                         $techsup = $_GET['technicalsupport1'];
@@ -523,10 +523,10 @@ include("../admindashboard/bins/connections.php");
                             $technicalsupport2middlename = $technical_support_data["middlename"];
                             $technicalsupport2lastname = $technical_support_data["lastname"];
 
-                            $technical_support = ucfirst($technicalsupport2firstname) . " " . ucfirst($technicalsupport2middlename[0]) . ". " . ucfirst($technicalsupport2lastname);
+                            $technical_support2 = ucfirst($technicalsupport2firstname) . " " . ucfirst($technicalsupport2middlename[0]) . ". " . ucfirst($technicalsupport2lastname);
 
                     ?>
-                            <option value="<?php echo $technicalsupport2id; ?>" name="technicalsupport2"><?php echo $technical_support; ?></option>
+                            <option value="<?php echo $technicalsupport2id; ?>" name="technicalsupport2"><?php echo $technical_support2; ?></option>
 
                     <?php
                         }
@@ -627,49 +627,49 @@ include("../admindashboard/bins/connections.php");
             });
         });
 
-        // Function to update the submit button's data-target attribute
-        function updateSubmitButtonUrl() {
-            var president = $('#president').val();
-            var vicePresident = $('#vicepresident').val();
-            var secretary = $('#secretary').val();
-            var assistantSecretary = $('#assistantsecretary').val();
-            var treasurer = $('#treasurer').val();
-            var assistantTreasurer = $('#assistanttreasurer').val();
-            var auditor = $('#auditor').val();
-            var assistantAuditor = $('#assistantauditor').val();
-            var pio1 = $('#pio1').val();
-            var pio2 = $('#pio2').val();
-            var businessManager = $('#businessmanager').val();
-            var layoutArtist1 = $('#layoutartist1').val();
-            var layoutArtist2 = $('#layoutartist2').val();
-            var technicalSupport1 = $('#technicalsupport1').val();
-            var technicalSupport2 = $('#technicalsupport2').val();
+        // // Function to update the submit button's data-target attribute
+        // function updateSubmitButtonUrl() {
+        //     var president = $('#president').val();
+        //     var vicePresident = $('#vicepresident').val();
+        //     var secretary = $('#secretary').val();
+        //     var assistantSecretary = $('#assistantsecretary').val();
+        //     var treasurer = $('#treasurer').val();
+        //     var assistantTreasurer = $('#assistanttreasurer').val();
+        //     var auditor = $('#auditor').val();
+        //     var assistantAuditor = $('#assistantauditor').val();
+        //     var pio1 = $('#pio1').val();
+        //     var pio2 = $('#pio2').val();
+        //     var businessManager = $('#businessmanager').val();
+        //     var layoutArtist1 = $('#layoutartist1').val();
+        //     var layoutArtist2 = $('#layoutartist2').val();
+        //     var technicalSupport1 = $('#technicalsupport1').val();
+        //     var technicalSupport2 = $('#technicalsupport2').val();
 
-            // Construct the new URL with selected values
-            var targetUrl = 'submit.php?president=' + encodeURIComponent(president) +
-                '&vicepresident=' + encodeURIComponent(vicePresident) +
-                '&secretary=' + encodeURIComponent(secretary) +
-                '&assistantsecretary=' + encodeURIComponent(assistantSecretary) +
-                '&treasurer=' + encodeURIComponent(treasurer) +
-                '&assistanttreasurer=' + encodeURIComponent(assistantTreasurer) +
-                '&auditor=' + encodeURIComponent(auditor) +
-                '&assistantauditor=' + encodeURIComponent(assistantAuditor) +
-                '&pio1=' + encodeURIComponent(pio1) +
-                '&pio2=' + encodeURIComponent(pio2) +
-                '&businessmanager=' + encodeURIComponent(businessManager) +
-                '&layoutartist1=' + encodeURIComponent(layoutArtist1) +
-                '&layoutartist2=' + encodeURIComponent(layoutArtist2) +
-                '&technicalsupport1=' + encodeURIComponent(technicalSupport1) +
-                '&technicalsupport2=' + encodeURIComponent(technicalSupport2);
+        //     // Construct the new URL with selected values
+        //     var targetUrl = 'submit.php?president=' + encodeURIComponent(president) +
+        //         '&vicepresident=' + encodeURIComponent(vicePresident) +
+        //         '&secretary=' + encodeURIComponent(secretary) +
+        //         '&assistantsecretary=' + encodeURIComponent(assistantSecretary) +
+        //         '&treasurer=' + encodeURIComponent(treasurer) +
+        //         '&assistanttreasurer=' + encodeURIComponent(assistantTreasurer) +
+        //         '&auditor=' + encodeURIComponent(auditor) +
+        //         '&assistantauditor=' + encodeURIComponent(assistantAuditor) +
+        //         '&pio1=' + encodeURIComponent(pio1) +
+        //         '&pio2=' + encodeURIComponent(pio2) +
+        //         '&businessmanager=' + encodeURIComponent(businessManager) +
+        //         '&layoutartist1=' + encodeURIComponent(layoutArtist1) +
+        //         '&layoutartist2=' + encodeURIComponent(layoutArtist2) +
+        //         '&technicalsupport1=' + encodeURIComponent(technicalSupport1) +
+        //         '&technicalsupport2=' + encodeURIComponent(technicalSupport2);
 
-            // Update the data-target attribute of the submit button
-            $('#submitButton').data('target', targetUrl);
-        }
+        //     // Update the data-target attribute of the submit button
+        //     $('#submitButton').data('target', targetUrl);
+        // }
 
-        // Call updateSubmitButtonUrl when any select value changes
-        $('select').change(function() {
-            updateSubmitButtonUrl();
-        });
+        // // Call updateSubmitButtonUrl when any select value changes
+        // $('select').change(function() {
+        //     updateSubmitButtonUrl();
+        // });
 
         // Function to validate required fields
         // function validateForm() {
@@ -698,45 +698,45 @@ include("../admindashboard/bins/connections.php");
         $('#submitButton').click(function(e) {
             e.preventDefault(); // Prevent default button behavior
 
-            if (validateForm()) { // Check if form is valid
-                var president = $('#president').val(); // Get selected value of president
-                var vicepresident = $('#vicepresident').val(); // Get selected value of vice president
-                var secretary = $('#secretary').val(); // Get selected value of secretary
-                var assistantsecretary = $('#assistantsecretary').val(); // Get selected value of assistant secretary
-                var treasurer = $('#treasurer').val(); // Get selected value of treasurer
-                var assistanttreasurer = $('#assistanttreasurer').val(); // Get selected value of assistant treasurer
-                var auditor = $('#auditor').val(); // Get selected value of auditor
-                var assistantauditor = $('#assistantauditor').val(); // Get selected value of assistant auditor
-                var pio1 = $('#pio1').val(); // Get selected value of pio1
-                var pio2 = $('#pio2').val(); // Get selected value of pio2
-                var businessmanager = $('#businessmanager').val(); // Get selected value of businessmanager
-                var layoutartist1 = $('#layoutartist1').val(); // Get selected value of layout artist1
-                var layoutartist2 = $('#layoutartist2').val(); // Get selected value of layout artist2
-                var technicalsupport1 = $('#technicalsupport1').val(); // Get selected value of technical support1
-                var technicalsupport2 = $('#technicalsupport2').val(); // Get selected value of technical support2
+            // if (validateForm()) { // Check if form is valid
+            var president = $('#president').val(); // Get selected value of president
+            var vicepresident = $('#vicepresident').val(); // Get selected value of vice president
+            var secretary = $('#secretary').val(); // Get selected value of secretary
+            var assistantsecretary = $('#assistantsecretary').val(); // Get selected value of assistant secretary
+            var treasurer = $('#treasurer').val(); // Get selected value of treasurer
+            var assistanttreasurer = $('#assistanttreasurer').val(); // Get selected value of assistant treasurer
+            var auditor = $('#auditor').val(); // Get selected value of auditor
+            var assistantauditor = $('#assistantauditor').val(); // Get selected value of assistant auditor
+            var pio1 = $('#pio1').val(); // Get selected value of pio1
+            var pio2 = $('#pio2').val(); // Get selected value of pio2
+            var businessmanager = $('#businessmanager').val(); // Get selected value of businessmanager
+            var layoutartist1 = $('#layoutartist1').val(); // Get selected value of layout artist1
+            var layoutartist2 = $('#layoutartist2').val(); // Get selected value of layout artist2
+            var technicalsupport1 = $('#technicalsupport1').val(); // Get selected value of technical support1
+            var technicalsupport2 = $('#technicalsupport2').val(); // Get selected value of technical support2
 
-                // Construct the URL with query parameters
-                var targetUrl = 'submit.php?president=' + encodeURIComponent(president) +
-                    '&&vicepresident=' + encodeURIComponent(vicepresident) +
-                    '&&secretary=' + encodeURIComponent(secretary) +
-                    '&&assistantsecretary=' + encodeURIComponent(assistantsecretary) +
-                    '&&treasurer=' + encodeURIComponent(treasurer) +
-                    '&&assistanttreasurer=' + encodeURIComponent(assistanttreasurer) +
-                    '&&auditor=' + encodeURIComponent(auditor) +
-                    '&&assistantauditor=' + encodeURIComponent(assistantauditor) +
-                    '&&pio1=' + encodeURIComponent(pio1) +
-                    '&&pio2=' + encodeURIComponent(pio2) +
-                    '&&businessmanager=' + encodeURIComponent(businessmanager) +
-                    '&&layoutartist1=' + encodeURIComponent(layoutartist1) +
-                    '&&layoutartist2=' + encodeURIComponent(layoutartist2) +
-                    '&&technicalsupport1=' + encodeURIComponent(technicalsupport1) +
-                    '&&technicalsupport2=' + encodeURIComponent(technicalsupport2);
+            // Construct the URL with query parameters
+            var targetUrl = 'submit.php?president=' + encodeURIComponent(president) +
+                '&&vicepresident=' + encodeURIComponent(vicepresident) +
+                '&&secretary=' + encodeURIComponent(secretary) +
+                '&&assistantsecretary=' + encodeURIComponent(assistantsecretary) +
+                '&&treasurer=' + encodeURIComponent(treasurer) +
+                '&&assistanttreasurer=' + encodeURIComponent(assistanttreasurer) +
+                '&&auditor=' + encodeURIComponent(auditor) +
+                '&&assistantauditor=' + encodeURIComponent(assistantauditor) +
+                '&&pio1=' + encodeURIComponent(pio1) +
+                '&&pio2=' + encodeURIComponent(pio2) +
+                '&&businessmanager=' + encodeURIComponent(businessmanager) +
+                '&&layoutartist1=' + encodeURIComponent(layoutartist1) +
+                '&&layoutartist2=' + encodeURIComponent(layoutartist2) +
+                '&&technicalsupport1=' + encodeURIComponent(technicalsupport1) +
+                '&&technicalsupport2=' + encodeURIComponent(technicalsupport2);
 
-                // Redirect to the constructed URL
-                window.location.href = targetUrl;
-            } else {
-                alert('Please fill out all required fields.'); // Show a general alert if form is invalid
-            }
+            // Redirect to the constructed URL
+            window.location.href = targetUrl;
+            // } else {
+            //     alert('Please fill out all required fields.'); // Show a general alert if form is invalid
+            // }
         });
 
     });

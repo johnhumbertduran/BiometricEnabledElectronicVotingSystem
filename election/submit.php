@@ -15,6 +15,7 @@ if (isset($_SESSION["idnumber"])) {
     $voter_year = $get_voter_id_number["year"];
     $voter_course = $get_voter_id_number["course"];
     $voter_biometric = $get_voter_id_number["biometric"];
+    $voter_electionid = $get_voter_id_number["electionid"];
     $voter_status = $get_voter_id_number["status"];
 
     $name = ucfirst($voter_firstName) . " " . ucfirst($voter_middleName[0]) . ". " . ucfirst($voter_lastName);
@@ -73,228 +74,318 @@ if (isset($_POST['submit'])) {
                                                         if ($savetechnicalsupport1) {
                                                             if ($savetechnicalsupport2) {
 
-                                                                $presidentlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savepresident' AND status = 'Active' ");
+                                                                if ($savepresident == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'President', 'None')");
+                                                                } else {
+                                                                    $presidentlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savepresident' AND status = 'Active' ");
 
-                                                                $row_president_lists = mysqli_fetch_assoc($presidentlists);
-                                                                $presidentid = $row_president_lists["id"];
-                                                                $presidentidnumber = $row_president_lists["idnumber"];
-                                                                $presidentfirstname = $row_president_lists["firstname"];
-                                                                $presidentmiddlename = $row_president_lists["middlename"];
-                                                                $presidentlastname = $row_president_lists["lastname"];
-                                                                $presidentelectionid = $row_president_lists["electionid"];
-                                                                $presidentposition = $row_president_lists["position"];
+                                                                    $row_president_lists = mysqli_fetch_assoc($presidentlists);
+                                                                    $presidentid = $row_president_lists["id"];
+                                                                    $presidentidnumber = $row_president_lists["idnumber"];
+                                                                    $presidentfirstname = $row_president_lists["firstname"];
+                                                                    $presidentmiddlename = $row_president_lists["middlename"];
+                                                                    $presidentlastname = $row_president_lists["lastname"];
+                                                                    $presidentelectionid = $row_president_lists["electionid"];
+                                                                    $presidentposition = $row_president_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$presidentelectionid', '$presidentposition', '$presidentidnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$presidentelectionid', '$presidentposition', '$presidentidnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $presidentquery)) {
                                                                 // }
 
-                                                                $vicepresidentlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savevicepresident' AND status = 'Active' ");
+                                                                if ($savevicepresident == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Vice President', 'None')");
+                                                                } else {
+                                                                    $vicepresidentlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savevicepresident' AND status = 'Active' ");
 
-                                                                $row_vicepresident_lists = mysqli_fetch_assoc($vicepresidentlists);
-                                                                $vicepresidentid = $row_vicepresident_lists["id"];
-                                                                $vicepresidentidnumber = $row_vicepresident_lists["idnumber"];
-                                                                $vicepresidentfirstname = $row_vicepresident_lists["firstname"];
-                                                                $vicepresidentmiddlename = $row_vicepresident_lists["middlename"];
-                                                                $vicepresidentlastname = $row_vicepresident_lists["lastname"];
-                                                                $vicepresidentelectionid = $row_vicepresident_lists["electionid"];
-                                                                $vicepresidentposition = $row_vicepresident_lists["position"];
+                                                                    $row_vicepresident_lists = mysqli_fetch_assoc($vicepresidentlists);
+                                                                    $vicepresidentid = $row_vicepresident_lists["id"];
+                                                                    $vicepresidentidnumber = $row_vicepresident_lists["idnumber"];
+                                                                    $vicepresidentfirstname = $row_vicepresident_lists["firstname"];
+                                                                    $vicepresidentmiddlename = $row_vicepresident_lists["middlename"];
+                                                                    $vicepresidentlastname = $row_vicepresident_lists["lastname"];
+                                                                    $vicepresidentelectionid = $row_vicepresident_lists["electionid"];
+                                                                    $vicepresidentposition = $row_vicepresident_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$vicepresidentelectionid', '$vicepresidentposition', '$vicepresidentidnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$vicepresidentelectionid', '$vicepresidentposition', '$vicepresidentidnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $vicepresidentquery)) {
                                                                 // }
 
-                                                                $secretarylists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savesecretary' AND status = 'Active' ");
+                                                                if ($savesecretary == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Secretary', 'None')");
+                                                                } else {
+                                                                    $secretarylists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savesecretary' AND status = 'Active' ");
 
-                                                                $row_secretary_lists = mysqli_fetch_assoc($secretarylists);
-                                                                $secretaryid = $row_secretary_lists["id"];
-                                                                $secretaryidnumber = $row_secretary_lists["idnumber"];
-                                                                $secretaryfirstname = $row_secretary_lists["firstname"];
-                                                                $secretarymiddlename = $row_secretary_lists["middlename"];
-                                                                $secretarylastname = $row_secretary_lists["lastname"];
-                                                                $secretaryelectionid = $row_secretary_lists["electionid"];
-                                                                $secretaryposition = $row_secretary_lists["position"];
+                                                                    $row_secretary_lists = mysqli_fetch_assoc($secretarylists);
+                                                                    $secretaryid = $row_secretary_lists["id"];
+                                                                    $secretaryidnumber = $row_secretary_lists["idnumber"];
+                                                                    $secretaryfirstname = $row_secretary_lists["firstname"];
+                                                                    $secretarymiddlename = $row_secretary_lists["middlename"];
+                                                                    $secretarylastname = $row_secretary_lists["lastname"];
+                                                                    $secretaryelectionid = $row_secretary_lists["electionid"];
+                                                                    $secretaryposition = $row_secretary_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$secretaryelectionid', '$secretaryposition', '$secretaryidnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$secretaryelectionid', '$secretaryposition', '$secretaryidnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $secretaryquery)) {
                                                                 // }
 
-                                                                $assistantsecretarylists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$saveassistantsecretary' AND status = 'Active' ");
+                                                                if ($saveassistantsecretary == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Assistant Secretary', 'None')");
+                                                                } else {
+                                                                    $assistantsecretarylists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$saveassistantsecretary' AND status = 'Active' ");
 
-                                                                $row_assistantsecretary_lists = mysqli_fetch_assoc($assistantsecretarylists);
-                                                                $assistantsecretaryid = $row_assistantsecretary_lists["id"];
-                                                                $assistantsecretaryidnumber = $row_assistantsecretary_lists["idnumber"];
-                                                                $assistantsecretaryfirstname = $row_assistantsecretary_lists["firstname"];
-                                                                $assistantsecretarymiddlename = $row_assistantsecretary_lists["middlename"];
-                                                                $assistantsecretarylastname = $row_assistantsecretary_lists["lastname"];
-                                                                $assistantsecretaryelectionid = $row_assistantsecretary_lists["electionid"];
-                                                                $assistantsecretaryposition = $row_assistantsecretary_lists["position"];
+                                                                    $row_assistantsecretary_lists = mysqli_fetch_assoc($assistantsecretarylists);
+                                                                    $assistantsecretaryid = $row_assistantsecretary_lists["id"];
+                                                                    $assistantsecretaryidnumber = $row_assistantsecretary_lists["idnumber"];
+                                                                    $assistantsecretaryfirstname = $row_assistantsecretary_lists["firstname"];
+                                                                    $assistantsecretarymiddlename = $row_assistantsecretary_lists["middlename"];
+                                                                    $assistantsecretarylastname = $row_assistantsecretary_lists["lastname"];
+                                                                    $assistantsecretaryelectionid = $row_assistantsecretary_lists["electionid"];
+                                                                    $assistantsecretaryposition = $row_assistantsecretary_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$assistantsecretaryelectionid', '$assistantsecretaryposition', '$assistantsecretaryidnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$assistantsecretaryelectionid', '$assistantsecretaryposition', '$assistantsecretaryidnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $assistantsecretaryquery)) {
                                                                 // }
 
-                                                                $treasurerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savetreasurer' AND status = 'Active' ");
+                                                                if ($savetreasurer == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Treasurer', 'None')");
+                                                                } else {
+                                                                    $treasurerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savetreasurer' AND status = 'Active' ");
 
-                                                                $row_treasurer_lists = mysqli_fetch_assoc($treasurerlists);
-                                                                $treasurerid = $row_treasurer_lists["id"];
-                                                                $treasureridnumber = $row_treasurer_lists["idnumber"];
-                                                                $treasurerfirstname = $row_treasurer_lists["firstname"];
-                                                                $treasurermiddlename = $row_treasurer_lists["middlename"];
-                                                                $treasurerlastname = $row_treasurer_lists["lastname"];
-                                                                $treasurerelectionid = $row_treasurer_lists["electionid"];
-                                                                $treasurerposition = $row_treasurer_lists["position"];
+                                                                    $row_treasurer_lists = mysqli_fetch_assoc($treasurerlists);
+                                                                    $treasurerid = $row_treasurer_lists["id"];
+                                                                    $treasureridnumber = $row_treasurer_lists["idnumber"];
+                                                                    $treasurerfirstname = $row_treasurer_lists["firstname"];
+                                                                    $treasurermiddlename = $row_treasurer_lists["middlename"];
+                                                                    $treasurerlastname = $row_treasurer_lists["lastname"];
+                                                                    $treasurerelectionid = $row_treasurer_lists["electionid"];
+                                                                    $treasurerposition = $row_treasurer_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$treasurerelectionid', '$treasurerposition', '$treasureridnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$treasurerelectionid', '$treasurerposition', '$treasureridnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $treasurerquery)) {
                                                                 // }
 
-                                                                $assistanttreasurerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$saveassistanttreasurer' AND status = 'Active' ");
+                                                                if ($saveassistanttreasurer == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Assistant Treasurer', 'None')");
+                                                                } else {
+                                                                    $assistanttreasurerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$saveassistanttreasurer' AND status = 'Active' ");
 
-                                                                $row_assistanttreasurer_lists = mysqli_fetch_assoc($assistanttreasurerlists);
-                                                                $assistanttreasurerid = $row_assistanttreasurer_lists["id"];
-                                                                $assistanttreasureridnumber = $row_assistanttreasurer_lists["idnumber"];
-                                                                $assistanttreasurerfirstname = $row_assistanttreasurer_lists["firstname"];
-                                                                $assistanttreasurermiddlename = $row_assistanttreasurer_lists["middlename"];
-                                                                $assistanttreasurerlastname = $row_assistanttreasurer_lists["lastname"];
-                                                                $assistanttreasurerelectionid = $row_assistanttreasurer_lists["electionid"];
-                                                                $assistanttreasurerposition = $row_assistanttreasurer_lists["position"];
+                                                                    $row_assistanttreasurer_lists = mysqli_fetch_assoc($assistanttreasurerlists);
+                                                                    $assistanttreasurerid = $row_assistanttreasurer_lists["id"];
+                                                                    $assistanttreasureridnumber = $row_assistanttreasurer_lists["idnumber"];
+                                                                    $assistanttreasurerfirstname = $row_assistanttreasurer_lists["firstname"];
+                                                                    $assistanttreasurermiddlename = $row_assistanttreasurer_lists["middlename"];
+                                                                    $assistanttreasurerlastname = $row_assistanttreasurer_lists["lastname"];
+                                                                    $assistanttreasurerelectionid = $row_assistanttreasurer_lists["electionid"];
+                                                                    $assistanttreasurerposition = $row_assistanttreasurer_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$assistanttreasurerelectionid', '$assistanttreasurerposition', '$assistanttreasureridnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$assistanttreasurerelectionid', '$assistanttreasurerposition', '$assistanttreasureridnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $assistanttreasurerquery)) {
                                                                 // }
 
-                                                                $auditorlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$saveauditor' AND status = 'Active' ");
+                                                                if ($saveauditor == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Auditor', 'None')");
+                                                                } else {
+                                                                    $auditorlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$saveauditor' AND status = 'Active' ");
 
-                                                                $row_auditor_lists = mysqli_fetch_assoc($auditorlists);
-                                                                $auditorid = $row_auditor_lists["id"];
-                                                                $auditoridnumber = $row_auditor_lists["idnumber"];
-                                                                $auditorfirstname = $row_auditor_lists["firstname"];
-                                                                $auditormiddlename = $row_auditor_lists["middlename"];
-                                                                $auditorlastname = $row_auditor_lists["lastname"];
-                                                                $auditorelectionid = $row_auditor_lists["electionid"];
-                                                                $auditorposition = $row_auditor_lists["position"];
+                                                                    $row_auditor_lists = mysqli_fetch_assoc($auditorlists);
+                                                                    $auditorid = $row_auditor_lists["id"];
+                                                                    $auditoridnumber = $row_auditor_lists["idnumber"];
+                                                                    $auditorfirstname = $row_auditor_lists["firstname"];
+                                                                    $auditormiddlename = $row_auditor_lists["middlename"];
+                                                                    $auditorlastname = $row_auditor_lists["lastname"];
+                                                                    $auditorelectionid = $row_auditor_lists["electionid"];
+                                                                    $auditorposition = $row_auditor_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$auditorelectionid', '$auditorposition', '$auditoridnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$auditorelectionid', '$auditorposition', '$auditoridnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $auditorquery)) {
                                                                 // }
 
-                                                                $assistantauditorlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$saveassistantauditor' AND status = 'Active' ");
+                                                                if ($saveassistantauditor == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Assistant Auditor', 'None')");
+                                                                } else {
+                                                                    $assistantauditorlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$saveassistantauditor' AND status = 'Active' ");
 
-                                                                $row_assistantauditor_lists = mysqli_fetch_assoc($assistantauditorlists);
-                                                                $assistantauditorid = $row_assistantauditor_lists["id"];
-                                                                $assistantauditoridnumber = $row_assistantauditor_lists["idnumber"];
-                                                                $assistantauditorfirstname = $row_assistantauditor_lists["firstname"];
-                                                                $assistantauditormiddlename = $row_assistantauditor_lists["middlename"];
-                                                                $assistantauditorlastname = $row_assistantauditor_lists["lastname"];
-                                                                $assistantauditorelectionid = $row_assistantauditor_lists["electionid"];
-                                                                $assistantauditorposition = $row_assistantauditor_lists["position"];
+                                                                    $row_assistantauditor_lists = mysqli_fetch_assoc($assistantauditorlists);
+                                                                    $assistantauditorid = $row_assistantauditor_lists["id"];
+                                                                    $assistantauditoridnumber = $row_assistantauditor_lists["idnumber"];
+                                                                    $assistantauditorfirstname = $row_assistantauditor_lists["firstname"];
+                                                                    $assistantauditormiddlename = $row_assistantauditor_lists["middlename"];
+                                                                    $assistantauditorlastname = $row_assistantauditor_lists["lastname"];
+                                                                    $assistantauditorelectionid = $row_assistantauditor_lists["electionid"];
+                                                                    $assistantauditorposition = $row_assistantauditor_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$assistantauditorelectionid', '$assistantauditorposition', '$assistantauditoridnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$assistantauditorelectionid', '$assistantauditorposition', '$assistantauditoridnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $assistantauditorquery)) {
                                                                 // }
 
-                                                                $pio1lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savepio1' AND status = 'Active' ");
+                                                                if ($savepio1 == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'P.I.O.', 'None')");
+                                                                } else {
+                                                                    $pio1lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savepio1' AND status = 'Active' ");
 
-                                                                $row_pio1_lists = mysqli_fetch_assoc($pio1lists);
-                                                                $pio1id = $row_pio1_lists["id"];
-                                                                $pio1idnumber = $row_pio1_lists["idnumber"];
-                                                                $pio1firstname = $row_pio1_lists["firstname"];
-                                                                $pio1middlename = $row_pio1_lists["middlename"];
-                                                                $pio1lastname = $row_pio1_lists["lastname"];
-                                                                $pio1electionid = $row_pio1_lists["electionid"];
-                                                                $pio1position = $row_pio1_lists["position"];
+                                                                    $row_pio1_lists = mysqli_fetch_assoc($pio1lists);
+                                                                    $pio1id = $row_pio1_lists["id"];
+                                                                    $pio1idnumber = $row_pio1_lists["idnumber"];
+                                                                    $pio1firstname = $row_pio1_lists["firstname"];
+                                                                    $pio1middlename = $row_pio1_lists["middlename"];
+                                                                    $pio1lastname = $row_pio1_lists["lastname"];
+                                                                    $pio1electionid = $row_pio1_lists["electionid"];
+                                                                    $pio1position = $row_pio1_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$pio1electionid', '$pio1position', '$pio1idnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$pio1electionid', '$pio1position', '$pio1idnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $pio1query)) {
                                                                 // }
 
-                                                                $pio2lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savepio2' AND status = 'Active' ");
+                                                                if ($savepio2 == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'P.I.O.', 'None')");
+                                                                } else {
+                                                                    $pio2lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savepio2' AND status = 'Active' ");
 
-                                                                $row_pio2_lists = mysqli_fetch_assoc($pio2lists);
-                                                                $pio2id = $row_pio2_lists["id"];
-                                                                $pio2idnumber = $row_pio2_lists["idnumber"];
-                                                                $pio2firstname = $row_pio2_lists["firstname"];
-                                                                $pio2middlename = $row_pio2_lists["middlename"];
-                                                                $pio2lastname = $row_pio2_lists["lastname"];
-                                                                $pio2electionid = $row_pio2_lists["electionid"];
-                                                                $pio2position = $row_pio2_lists["position"];
+                                                                    $row_pio2_lists = mysqli_fetch_assoc($pio2lists);
+                                                                    $pio2id = $row_pio2_lists["id"];
+                                                                    $pio2idnumber = $row_pio2_lists["idnumber"];
+                                                                    $pio2firstname = $row_pio2_lists["firstname"];
+                                                                    $pio2middlename = $row_pio2_lists["middlename"];
+                                                                    $pio2lastname = $row_pio2_lists["lastname"];
+                                                                    $pio2electionid = $row_pio2_lists["electionid"];
+                                                                    $pio2position = $row_pio2_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$pio2electionid', '$pio2position', '$pio2idnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$pio2electionid', '$pio2position', '$pio2idnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $pio2query)) {
                                                                 // }
 
-                                                                $businessmanagerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savebusinessmanager' AND status = 'Active' ");
+                                                                if ($savebusinessmanager == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Business Manager', 'None')");
+                                                                } else {
+                                                                    $businessmanagerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savebusinessmanager' AND status = 'Active' ");
 
-                                                                $row_businessmanager_lists = mysqli_fetch_assoc($businessmanagerlists);
-                                                                $businessmanagerid = $row_businessmanager_lists["id"];
-                                                                $businessmanageridnumber = $row_businessmanager_lists["idnumber"];
-                                                                $businessmanagerfirstname = $row_businessmanager_lists["firstname"];
-                                                                $businessmanagermiddlename = $row_businessmanager_lists["middlename"];
-                                                                $businessmanagerlastname = $row_businessmanager_lists["lastname"];
-                                                                $businessmanagerelectionid = $row_businessmanager_lists["electionid"];
-                                                                $businessmanagerposition = $row_businessmanager_lists["position"];
+                                                                    $row_businessmanager_lists = mysqli_fetch_assoc($businessmanagerlists);
+                                                                    $businessmanagerid = $row_businessmanager_lists["id"];
+                                                                    $businessmanageridnumber = $row_businessmanager_lists["idnumber"];
+                                                                    $businessmanagerfirstname = $row_businessmanager_lists["firstname"];
+                                                                    $businessmanagermiddlename = $row_businessmanager_lists["middlename"];
+                                                                    $businessmanagerlastname = $row_businessmanager_lists["lastname"];
+                                                                    $businessmanagerelectionid = $row_businessmanager_lists["electionid"];
+                                                                    $businessmanagerposition = $row_businessmanager_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$businessmanagerelectionid', '$businessmanagerposition', '$businessmanageridnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$businessmanagerelectionid', '$businessmanagerposition', '$businessmanageridnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $businessmanagerquery)) {
                                                                 // }
 
-                                                                $layoutartist1lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savelayoutartist1' AND status = 'Active' ");
+                                                                if ($savelayoutartist1 == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Layout Artist', 'None')");
+                                                                } else {
+                                                                    $layoutartist1lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savelayoutartist1' AND status = 'Active' ");
 
-                                                                $row_layoutartist1_lists = mysqli_fetch_assoc($layoutartist1lists);
-                                                                $layoutartist1id = $row_layoutartist1_lists["id"];
-                                                                $layoutartist1idnumber = $row_layoutartist1_lists["idnumber"];
-                                                                $layoutartist1firstname = $row_layoutartist1_lists["firstname"];
-                                                                $layoutartist1middlename = $row_layoutartist1_lists["middlename"];
-                                                                $layoutartist1lastname = $row_layoutartist1_lists["lastname"];
-                                                                $layoutartist1electionid = $row_layoutartist1_lists["electionid"];
-                                                                $layoutartist1position = $row_layoutartist1_lists["position"];
+                                                                    $row_layoutartist1_lists = mysqli_fetch_assoc($layoutartist1lists);
+                                                                    $layoutartist1id = $row_layoutartist1_lists["id"];
+                                                                    $layoutartist1idnumber = $row_layoutartist1_lists["idnumber"];
+                                                                    $layoutartist1firstname = $row_layoutartist1_lists["firstname"];
+                                                                    $layoutartist1middlename = $row_layoutartist1_lists["middlename"];
+                                                                    $layoutartist1lastname = $row_layoutartist1_lists["lastname"];
+                                                                    $layoutartist1electionid = $row_layoutartist1_lists["electionid"];
+                                                                    $layoutartist1position = $row_layoutartist1_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$layoutartist1electionid', '$layoutartist1position', '$layoutartist1idnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$layoutartist1electionid', '$layoutartist1position', '$layoutartist1idnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $layoutartist1query)) {
                                                                 // }
 
-                                                                $layoutartist2lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savelayoutartist2' AND status = 'Active' ");
+                                                                if ($savelayoutartist2 == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Layout Artist', 'None')");
+                                                                } else {
+                                                                    $layoutartist2lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savelayoutartist2' AND status = 'Active' ");
 
-                                                                $row_layoutartist2_lists = mysqli_fetch_assoc($layoutartist2lists);
-                                                                $layoutartist2id = $row_layoutartist2_lists["id"];
-                                                                $layoutartist2idnumber = $row_layoutartist2_lists["idnumber"];
-                                                                $layoutartist2firstname = $row_layoutartist2_lists["firstname"];
-                                                                $layoutartist2middlename = $row_layoutartist2_lists["middlename"];
-                                                                $layoutartist2lastname = $row_layoutartist2_lists["lastname"];
-                                                                $layoutartist2electionid = $row_layoutartist2_lists["electionid"];
-                                                                $layoutartist2position = $row_layoutartist2_lists["position"];
+                                                                    $row_layoutartist2_lists = mysqli_fetch_assoc($layoutartist2lists);
+                                                                    $layoutartist2id = $row_layoutartist2_lists["id"];
+                                                                    $layoutartist2idnumber = $row_layoutartist2_lists["idnumber"];
+                                                                    $layoutartist2firstname = $row_layoutartist2_lists["firstname"];
+                                                                    $layoutartist2middlename = $row_layoutartist2_lists["middlename"];
+                                                                    $layoutartist2lastname = $row_layoutartist2_lists["lastname"];
+                                                                    $layoutartist2electionid = $row_layoutartist2_lists["electionid"];
+                                                                    $layoutartist2position = $row_layoutartist2_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$layoutartist2electionid', '$layoutartist2position', '$layoutartist2idnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$layoutartist2electionid', '$layoutartist2position', '$layoutartist2idnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $layoutartist2query)) {
                                                                 // }
 
-                                                                $technicalsupport1lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savetechnicalsupport1' AND status = 'Active' ");
+                                                                if ($savetechnicalsupport1 == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Technical Support', 'None')");
+                                                                } else {
+                                                                    $technicalsupport1lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savetechnicalsupport1' AND status = 'Active' ");
 
-                                                                $row_technicalsupport1_lists = mysqli_fetch_assoc($technicalsupport1lists);
-                                                                $technicalsupport1id = $row_technicalsupport1_lists["id"];
-                                                                $technicalsupport1idnumber = $row_technicalsupport1_lists["idnumber"];
-                                                                $technicalsupport1firstname = $row_technicalsupport1_lists["firstname"];
-                                                                $technicalsupport1middlename = $row_technicalsupport1_lists["middlename"];
-                                                                $technicalsupport1lastname = $row_technicalsupport1_lists["lastname"];
-                                                                $technicalsupport1electionid = $row_technicalsupport1_lists["electionid"];
-                                                                $technicalsupport1position = $row_technicalsupport1_lists["position"];
+                                                                    $row_technicalsupport1_lists = mysqli_fetch_assoc($technicalsupport1lists);
+                                                                    $technicalsupport1id = $row_technicalsupport1_lists["id"];
+                                                                    $technicalsupport1idnumber = $row_technicalsupport1_lists["idnumber"];
+                                                                    $technicalsupport1firstname = $row_technicalsupport1_lists["firstname"];
+                                                                    $technicalsupport1middlename = $row_technicalsupport1_lists["middlename"];
+                                                                    $technicalsupport1lastname = $row_technicalsupport1_lists["lastname"];
+                                                                    $technicalsupport1electionid = $row_technicalsupport1_lists["electionid"];
+                                                                    $technicalsupport1position = $row_technicalsupport1_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$technicalsupport1electionid', '$technicalsupport1position', '$technicalsupport1idnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$technicalsupport1electionid', '$technicalsupport1position', '$technicalsupport1idnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $technicalsupport1query)) {
                                                                 // }
 
-                                                                $technicalsupport2lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savetechnicalsupport2' AND status = 'Active' ");
+                                                                if ($savetechnicalsupport2 == "None") {
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$voter_electionid', 'Technical Support', 'None')");
+                                                                } else {
+                                                                    $technicalsupport2lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$savetechnicalsupport2' AND status = 'Active' ");
 
-                                                                $row_technicalsupport2_lists = mysqli_fetch_assoc($technicalsupport2lists);
-                                                                $technicalsupport2id = $row_technicalsupport2_lists["id"];
-                                                                $technicalsupport2idnumber = $row_technicalsupport2_lists["idnumber"];
-                                                                $technicalsupport2firstname = $row_technicalsupport2_lists["firstname"];
-                                                                $technicalsupport2middlename = $row_technicalsupport2_lists["middlename"];
-                                                                $technicalsupport2lastname = $row_technicalsupport2_lists["lastname"];
-                                                                $technicalsupport2electionid = $row_technicalsupport2_lists["electionid"];
-                                                                $technicalsupport2position = $row_technicalsupport2_lists["position"];
+                                                                    $row_technicalsupport2_lists = mysqli_fetch_assoc($technicalsupport2lists);
+                                                                    $technicalsupport2id = $row_technicalsupport2_lists["id"];
+                                                                    $technicalsupport2idnumber = $row_technicalsupport2_lists["idnumber"];
+                                                                    $technicalsupport2firstname = $row_technicalsupport2_lists["firstname"];
+                                                                    $technicalsupport2middlename = $row_technicalsupport2_lists["middlename"];
+                                                                    $technicalsupport2lastname = $row_technicalsupport2_lists["lastname"];
+                                                                    $technicalsupport2electionid = $row_technicalsupport2_lists["electionid"];
+                                                                    $technicalsupport2position = $row_technicalsupport2_lists["position"];
 
-                                                                mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$technicalsupport2electionid', '$technicalsupport2position', '$technicalsupport2idnumber')");
+                                                                    mysqli_query($connections, "INSERT INTO votestbl (voteridnumber, electionid, position, candidatevoted) VALUES ('$session_id_number', '$technicalsupport2electionid', '$technicalsupport2position', '$technicalsupport2idnumber')");
+                                                                }
+
+
                                                                 // if (mysqli_query($connections, $technicalsupport2query)) {
                                                                 // }
 
@@ -399,33 +490,44 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['president'])) {
             // echo $_GET['president'];
             $president = $_GET['president'];
-            $presidentlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$president' AND status = 'Active' ");
-            $countpresident = mysqli_num_rows($presidentlists);
 
-
-            if ($countpresident > 0) {
-                while ($row_president_lists = mysqli_fetch_assoc($presidentlists)) {
-
-
-                    $presidentid = $row_president_lists["id"];
-                    $presidentidnumber = $row_president_lists["idnumber"];
-                    $presidentfirstname = $row_president_lists["firstname"];
-                    $presidentmiddlename = $row_president_lists["middlename"];
-                    $presidentlastname = $row_president_lists["lastname"];
-                    $presidentelectionid = $row_president_lists["electionid"];
-                    $presidentposition = $row_president_lists["position"];
-
-                    $presidentname = ucfirst($presidentfirstname) . " " . ucfirst($presidentmiddlename[0]) . ". " . ucfirst($presidentlastname);
-
+            if ($president == "None") {
         ?>
+                <div class="d-flex align-items-center mb-3">
+                    <h6 class="mb-0 me-2">President:</h6>
+                    <p class="mb-0"><?php echo $president; ?></p>
+                    <input type="hidden" id="president" name="president" value="<?php echo $president; ?>">
+                </div>
+                <?php
+            } else {
+                $presidentlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$president' AND status = 'Active' ");
+                $countpresident = mysqli_num_rows($presidentlists);
 
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="mb-0 me-2">President:</h6>
-                        <p class="mb-0"><?php echo $presidentname; ?></p>
-                        <input type="hidden" id="president" name="president" value="<?php echo $presidentidnumber; ?>">
-                    </div>
+
+                if ($countpresident > 0) {
+                    while ($row_president_lists = mysqli_fetch_assoc($presidentlists)) {
+
+
+                        $presidentid = $row_president_lists["id"];
+                        $presidentidnumber = $row_president_lists["idnumber"];
+                        $presidentfirstname = $row_president_lists["firstname"];
+                        $presidentmiddlename = $row_president_lists["middlename"];
+                        $presidentlastname = $row_president_lists["lastname"];
+                        $presidentelectionid = $row_president_lists["electionid"];
+                        $presidentposition = $row_president_lists["position"];
+
+                        $presidentname = ucfirst($presidentfirstname) . " " . ucfirst($presidentmiddlename[0]) . ". " . ucfirst($presidentlastname);
+
+                ?>
+
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="mb-0 me-2">President:</h6>
+                            <p class="mb-0"><?php echo $presidentname; ?></p>
+                            <input type="hidden" id="president" name="president" value="<?php echo $presidentidnumber; ?>">
+                        </div>
 
         <?php
+                    }
                 }
             }
         }
@@ -437,30 +539,41 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['vicepresident'])) {
             // echo $_GET['vicepresident'];
             $vicepresident = $_GET['vicepresident'];
-            $vicepresidentlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$vicepresident' AND status = 'Active' ");
-            $countvicepresident = mysqli_num_rows($vicepresidentlists);
 
-
-            if ($countvicepresident > 0) {
-                while ($row_vicepresident_lists = mysqli_fetch_assoc($vicepresidentlists)) {
-
-
-                    $vicepresidentid = $row_vicepresident_lists["id"];
-                    $vicepresidentidnumber = $row_vicepresident_lists["idnumber"];
-                    $vicepresidentfirstname = $row_vicepresident_lists["firstname"];
-                    $vicepresidentmiddlename = $row_vicepresident_lists["middlename"];
-                    $vicepresidentlastname = $row_vicepresident_lists["lastname"];
-                    $vicepresidentelectionid = $row_vicepresident_lists["electionid"];
-                    $vicepresidentposition = $row_vicepresident_lists["position"];
-
-                    $vicepresidentname = ucfirst($vicepresidentfirstname) . " " . ucfirst($vicepresidentmiddlename[0]) . ". " . ucfirst($vicepresidentlastname);
+            if ($vicepresident == "None") {
         ?>
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="mb-0 me-2">Vice President:</h6>
-                        <p class="mb-0"><?php echo $vicepresidentname; ?></p>
-                        <input type="hidden" id="vicepresident" name="vicepresident" value="<?php echo $vicepresidentidnumber; ?>">
-                    </div>
+                <div class="d-flex align-items-center mb-3">
+                    <h6 class="mb-0 me-2">Vice President:</h6>
+                    <p class="mb-0"><?php echo $vicepresident; ?></p>
+                    <input type="hidden" id="vicepresident" name="vicepresident" value="<?php echo $vicepresident; ?>">
+                </div>
+                <?php
+            } else {
+                $vicepresidentlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$vicepresident' AND status = 'Active' ");
+                $countvicepresident = mysqli_num_rows($vicepresidentlists);
+
+
+                if ($countvicepresident > 0) {
+                    while ($row_vicepresident_lists = mysqli_fetch_assoc($vicepresidentlists)) {
+
+
+                        $vicepresidentid = $row_vicepresident_lists["id"];
+                        $vicepresidentidnumber = $row_vicepresident_lists["idnumber"];
+                        $vicepresidentfirstname = $row_vicepresident_lists["firstname"];
+                        $vicepresidentmiddlename = $row_vicepresident_lists["middlename"];
+                        $vicepresidentlastname = $row_vicepresident_lists["lastname"];
+                        $vicepresidentelectionid = $row_vicepresident_lists["electionid"];
+                        $vicepresidentposition = $row_vicepresident_lists["position"];
+
+                        $vicepresidentname = ucfirst($vicepresidentfirstname) . " " . ucfirst($vicepresidentmiddlename[0]) . ". " . ucfirst($vicepresidentlastname);
+                ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="mb-0 me-2">Vice President:</h6>
+                            <p class="mb-0"><?php echo $vicepresidentname; ?></p>
+                            <input type="hidden" id="vicepresident" name="vicepresident" value="<?php echo $vicepresidentidnumber; ?>">
+                        </div>
         <?php
+                    }
                 }
             }
         }
@@ -472,31 +585,42 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['secretary'])) {
             // echo $_GET['secretary'];
             $secretary = $_GET['secretary'];
-            $secretarylists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$secretary' AND status = 'Active' ");
-            $countsecretary = mysqli_num_rows($secretarylists);
-
-
-            if ($countsecretary > 0) {
-                while ($row_secretary_lists = mysqli_fetch_assoc($secretarylists)) {
-
-
-                    $secretaryid = $row_secretary_lists["id"];
-                    $secretaryidnumber = $row_secretary_lists["idnumber"];
-                    $secretaryfirstname = $row_secretary_lists["firstname"];
-                    $secretarymiddlename = $row_secretary_lists["middlename"];
-                    $secretarylastname = $row_secretary_lists["lastname"];
-                    $secretaryelectionid = $row_secretary_lists["electionid"];
-                    $secretaryposition = $row_secretary_lists["position"];
-
-                    $secretaryname = ucfirst($secretaryfirstname) . " " . ucfirst($secretarymiddlename[0]) . ". " . ucfirst($secretarylastname);
-
+            if ($secretary == "None") {
         ?>
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="mb-0 me-2">Secretary:</h6>
-                        <p class="mb-0"><?php echo $secretaryname; ?></p>
-                        <input type="hidden" id="secretary" name="secretary" value="<?php echo $secretaryidnumber; ?>">
-                    </div>
+                <div class="d-flex align-items-center mb-3">
+                    <h6 class="mb-0 me-2">Secretary:</h6>
+                    <p class="mb-0"><?php echo $secretary; ?></p>
+                    <input type="hidden" id="secretary" name="secretary" value="<?php echo $secretary; ?>">
+                </div>
+                <?php
+            } else {
+
+                $secretarylists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$secretary' AND status = 'Active' ");
+                $countsecretary = mysqli_num_rows($secretarylists);
+
+
+                if ($countsecretary > 0) {
+                    while ($row_secretary_lists = mysqli_fetch_assoc($secretarylists)) {
+
+
+                        $secretaryid = $row_secretary_lists["id"];
+                        $secretaryidnumber = $row_secretary_lists["idnumber"];
+                        $secretaryfirstname = $row_secretary_lists["firstname"];
+                        $secretarymiddlename = $row_secretary_lists["middlename"];
+                        $secretarylastname = $row_secretary_lists["lastname"];
+                        $secretaryelectionid = $row_secretary_lists["electionid"];
+                        $secretaryposition = $row_secretary_lists["position"];
+
+                        $secretaryname = ucfirst($secretaryfirstname) . " " . ucfirst($secretarymiddlename[0]) . ". " . ucfirst($secretarylastname);
+
+                ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="mb-0 me-2">Secretary:</h6>
+                            <p class="mb-0"><?php echo $secretaryname; ?></p>
+                            <input type="hidden" id="secretary" name="secretary" value="<?php echo $secretaryidnumber; ?>">
+                        </div>
         <?php
+                    }
                 }
             }
         }
@@ -510,31 +634,42 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['assistantsecretary'])) {
             // echo $_GET['assistantsecretary'];
             $assistantsecretary = $_GET['assistantsecretary'];
-            $assistantsecretarylists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$assistantsecretary' AND status = 'Active' ");
-            $countassistantsecretary = mysqli_num_rows($assistantsecretarylists);
 
-
-            if ($countassistantsecretary > 0) {
-                while ($row_assistantsecretary_lists = mysqli_fetch_assoc($assistantsecretarylists)) {
-
-
-                    $assistantsecretaryid = $row_assistantsecretary_lists["id"];
-                    $assistantsecretaryidnumber = $row_assistantsecretary_lists["idnumber"];
-                    $assistantsecretaryfirstname = $row_assistantsecretary_lists["firstname"];
-                    $assistantsecretarymiddlename = $row_assistantsecretary_lists["middlename"];
-                    $assistantsecretarylastname = $row_assistantsecretary_lists["lastname"];
-                    $assistantsecretaryelectionid = $row_assistantsecretary_lists["electionid"];
-                    $assistantsecretaryposition = $row_assistantsecretary_lists["position"];
-
-                    $assistantsecretaryname = ucfirst($assistantsecretaryfirstname) . " " . ucfirst($assistantsecretarymiddlename[0]) . ". " . ucfirst($assistantsecretarylastname);
-
+            if ($assistantsecretary == "None") {
         ?>
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="mb-0 me-2">Assistant Secretary:</h6>
-                        <p class="mb-0"><?php echo $assistantsecretaryname; ?></p>
-                        <input type="hidden" id="assistantsecretary" name="assistantsecretary" value="<?php echo $assistantsecretaryidnumber; ?>">
-                    </div>
+                <div class="d-flex align-items-center mb-3">
+                    <h6 class="mb-0 me-2">Assistant Secretary:</h6>
+                    <p class="mb-0"><?php echo $assistantsecretary; ?></p>
+                    <input type="hidden" id="assistantsecretary" name="assistantsecretary" value="<?php echo $assistantsecretary; ?>">
+                </div>
+                <?php
+            } else {
+                $assistantsecretarylists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$assistantsecretary' AND status = 'Active' ");
+                $countassistantsecretary = mysqli_num_rows($assistantsecretarylists);
+
+
+                if ($countassistantsecretary > 0) {
+                    while ($row_assistantsecretary_lists = mysqli_fetch_assoc($assistantsecretarylists)) {
+
+
+                        $assistantsecretaryid = $row_assistantsecretary_lists["id"];
+                        $assistantsecretaryidnumber = $row_assistantsecretary_lists["idnumber"];
+                        $assistantsecretaryfirstname = $row_assistantsecretary_lists["firstname"];
+                        $assistantsecretarymiddlename = $row_assistantsecretary_lists["middlename"];
+                        $assistantsecretarylastname = $row_assistantsecretary_lists["lastname"];
+                        $assistantsecretaryelectionid = $row_assistantsecretary_lists["electionid"];
+                        $assistantsecretaryposition = $row_assistantsecretary_lists["position"];
+
+                        $assistantsecretaryname = ucfirst($assistantsecretaryfirstname) . " " . ucfirst($assistantsecretarymiddlename[0]) . ". " . ucfirst($assistantsecretarylastname);
+
+                ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="mb-0 me-2">Assistant Secretary:</h6>
+                            <p class="mb-0"><?php echo $assistantsecretaryname; ?></p>
+                            <input type="hidden" id="assistantsecretary" name="assistantsecretary" value="<?php echo $assistantsecretaryidnumber; ?>">
+                        </div>
         <?php
+                    }
                 }
             }
         }
@@ -547,31 +682,42 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['treasurer'])) {
             // echo $_GET['treasurer'];
             $treasurer = $_GET['treasurer'];
-            $treasurerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$treasurer' AND status = 'Active' ");
-            $counttreasurer = mysqli_num_rows($treasurerlists);
 
-
-            if ($counttreasurer > 0) {
-                while ($row_treasurer_lists = mysqli_fetch_assoc($treasurerlists)) {
-
-
-                    $treasurerid = $row_treasurer_lists["id"];
-                    $treasureridnumber = $row_treasurer_lists["idnumber"];
-                    $treasurerfirstname = $row_treasurer_lists["firstname"];
-                    $treasurermiddlename = $row_treasurer_lists["middlename"];
-                    $treasurerlastname = $row_treasurer_lists["lastname"];
-                    $treasurerelectionid = $row_treasurer_lists["electionid"];
-                    $treasurerposition = $row_treasurer_lists["position"];
-
-                    $treasurername = ucfirst($treasurerfirstname) . " " . ucfirst($treasurermiddlename[0]) . ". " . ucfirst($treasurerlastname);
-
+            if ($treasurer == "None") {
         ?>
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="mb-0 me-2">Treasurer:</h6>
-                        <p class="mb-0"><?php echo $treasurername; ?></p>
-                        <input type="hidden" id="treasurer" name="treasurer" value="<?php echo $treasureridnumber; ?>">
-                    </div>
+                <div class="d-flex align-items-center mb-3">
+                    <h6 class="mb-0 me-2">Treasurer:</h6>
+                    <p class="mb-0"><?php echo $treasurer; ?></p>
+                    <input type="hidden" id="treasurer" name="treasurer" value="<?php echo $treasurer; ?>">
+                </div>
+                <?php
+            } else {
+                $treasurerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$treasurer' AND status = 'Active' ");
+                $counttreasurer = mysqli_num_rows($treasurerlists);
+
+
+                if ($counttreasurer > 0) {
+                    while ($row_treasurer_lists = mysqli_fetch_assoc($treasurerlists)) {
+
+
+                        $treasurerid = $row_treasurer_lists["id"];
+                        $treasureridnumber = $row_treasurer_lists["idnumber"];
+                        $treasurerfirstname = $row_treasurer_lists["firstname"];
+                        $treasurermiddlename = $row_treasurer_lists["middlename"];
+                        $treasurerlastname = $row_treasurer_lists["lastname"];
+                        $treasurerelectionid = $row_treasurer_lists["electionid"];
+                        $treasurerposition = $row_treasurer_lists["position"];
+
+                        $treasurername = ucfirst($treasurerfirstname) . " " . ucfirst($treasurermiddlename[0]) . ". " . ucfirst($treasurerlastname);
+
+                ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="mb-0 me-2">Treasurer:</h6>
+                            <p class="mb-0"><?php echo $treasurername; ?></p>
+                            <input type="hidden" id="treasurer" name="treasurer" value="<?php echo $treasureridnumber; ?>">
+                        </div>
         <?php
+                    }
                 }
             }
         }
@@ -584,31 +730,42 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['assistanttreasurer'])) {
             // echo $_GET['assistanttreasurer'];
             $assistanttreasurer = $_GET['assistanttreasurer'];
-            $assistanttreasurerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$assistanttreasurer' AND status = 'Active' ");
-            $countassistanttreasurer = mysqli_num_rows($assistanttreasurerlists);
 
-
-            if ($countassistanttreasurer > 0) {
-                while ($row_assistanttreasurer_lists = mysqli_fetch_assoc($assistanttreasurerlists)) {
-
-
-                    $assistanttreasurerid = $row_assistanttreasurer_lists["id"];
-                    $assistanttreasureridnumber = $row_assistanttreasurer_lists["idnumber"];
-                    $assistanttreasurerfirstname = $row_assistanttreasurer_lists["firstname"];
-                    $assistanttreasurermiddlename = $row_assistanttreasurer_lists["middlename"];
-                    $assistanttreasurerlastname = $row_assistanttreasurer_lists["lastname"];
-                    $assistanttreasurerelectionid = $row_assistanttreasurer_lists["electionid"];
-                    $assistanttreasurerposition = $row_assistanttreasurer_lists["position"];
-
-                    $assistanttreasurername = ucfirst($assistanttreasurerfirstname) . " " . ucfirst($assistanttreasurermiddlename[0]) . ". " . ucfirst($assistanttreasurerlastname);
-
+            if ($assistanttreasurer == "None") {
         ?>
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="mb-0 me-2">Assistant Treasurer:</h6>
-                        <p class="mb-0"><?php echo $assistanttreasurername; ?></p>
-                        <input type="hidden" id="assistanttreasurer" name="assistanttreasurer" value="<?php echo $assistanttreasureridnumber; ?>">
-                    </div>
+                <div class="d-flex align-items-center mb-3">
+                    <h6 class="mb-0 me-2">Assistant Treasurer:</h6>
+                    <p class="mb-0"><?php echo $assistanttreasurer; ?></p>
+                    <input type="hidden" id="assistanttreasurer" name="assistanttreasurer" value="<?php echo $assistanttreasurer; ?>">
+                </div>
+                <?php
+            } else {
+                $assistanttreasurerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$assistanttreasurer' AND status = 'Active' ");
+                $countassistanttreasurer = mysqli_num_rows($assistanttreasurerlists);
+
+
+                if ($countassistanttreasurer > 0) {
+                    while ($row_assistanttreasurer_lists = mysqli_fetch_assoc($assistanttreasurerlists)) {
+
+
+                        $assistanttreasurerid = $row_assistanttreasurer_lists["id"];
+                        $assistanttreasureridnumber = $row_assistanttreasurer_lists["idnumber"];
+                        $assistanttreasurerfirstname = $row_assistanttreasurer_lists["firstname"];
+                        $assistanttreasurermiddlename = $row_assistanttreasurer_lists["middlename"];
+                        $assistanttreasurerlastname = $row_assistanttreasurer_lists["lastname"];
+                        $assistanttreasurerelectionid = $row_assistanttreasurer_lists["electionid"];
+                        $assistanttreasurerposition = $row_assistanttreasurer_lists["position"];
+
+                        $assistanttreasurername = ucfirst($assistanttreasurerfirstname) . " " . ucfirst($assistanttreasurermiddlename[0]) . ". " . ucfirst($assistanttreasurerlastname);
+
+                ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="mb-0 me-2">Assistant Treasurer:</h6>
+                            <p class="mb-0"><?php echo $assistanttreasurername; ?></p>
+                            <input type="hidden" id="assistanttreasurer" name="assistanttreasurer" value="<?php echo $assistanttreasureridnumber; ?>">
+                        </div>
         <?php
+                    }
                 }
             }
         }
@@ -621,31 +778,42 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['auditor'])) {
             // echo $_GET['auditor'];
             $auditor = $_GET['auditor'];
-            $auditorlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$auditor' AND status = 'Active' ");
-            $countauditor = mysqli_num_rows($auditorlists);
 
-
-            if ($countauditor > 0) {
-                while ($row_auditor_lists = mysqli_fetch_assoc($auditorlists)) {
-
-
-                    $auditorid = $row_auditor_lists["id"];
-                    $auditoridnumber = $row_auditor_lists["idnumber"];
-                    $auditorfirstname = $row_auditor_lists["firstname"];
-                    $auditormiddlename = $row_auditor_lists["middlename"];
-                    $auditorlastname = $row_auditor_lists["lastname"];
-                    $auditorelectionid = $row_auditor_lists["electionid"];
-                    $auditorposition = $row_auditor_lists["position"];
-
-                    $auditorname = ucfirst($auditorfirstname) . " " . ucfirst($auditormiddlename[0]) . ". " . ucfirst($auditorlastname);
-
+            if ($auditor == "None") {
         ?>
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="mb-0 me-2">Auditor:</h6>
-                        <p class="mb-0"><?php echo $auditorname; ?></p>
-                        <input type="hidden" id="auditor" name="auditor" value="<?php echo $auditoridnumber; ?>">
-                    </div>
+                <div class="d-flex align-items-center mb-3">
+                    <h6 class="mb-0 me-2">Auditor:</h6>
+                    <p class="mb-0"><?php echo $auditor; ?></p>
+                    <input type="hidden" id="auditor" name="auditor" value="<?php echo $auditor; ?>">
+                </div>
+                <?php
+            } else {
+                $auditorlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$auditor' AND status = 'Active' ");
+                $countauditor = mysqli_num_rows($auditorlists);
+
+
+                if ($countauditor > 0) {
+                    while ($row_auditor_lists = mysqli_fetch_assoc($auditorlists)) {
+
+
+                        $auditorid = $row_auditor_lists["id"];
+                        $auditoridnumber = $row_auditor_lists["idnumber"];
+                        $auditorfirstname = $row_auditor_lists["firstname"];
+                        $auditormiddlename = $row_auditor_lists["middlename"];
+                        $auditorlastname = $row_auditor_lists["lastname"];
+                        $auditorelectionid = $row_auditor_lists["electionid"];
+                        $auditorposition = $row_auditor_lists["position"];
+
+                        $auditorname = ucfirst($auditorfirstname) . " " . ucfirst($auditormiddlename[0]) . ". " . ucfirst($auditorlastname);
+
+                ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="mb-0 me-2">Auditor:</h6>
+                            <p class="mb-0"><?php echo $auditorname; ?></p>
+                            <input type="hidden" id="auditor" name="auditor" value="<?php echo $auditoridnumber; ?>">
+                        </div>
         <?php
+                    }
                 }
             }
         }
@@ -658,31 +826,42 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['assistantauditor'])) {
             // echo $_GET['assistantauditor'];
             $assistantauditor = $_GET['assistantauditor'];
-            $assistantauditorlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$assistantauditor' AND status = 'Active' ");
-            $countassistantauditor = mysqli_num_rows($assistantauditorlists);
 
-
-            if ($countassistantauditor > 0) {
-                while ($row_assistantauditor_lists = mysqli_fetch_assoc($assistantauditorlists)) {
-
-
-                    $assistantauditorid = $row_assistantauditor_lists["id"];
-                    $assistantauditoridnumber = $row_assistantauditor_lists["idnumber"];
-                    $assistantauditorfirstname = $row_assistantauditor_lists["firstname"];
-                    $assistantauditormiddlename = $row_assistantauditor_lists["middlename"];
-                    $assistantauditorlastname = $row_assistantauditor_lists["lastname"];
-                    $assistantauditorelectionid = $row_assistantauditor_lists["electionid"];
-                    $assistantauditorposition = $row_assistantauditor_lists["position"];
-
-                    $assistantauditorname = ucfirst($assistantauditorfirstname) . " " . ucfirst($assistantauditormiddlename[0]) . ". " . ucfirst($assistantauditorlastname);
-
+            if ($assistantauditor == "None") {
         ?>
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="mb-0 me-2">Assistant Auditor:</h6>
-                        <p class="mb-0"><?php echo $assistantauditorname; ?></p>
-                        <input type="hidden" id="assistantauditor" name="assistantauditor" value="<?php echo $assistantauditoridnumber; ?>">
-                    </div>
+                <div class="d-flex align-items-center mb-3">
+                    <h6 class="mb-0 me-2">Assistant Auditor:</h6>
+                    <p class="mb-0"><?php echo $assistantauditor; ?></p>
+                    <input type="hidden" id="assistantauditor" name="assistantauditor" value="<?php echo $assistantauditor; ?>">
+                </div>
+                <?php
+            } else {
+                $assistantauditorlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$assistantauditor' AND status = 'Active' ");
+                $countassistantauditor = mysqli_num_rows($assistantauditorlists);
+
+
+                if ($countassistantauditor > 0) {
+                    while ($row_assistantauditor_lists = mysqli_fetch_assoc($assistantauditorlists)) {
+
+
+                        $assistantauditorid = $row_assistantauditor_lists["id"];
+                        $assistantauditoridnumber = $row_assistantauditor_lists["idnumber"];
+                        $assistantauditorfirstname = $row_assistantauditor_lists["firstname"];
+                        $assistantauditormiddlename = $row_assistantauditor_lists["middlename"];
+                        $assistantauditorlastname = $row_assistantauditor_lists["lastname"];
+                        $assistantauditorelectionid = $row_assistantauditor_lists["electionid"];
+                        $assistantauditorposition = $row_assistantauditor_lists["position"];
+
+                        $assistantauditorname = ucfirst($assistantauditorfirstname) . " " . ucfirst($assistantauditormiddlename[0]) . ". " . ucfirst($assistantauditorlastname);
+
+                ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="mb-0 me-2">Assistant Auditor:</h6>
+                            <p class="mb-0"><?php echo $assistantauditorname; ?></p>
+                            <input type="hidden" id="assistantauditor" name="assistantauditor" value="<?php echo $assistantauditoridnumber; ?>">
+                        </div>
         <?php
+                    }
                 }
             }
         }
@@ -691,12 +870,21 @@ if (isset($_POST['submit'])) {
 
 
         <div class="mb-3">
-            <div class="d-flex align-items-center">
-                <h6 class=" mb-0 me-2">P.I.O. 1:</h6>
-                <?php
-                if (isset($_GET['pio1'])) {
-                    // echo $_GET['pio1'];
-                    $pio1 = $_GET['pio1'];
+
+            <?php
+            if (isset($_GET['pio1'])) {
+                // echo $_GET['pio1'];
+                $pio1 = $_GET['pio1'];
+
+                if ($pio1 == "None") {
+            ?>
+                    <div class="d-flex align-items-center mb-3">
+                        <h6 class="mb-0 me-2">P.I.O. 1:</h6>
+                        <p class="mb-0"><?php echo $pio1; ?></p>
+                        <input type="hidden" id="pio1" name="pio1" value="<?php echo $pio1; ?>">
+                    </div>
+                    <?php
+                } else {
                     $pio1lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$pio1' AND status = 'Active' ");
                     $countpio1 = mysqli_num_rows($pio1lists);
 
@@ -715,22 +903,35 @@ if (isset($_POST['submit'])) {
 
                             $pio1name = ucfirst($pio1firstname) . " " . ucfirst($pio1middlename[0]) . ". " . ucfirst($pio1lastname);
 
-                ?>
-                            <p class="mb-0">1. <?php echo $pio1name; ?></p>
-                            <input type="hidden" id="pio1" name="pio1" value="<?php echo $pio1idnumber; ?>">
+                    ?>
+                            <div class="d-flex align-items-center">
+                                <h6 class=" mb-0 me-2">P.I.O. 1:</h6>
+                                <p class="mb-0">1. <?php echo $pio1name; ?></p>
+                                <input type="hidden" id="pio1" name="pio1" value="<?php echo $pio1idnumber; ?>">
+                            </div>
 
-            </div>
 
 
-            <div class="d-flex align-items-center">
-            <?php
+
+                    <?php
                         }
                     }
                 }
+            }
 
-                if (isset($_GET['pio2'])) {
-                    // echo $_GET['pio2'];
-                    $pio2 = $_GET['pio2'];
+            if (isset($_GET['pio2'])) {
+                // echo $_GET['pio2'];
+                $pio2 = $_GET['pio2'];
+
+                if ($pio2 == "None") {
+                    ?>
+                    <div class="d-flex align-items-center mb-3">
+                        <h6 class="mb-0 me-2">P.I.O. 2:</h6>
+                        <p class="mb-0"><?php echo $pio2; ?></p>
+                        <input type="hidden" id="pio2" name="pio2" value="<?php echo $pio2; ?>">
+                    </div>
+                    <?php
+                } else {
                     $pio2lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$pio2' AND status = 'Active' ");
                     $countpio2 = mysqli_num_rows($pio2lists);
 
@@ -749,16 +950,18 @@ if (isset($_POST['submit'])) {
 
                             $pio2name = ucfirst($pio2firstname) . " " . ucfirst($pio2middlename[0]) . ". " . ucfirst($pio2lastname);
 
-            ?>
-                <h6 class=" mb-0 me-2">P.I.O. 2:</h6>
-                <p class="mb-0"><?php echo $pio2name; ?></p>
-                <input type="hidden" id="pio2" name="pio2" value="<?php echo $pio2idnumber; ?>">
-    <?php
+                    ?>
+                            <div class="d-flex align-items-center">
+                                <h6 class=" mb-0 me-2">P.I.O. 2:</h6>
+                                <p class="mb-0"><?php echo $pio2name; ?></p>
+                                <input type="hidden" id="pio2" name="pio2" value="<?php echo $pio2idnumber; ?>">
+                            </div>
+            <?php
                         }
                     }
                 }
-    ?>
-            </div>
+            }
+            ?>
         </div>
 
 
@@ -767,31 +970,42 @@ if (isset($_POST['submit'])) {
         if (isset($_GET['businessmanager'])) {
             // echo $_GET['businessmanager'];
             $businessmanager = $_GET['businessmanager'];
-            $businessmanagerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$businessmanager' AND status = 'Active' ");
-            $countbusinessmanager = mysqli_num_rows($businessmanagerlists);
 
-
-            if ($countbusinessmanager > 0) {
-                while ($row_businessmanager_lists = mysqli_fetch_assoc($businessmanagerlists)) {
-
-
-                    $businessmanagerid = $row_businessmanager_lists["id"];
-                    $businessmanageridnumber = $row_businessmanager_lists["idnumber"];
-                    $businessmanagerfirstname = $row_businessmanager_lists["firstname"];
-                    $businessmanagermiddlename = $row_businessmanager_lists["middlename"];
-                    $businessmanagerlastname = $row_businessmanager_lists["lastname"];
-                    $businessmanagerelectionid = $row_businessmanager_lists["electionid"];
-                    $businessmanagerposition = $row_businessmanager_lists["position"];
-
-                    $businessmanagername = ucfirst($businessmanagerfirstname) . " " . ucfirst($businessmanagermiddlename[0]) . ". " . ucfirst($businessmanagerlastname);
-
+            if ($businessmanager == "None") {
         ?>
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="mb-0 me-2">Business Manager:</h6>
-                        <p class="mb-0"><?php echo $businessmanagername; ?></p>
-                        <input type="hidden" id="businessmanager" name="businessmanager" value="<?php echo $businessmanageridnumber; ?>">
-                    </div>
+                <div class="d-flex align-items-center mb-3">
+                    <h6 class="mb-0 me-2">Business Manager:</h6>
+                    <p class="mb-0"><?php echo $businessmanager; ?></p>
+                    <input type="hidden" id="businessmanager" name="businessmanager" value="<?php echo $businessmanager; ?>">
+                </div>
+                <?php
+            } else {
+                $businessmanagerlists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$businessmanager' AND status = 'Active' ");
+                $countbusinessmanager = mysqli_num_rows($businessmanagerlists);
+
+
+                if ($countbusinessmanager > 0) {
+                    while ($row_businessmanager_lists = mysqli_fetch_assoc($businessmanagerlists)) {
+
+
+                        $businessmanagerid = $row_businessmanager_lists["id"];
+                        $businessmanageridnumber = $row_businessmanager_lists["idnumber"];
+                        $businessmanagerfirstname = $row_businessmanager_lists["firstname"];
+                        $businessmanagermiddlename = $row_businessmanager_lists["middlename"];
+                        $businessmanagerlastname = $row_businessmanager_lists["lastname"];
+                        $businessmanagerelectionid = $row_businessmanager_lists["electionid"];
+                        $businessmanagerposition = $row_businessmanager_lists["position"];
+
+                        $businessmanagername = ucfirst($businessmanagerfirstname) . " " . ucfirst($businessmanagermiddlename[0]) . ". " . ucfirst($businessmanagerlastname);
+
+                ?>
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="mb-0 me-2">Business Manager:</h6>
+                            <p class="mb-0"><?php echo $businessmanagername; ?></p>
+                            <input type="hidden" id="businessmanager" name="businessmanager" value="<?php echo $businessmanageridnumber; ?>">
+                        </div>
         <?php
+                    }
                 }
             }
         }
@@ -801,13 +1015,22 @@ if (isset($_POST['submit'])) {
 
 
         <div class="mb-3">
-            <div class="d-flex align-items-center">
-                <h6 class="mb-0 me-2">Layout Artist 1:</h6>
-                <?php
 
-                if (isset($_GET['layoutartist1'])) {
-                    // echo $_GET['layoutartist1'];
-                    $layoutartist1 = $_GET['layoutartist1'];
+            <?php
+
+            if (isset($_GET['layoutartist1'])) {
+                // echo $_GET['layoutartist1'];
+                $layoutartist1 = $_GET['layoutartist1'];
+
+                if ($layoutartist1 == "None") {
+            ?>
+                    <div class="d-flex align-items-center mb-3">
+                        <h6 class="mb-0 me-2">Layout Artist 1:</h6>
+                        <p class="mb-0"><?php echo $layoutartist1; ?></p>
+                        <input type="hidden" id="layoutartist1" name="layoutartist1" value="<?php echo $layoutartist1; ?>">
+                    </div>
+                    <?php
+                } else {
                     $layoutartist1lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$layoutartist1' AND status = 'Active' ");
                     $countlayoutartist1 = mysqli_num_rows($layoutartist1lists);
 
@@ -826,18 +1049,31 @@ if (isset($_POST['submit'])) {
 
                             $layoutartist1name = ucfirst($layoutartist1firstname) . " " . ucfirst($layoutartist1middlename[0]) . ". " . ucfirst($layoutartist1lastname);
 
-                ?>
-                            <p class="mb-0"><?php echo $layoutartist1name; ?></p>
-                            <input type="hidden" id="layoutartist1" name="layoutartist1" value="<?php echo $layoutartist1idnumber; ?>">
-            </div>
-        <?php
+                    ?>
+                            <div class="d-flex align-items-center">
+                                <h6 class="mb-0 me-2">Layout Artist 1:</h6>
+                                <p class="mb-0"><?php echo $layoutartist1name; ?></p>
+                                <input type="hidden" id="layoutartist1" name="layoutartist1" value="<?php echo $layoutartist1idnumber; ?>">
+                            </div>
+                    <?php
                         }
                     }
                 }
+            }
 
-                if (isset($_GET['layoutartist2'])) {
-                    // echo $_GET['layoutartist2'];
-                    $layoutartist2 = $_GET['layoutartist2'];
+            if (isset($_GET['layoutartist2'])) {
+                // echo $_GET['layoutartist2'];
+                $layoutartist2 = $_GET['layoutartist2'];
+
+                if ($layoutartist2 == "None") {
+                    ?>
+                    <div class="d-flex align-items-center mb-3">
+                        <h6 class="mb-0 me-2">Layout Artist 2:</h6>
+                        <p class="mb-0"><?php echo $layoutartist2; ?></p>
+                        <input type="hidden" id="layoutartist2" name="layoutartist2" value="<?php echo $layoutartist2; ?>">
+                    </div>
+                    <?php
+                } else {
                     $layoutartist2lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$layoutartist2' AND status = 'Active' ");
                     $countlayoutartist2 = mysqli_num_rows($layoutartist2lists);
 
@@ -856,29 +1092,39 @@ if (isset($_POST['submit'])) {
 
                             $layoutartist2name = ucfirst($layoutartist2firstname) . " " . ucfirst($layoutartist2middlename[0]) . ". " . ucfirst($layoutartist2lastname);
 
-        ?>
-            <div class="d-flex align-items-center">
-                <h6 class="mb-0 me-2">Layout Artist 2:</h6>
-                <p class="mb-0"><?php echo $layoutartist2name; ?></p>
-                <input type="hidden" id="layoutartist2" name="layoutartist2" value="<?php echo $layoutartist2idnumber; ?>">
-    <?php
+                    ?>
+                            <div class="d-flex align-items-center">
+                                <h6 class="mb-0 me-2">Layout Artist 2:</h6>
+                                <p class="mb-0"><?php echo $layoutartist2name; ?></p>
+                                <input type="hidden" id="layoutartist2" name="layoutartist2" value="<?php echo $layoutartist2idnumber; ?>">
+                            </div>
+            <?php
                         }
                     }
                 }
-    ?>
-            </div>
+            }
+            ?>
         </div>
 
 
 
         <div class="mb-3">
-            <div class="d-flex align-items-center">
-                <h6 class="mb-0 me-2">Technical Support 1:</h6>
-                <?php
 
-                if (isset($_GET['technicalsupport1'])) {
-                    // echo $_GET['technicalsupport1'];
-                    $technicalsupport1 = $_GET['technicalsupport1'];
+            <?php
+
+            if (isset($_GET['technicalsupport1'])) {
+                // echo $_GET['technicalsupport1'];
+                $technicalsupport1 = $_GET['technicalsupport1'];
+
+                if ($technicalsupport1 == "None") {
+            ?>
+                    <div class="d-flex align-items-center mb-3">
+                        <h6 class="mb-0 me-2">Technical Support 1:</h6>
+                        <p class="mb-0"><?php echo $technicalsupport1; ?></p>
+                        <input type="hidden" id="technicalsupport1" name="technicalsupport1" value="<?php echo $technicalsupport1; ?>">
+                    </div>
+                    <?php
+                } else {
                     $technicalsupport1lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$technicalsupport1' AND status = 'Active' ");
                     $counttechnicalsupport1 = mysqli_num_rows($technicalsupport1lists);
 
@@ -897,18 +1143,31 @@ if (isset($_POST['submit'])) {
 
                             $technicalsupport1name = ucfirst($technicalsupport1firstname) . " " . ucfirst($technicalsupport1middlename[0]) . ". " . ucfirst($technicalsupport1lastname);
 
-                ?>
-                            <p class="mb-0"><?php echo $technicalsupport1name; ?></p>
-                            <input type="hidden" id="technicalsupport1" name="technicalsupport1" value="<?php echo $technicalsupport1idnumber; ?>">
-            </div>
-        <?php
+                    ?>
+                            <div class="d-flex align-items-center">
+                                <h6 class="mb-0 me-2">Technical Support 1:</h6>
+                                <p class="mb-0"><?php echo $technicalsupport1name; ?></p>
+                                <input type="hidden" id="technicalsupport1" name="technicalsupport1" value="<?php echo $technicalsupport1idnumber; ?>">
+                            </div>
+                    <?php
                         }
                     }
                 }
+            }
 
-                if (isset($_GET['technicalsupport2'])) {
-                    // echo $_GET['technicalsupport2'];
-                    $technicalsupport2 = $_GET['technicalsupport2'];
+            if (isset($_GET['technicalsupport2'])) {
+                // echo $_GET['technicalsupport2'];
+                $technicalsupport2 = $_GET['technicalsupport2'];
+
+                if ($technicalsupport2 == "None") {
+                    ?>
+                    <div class="d-flex align-items-center mb-3">
+                        <h6 class="mb-0 me-2">Technical Support 2:</h6>
+                        <p class="mb-0"><?php echo $technicalsupport2; ?></p>
+                        <input type="hidden" id="technicalsupport2" name="technicalsupport2" value="<?php echo $technicalsupport2; ?>">
+                    </div>
+                    <?php
+                } else {
                     $technicalsupport2lists = mysqli_query($connections, "SELECT * FROM candidatestbl WHERE idnumber = '$technicalsupport2' AND status = 'Active' ");
                     $counttechnicalsupport2 = mysqli_num_rows($technicalsupport2lists);
 
@@ -927,18 +1186,19 @@ if (isset($_POST['submit'])) {
 
                             $technicalsupport2name = ucfirst($technicalsupport2firstname) . " " . ucfirst($technicalsupport2middlename[0]) . ". " . ucfirst($technicalsupport2lastname);
 
-        ?>
-            <div class="d-flex align-items-center">
-                <h6 class="mb-0 me-2">Technical Support 2:</h6>
-                <p class="mb-0"><?php echo $technicalsupport2name; ?></p>
-                <input type="hidden" id="technicalsupport2" name="technicalsupport2" value="<?php echo $technicalsupport2idnumber; ?>">
-    <?php
+                    ?>
+                            <div class="d-flex align-items-center">
+                                <h6 class="mb-0 me-2">Technical Support 2:</h6>
+                                <p class="mb-0"><?php echo $technicalsupport2name; ?></p>
+                                <input type="hidden" id="technicalsupport2" name="technicalsupport2" value="<?php echo $technicalsupport2idnumber; ?>">
+                            </div>
+            <?php
                         }
                     }
                 }
-    ?>
+            }
+            ?>
 
-            </div>
         </div>
 
         <button class="button-green mb-3" id="backButton" data-target="itvoteform.php">Back</button>

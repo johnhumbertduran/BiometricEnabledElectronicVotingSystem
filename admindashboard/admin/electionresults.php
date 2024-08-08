@@ -65,25 +65,9 @@ $check_position = isset($_GET['position']) ? $_GET['position'] : 'all';
 
 <div class="d-flex">
     <!-- Sidebar -->
-    <nav class="bgmainblue text-white position-fixed h-100" style="width: 250px;">
-        <div class="p-3">
-            <h4>Sidebar Menu</h4>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="../">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="electionlist.php">Election List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="candidatelist.php">Candidate's List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="voterslist.php">Voter's List</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php
+    include('bins/sidebar.php');
+    ?>
 
     <!-- Main content -->
     <div class="flex-grow-1" style="margin-left: 250px; padding: 1rem;">
